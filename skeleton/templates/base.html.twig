@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}H3 Hitema{% endblock %}</title>
+        {# 
+            importer le JS compilé par Webpack ( composant encore )
+            app :  nom de l'entrée est contenu dans webpack.config.js: addEntry(...)
+        #}
+        {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {# 
+            Mise en page: 
+                les template parents sont stockés à la racine du dossier templates
+                les template enfants sont stockés dans des dossiers templates
+            Instructions de mise en page:
+                extends: héritage entre deux templates
+                block: zone vide à remplir ou pas dans un template enfant
+                include:  inclusion de template twig
+        #}
+        {% include '_inc/nav.html.twig' %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        {# 
+            importer le JS compilé par Webpack ( composant encore )
+            app :  nom de l'entrée est contenu dans webpack.config.js: addEntry(...)
+        #}
+        {{ encore_entry_script_tags('app') }}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
