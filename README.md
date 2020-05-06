@@ -4,6 +4,5 @@
 
 
 
--composer require symfony/form
--composer require validator
--composer require symfony/form
+- composer require symfony/form
+- composer require validator
