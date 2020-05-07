@@ -20,10 +20,9 @@ class DevisController extends AbstractController
 	 */
 	public function index(DevisRepository $devisRepository):Response
 	{
-		$results = $devisRepository->findAll();
-
+		$results= $devisRepository->findAll();
 		return $this->render('entreprise/devis/index.html.twig', [
-			'results' => $results
+			'results' => $results,
 		]);
 	}
 }
