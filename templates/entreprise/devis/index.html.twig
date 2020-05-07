@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			<h1>Gestion des devis</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Numéro devis</th>
+				<th>Nombre de participant</th>
+				<th>Date</th>
+				<th>Durée</th>
+				<th>Status</th>
+			</tr>
+			{% for devis in results %}
+				<tr>
+					<td class="col-md-4">{{ devis.numeroDevis }}</td>
+					<td>{{ devis.nbParticipantsDevis }}</td>
+					<td class="col-md-1">date</td>
+					<td class="col-md-1">{{ devis.nbHeuresDevis }}</td>
+					<td class="col-md-1">{{ devis.devisStatutId }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
