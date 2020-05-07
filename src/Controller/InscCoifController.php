@@ -17,11 +17,7 @@ class InscCoifController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager):Response
     {
 
-        $results = $productRepository->findAll();
-
-        return $this->render('insc_coif/index.html.twig', [
-            'controller_name' => 'InscCoifController',
-        ]);
+        
 
 
         $type = InscCoifType::class;
