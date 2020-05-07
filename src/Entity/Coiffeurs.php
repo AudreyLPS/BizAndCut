@@ -4,12 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Coiffeurs
- *
- * @ORM\Table(name="coiffeurs")
- * @ORM\Entity
- */
+    /**
+     * Coiffeurs
+     *
+     * @ORM\Table(name="coiffeurs")
+     * @ORM\Entity
+     */
 class Coiffeurs
 {
     /**
