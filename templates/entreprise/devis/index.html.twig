@@ -25,7 +25,7 @@
 				<tr>
 					<td class="col-md-4">{{ devis.numeroDevis }}</td>
 					<td>{{ devis.nbParticipantsDevis }}</td>
-					<td class="col-md-1">date</td>
+					<td class="col-md-1">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
 					<td class="col-md-1">{{ devis.nbHeuresDevis }}</td>
 					<td class="col-md-1">{{ devis.devisStatutId }}</td>
 				</tr>

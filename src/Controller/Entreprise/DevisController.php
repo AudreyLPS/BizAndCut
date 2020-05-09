@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Entreprise;
 
 use App\Entity\Devis;
 use App\Form\DevisType;
@@ -11,14 +11,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/entreprise")
+ */
+
 class DevisController extends AbstractController 
 {
+    /**
+	 * @Route("/listdevis", name="entreprise.devis.index")
+	 */
+	public function index(DevisRepository $devisRepository):Response
+	{
+		$results= $devisRepository->findAll();
+		return $this->render('entreprise/devis/index.html.twig', [
+			'results' => $results,
+		]);
+    }
+    
 
     /**
         * @Route("/adddevis", name="devis.form")
     */
     
-    public function index(Request $request, EntityManagerInterface $entityManager, int $id = null):Response {
+    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null):Response {
 
         $type = DevisType::class;
 		$model = new Devis();
@@ -38,9 +53,10 @@ class DevisController extends AbstractController
             return $this->redirectToRoute('homepage.index'); // on redirige vers le nom d'une route
         }
 
-        return $this->render('devis/index.html.twig',[
+        return $this->render('entreprise/devis/form.html.twig',[
             'form'=> $form->createView()
         ]); 
 
     }
+    
 }
