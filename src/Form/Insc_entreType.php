@@ -38,7 +38,7 @@ class Insc_entreType extends AbstractType
 	   //          	new NotBlank([
 	   //          	    'message' => 'Le pays est obligatoire'
 		  //           ])
-	   //          ]
+       //          ]
     //         ])
         ;
 

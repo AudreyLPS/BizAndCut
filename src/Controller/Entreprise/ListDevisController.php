@@ -13,10 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * @Route("/entreprise")
  */
-class DevisController extends AbstractController
+class ListDevisController extends AbstractController
 {
 	/**
-	 * @Route("/devis", name="entreprise.devis.index")
+	 * @Route("/listdevis", name="entreprise.devis.index")
 	 */
 	public function index(DevisRepository $devisRepository):Response
 	{
