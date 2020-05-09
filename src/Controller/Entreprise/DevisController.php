@@ -30,7 +30,7 @@ class DevisController extends AbstractController
     
 
     /**
-        * @Route("/adddevis", name="devis.form")
+        * @Route("/adddevis", name="entreprise.devis.form")
     */
     
     public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null):Response {
