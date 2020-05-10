@@ -13,52 +13,41 @@ use Doctrine\ORM\Mapping as ORM;
 class Admins
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_admin", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idAdmin;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_admin", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $nomAdmin;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom_admin", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $prenomAdmin;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="identifiant_admin", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $identifiantAdmin;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp_admin", type="string", length=255, nullable=false)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $mdpAdmin;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="deleted_admin", type="boolean", nullable=false)
+     * @ORM\Column(type="boolean")
      */
     private $deletedAdmin;
 
-    public function getIdAdmin(): ?int
+    public function getId(): ?int
     {
-        return $this->idAdmin;
+        return $this->id;
     }
 
     public function getNomAdmin(): ?string

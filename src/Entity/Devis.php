@@ -13,69 +13,57 @@ use Doctrine\ORM\Mapping as ORM;
 class Devis
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_devis", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idDevis;
+    private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="entreprise_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprises", inversedBy="devis")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $entrepriseId;
+    private $entreprise;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="numero_devis", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
-    private $numeroDevis;
+    private $numeroDevis; 
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="nb_participants_devis", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $nbParticipantsDevis;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_evenement_devis", type="date", nullable=false)
+     * @ORM\Column(type="date")
      */
     private $dateEvenementDevis;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nb_heures_devis", type="smallint", nullable=false)
+   /**
+     * @ORM\Column(type="integer")
      */
     private $nbHeuresDevis;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="devis_statut_id", type="smallint", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\DevisStatut", inversedBy="devis")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $devisStatutId;
+    private $devisStatut;
 
-    public function getIdDevis(): ?int
+    public function getId(): ?int
     {
-        return $this->idDevis;
+        return $this->id;
     }
 
-    public function getEntrepriseId(): ?int
+    public function getEntreprise(): ?Entreprises
     {
-        return $this->entrepriseId;
+        return $this->entreprise;
     }
 
-    public function setEntrepriseId(int $entrepriseId): self
+    public function setEntreprise(Entreprises $entreprise): self
     {
-        $this->entrepriseId = $entrepriseId;
+        $this->entreprise = $entreprise;
 
         return $this;
     }
@@ -128,14 +116,14 @@ class Devis
         return $this;
     }
 
-    public function getDevisStatutId(): ?int
+    public function getDevisStatut(): ?DevisStatut
     {
-        return $this->devisStatutId;
+        return $this->devisStatut;
     }
 
-    public function setDevisStatutId(int $devisStatutId): self
+    public function setDevisStatut(DevisStatut $devisStatut): self
     {
-        $this->devisStatutId = $devisStatutId;
+        $this->devisStatut = $devisStatut;
 
         return $this;
     }

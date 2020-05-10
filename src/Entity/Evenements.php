@@ -13,45 +13,40 @@ use Doctrine\ORM\Mapping as ORM;
 class Evenements
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_evenement", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idEvenement;
+    private $id;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_evenement", type="date", nullable=false)
+     /**
+     * @ORM\Column(type="date")
      */
     private $dateEvenement;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="heure_d_evenement", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $heureDEvenement;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="heure_f_evenement", type="string", length=10, nullable=false)
+     /**
+     * @ORM\Column(type="string", length=10)
      */
     private $heureFEvenement;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="nb_coiffeurs_evenement", type="smallint", nullable=false, options={"default"="1"})
+     * @ORM\Column(type="string", length=500)
+     */
+    private $descriptionEvenement;
+
+     /**
+     * @ORM\Column(type="integer")
      */
     private $nbCoiffeursEvenement = '1';
 
-    public function getIdEvenement(): ?int
+    public function getId(): ?int
     {
-        return $this->idEvenement;
+        return $this->id;
     }
 
     public function getDateEvenement(): ?\DateTimeInterface
@@ -74,6 +69,18 @@ class Evenements
     public function setHeureDEvenement(string $heureDEvenement): self
     {
         $this->heureDEvenement = $heureDEvenement;
+
+        return $this;
+    }
+
+    public function getDescriptionEvenement(): ?string
+    {
+        return $this->descriptionEvenement;
+    }
+
+    public function setDescriptionEvenement(string $descriptionEvenement): self
+    {
+        $this->descriptionEvenement = $descriptionEvenement;
 
         return $this;
     }

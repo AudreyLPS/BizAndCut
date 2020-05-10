@@ -23,10 +23,10 @@ class DevisRepository extends ServiceEntityRepository
 
     public function allDevis():Query{
         $results = $this->createQueryBuilder('devis')
-        ->select    ('devis.numeroDevis', 'devis.nbParticipantsDevis', 'devis.nbHeuresDevis','status.texteDevisStatut')
-        ->join      ('devis.devisStatutId','status')
+        ->select    ('devis.numeroDevis', 'devis.nbParticipantsDevis', 'devis.nbHeuresDevis','devis_statut.texteDevisStatut')
+        ->join      ('devis.devisStatut','devis_statut')
         ->getQuery();
-        
+        dd($results);
         return $results;
     }
 }

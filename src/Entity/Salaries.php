@@ -13,59 +13,46 @@ use Doctrine\ORM\Mapping as ORM;
 class Salaries
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_salarie", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idSalarie;
+    private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="entreprise_id", type="integer", nullable=false)
+     /**
+     * @ORM\Column(type="integer")
      */
     private $entrepriseId;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_salarie", type="string", length=255, nullable=false)
+     /**
+     * @ORM\Column(type="string", length=255)
      */
     private $nomSalarie;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom_salarie", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $prenomSalarie;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email_salarie", type="string", length=255, nullable=false)
+     /**
+     * @ORM\Column(type="string", length=255)
      */
     private $emailSalarie;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp_salarie", type="string", length=255, nullable=false)
+     /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $mdpSalarie;
 
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="deleted_salarie", type="boolean", nullable=false)
+     /**
+     * @ORM\Column(type="boolean")
      */
     private $deletedSalarie;
 
-    public function getIdSalarie(): ?int
+    public function getId(): ?int
     {
-        return $this->idSalarie;
+        return $this->id;
     }
 
     public function getEntrepriseId(): ?int

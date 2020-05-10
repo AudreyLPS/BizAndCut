@@ -9,28 +9,24 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="devis_statut")
  * @ORM\Entity
- */
+ */ 
 class DevisStatut
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_devis_statut", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idDevisStatut;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="texte_devis_statut", type="string", length=500, nullable=false)
+     * @ORM\Column(type="string", length=500)
      */
     private $texteDevisStatut;
 
-    public function getIdDevisStatut(): ?int
+    public function getId(): ?int
     {
-        return $this->idDevisStatut;
+        return $this->id;
     }
 
     public function getTexteDevisStatut(): ?string

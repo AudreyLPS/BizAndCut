@@ -13,101 +13,76 @@ use Doctrine\ORM\Mapping as ORM;
 class Entreprises
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_entreprise", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idEntreprise;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_entreprise", type="string", length=500, nullable=false)
+     * @ORM\Column(type="string", length=500)
      */
     private $nomEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom_nom_user_entreprise", type="string", length=500, nullable=false)
+     * @ORM\Column(type="string", length=500)
      */
     private $prenomNomUserEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="fonction_entreprise", type="string", length=500, nullable=false)
+     * @ORM\Column(type="string", length=500)
      */
     private $fonctionEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="siren_entreprise", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $sirenEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="statut_entreprise", type="string", length=500, nullable=false)
+     * @ORM\Column(type="string", length=500)
      */
     private $statutEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email_entreprise", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $emailEntreprise;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="telephone_entreprise", type="string", length=20, nullable=false)
+   /**
+     * @ORM\Column(type="string", length=20)
      */
     private $telephoneEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse_entreprise", type="string", length=500, nullable=false)
+     * @ORM\Column(type="string", length=500)
      */
     private $adresseEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ville_entreprise", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $villeEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="cp_entreprise", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $cpEntreprise;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp_entreprise", type="string", length=255, nullable=false)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $mdpEntreprise;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="deleted_entreprise", type="boolean", nullable=false)
+     * @ORM\Column(type="boolean")
      */
     private $deletedEntreprise;
 
-    public function getIdEntreprise(): ?int
+    public function getId(): ?int
     {
-        return $this->idEntreprise;
+        return $this->id;
     }
 
     public function getNomEntreprise(): ?string

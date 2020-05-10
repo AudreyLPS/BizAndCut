@@ -12,109 +12,82 @@ use Doctrine\ORM\Mapping as ORM;
      */
 class Coiffeurs
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_coiffeur", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+   /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idCoiffeur;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="civilite_coiffeur", type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=50)
      */
     private $civiliteCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_coiffeur", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $nomCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom_coiffeur", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $prenomCoiffeur;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="nb_annees_exp", type="boolean", nullable=false)
+     * @ORM\Column(type="boolean")
      */
     private $nbAnneesExp;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="type_coiffeur", type="boolean", nullable=false)
+     * @ORM\Column(type="boolean")
      */
     private $typeCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email_coiffeur", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $emailCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="telephone_coiffeur", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $telephoneCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse_coiffeur", type="string", length=500, nullable=false)
+     * @ORM\Column(type="string", length=500)
      */
     private $adresseCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ville_coiffeur", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $villeCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="cp_coiffeur", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $cpCoiffeur;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="distance_coiffeur", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $distanceCoiffeur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp_coiffeur", type="string", length=255, nullable=false)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $mdpCoiffeur;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="deleted_coiffeur", type="boolean", nullable=false)
+     * @ORM\Column(type="boolean")
      */
     private $deletedCoiffeur;
 
-    public function getIdCoiffeur(): ?int
+    public function getId(): ?int
     {
-        return $this->idCoiffeur;
+        return $this->id;
     }
 
     public function getCiviliteCoiffeur(): ?string

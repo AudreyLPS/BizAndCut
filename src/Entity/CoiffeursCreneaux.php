@@ -13,38 +13,30 @@ use Doctrine\ORM\Mapping as ORM;
 class CoiffeursCreneaux
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_coiffeurs_creneaux", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idCoiffeursCreneaux;
+    private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="evenement_id", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $evenementId;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="coiffeur_id", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $coiffeurId;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="horaires_coiffeur_creneau", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $horairesCoiffeurCreneau;
 
-    public function getIdCoiffeursCreneaux(): ?int
+    public function getId(): ?int
     {
-        return $this->idCoiffeursCreneaux;
+        return $this->id;
     }
 
     public function getEvenementId(): ?int

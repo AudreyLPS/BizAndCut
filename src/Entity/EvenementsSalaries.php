@@ -13,31 +13,27 @@ use Doctrine\ORM\Mapping as ORM;
 class EvenementsSalaries
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_evenements_salaries", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $idEvenementsSalaries;
+    private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="evenement_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements", inversedBy="evenements_salaries")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $evenementId;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="salarie_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salaries", inversedBy="evenements_salaries")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $salarieId;
 
-    public function getIdEvenementsSalaries(): ?int
+    public function getId(): ?int
     {
-        return $this->idEvenementsSalaries;
+        return $this->id;
     }
 
     public function getEvenementId(): ?int

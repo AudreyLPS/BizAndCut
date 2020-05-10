@@ -21,13 +21,13 @@
 				<th>Durée</th>
 				<th>Status</th>
 			</tr>
-			{% for devis in results %}
+			{% for devis in results %} 
 				<tr>
 					<td class="col-md-4">{{ devis.numeroDevis }}</td>
 					<td>{{ devis.nbParticipantsDevis }}</td>
 					<td class="col-md-1">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
 					<td class="col-md-1">{{ devis.nbHeuresDevis }}</td>
-					<td class="col-md-1">{{ devis.devisStatutId }}</td>
+					<td class="col-md-1">{{ devis.devisStatut.texteDevisStatut }}</td>
 				</tr>
 			{% endfor %}
 		</table>

@@ -16,6 +16,7 @@ class EvenementType extends AbstractType
             ->add('heureDEvenement')
             ->add('heureFEvenement')
             ->add('nbCoiffeursEvenement')
+            ->add('descriptionEvenement')
         ;
     }
 

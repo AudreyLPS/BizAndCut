@@ -26,15 +26,15 @@ class EvenementsController extends AbstractController
 		return $this->render('entreprise/evenements/index.html.twig', [
 			'results' => $results,
 		]);
-	}
+    }
+    
 	/**
         * @Route("/addevenements", name="entreprise.evenements.form")
     */
-    
     public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null):Response {
 
         $type = EvenementType::class;
-		$model = new Evenements();
+		$model = $id ? $productRepository->find($id) : new Evenements();
 		$form = $this->createForm($type, $model);
 		$form->handleRequest($request);
         
