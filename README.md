@@ -1,3 +1,8 @@
+- npm i
+- npm run watch
+- composer i
+
+
 - composer require annotations
 - composer require encore
 - composer require symfony/twig-bundle
