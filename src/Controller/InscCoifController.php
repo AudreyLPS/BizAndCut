@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 
+use App\Entity\Coiffeurs;
+use App\Form\InscCoifType;
+use App\Controller\InscCoifController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -14,11 +18,8 @@ class InscCoifController extends AbstractController
      * @Route("/insc_coif", name="insc_coif.index")
      */
 
-    public function index(Request $request, EntityManagerInterface $entityManager):Response
+    public function index(Request $request, EntityManagerInterface $entityManager, int $id=null):Response
     {
-
-        
-
 
         $type = InscCoifType::class;
 		$model = new Coiffeurs();
@@ -32,12 +33,14 @@ class InscCoifController extends AbstractController
 
 			
 			$message = "Le coiffeur a été ajoutée";
-			$this->addFlash('notice', $message);
+            $this->addFlash('notice', $message);
+            
+            return $this->redirectToRoute('homepage.index');
 
 			
         }
         
-        return $this->render('insc_coif/index.html.twig', [
+        return $this->render('insc_coif/form.html.twig', [
 			'form' => $form->createView()
 		]);
     }

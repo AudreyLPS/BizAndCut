@@ -7,6 +7,7 @@ use App\Form\InscCoifType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Image;
 use App\EventSubscriber\Form\InscCoifFormSubscriber;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -26,7 +27,7 @@ class InscCoifType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('civiliteCoiffeur', ChoiceType::class, [
+            ->add('civiliteCoiffeur', TextType::class, [
                 'constraints' => [
                     new NotBlank([
                         'message' => "Votre civilité est obligatoire"
@@ -118,6 +119,14 @@ class InscCoifType extends AbstractType
             ])
 
             ->add('mdpCoiffeur', PasswordType::class, [
+            	'constraints' => [
+            		new NotBlank([
+            		    'message' => "Votre mot de passe est obligatoire"
+		            ])
+	            ]
+			])
+			
+			->add('deletedCoiffeur', TextType::class, [
             	'constraints' => [
             		new NotBlank([
             		    'message' => "Votre mot de passe est obligatoire"
