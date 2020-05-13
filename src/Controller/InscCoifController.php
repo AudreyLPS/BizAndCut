@@ -32,7 +32,7 @@ class InscCoifController extends AbstractController
 			$entityManager->flush();
 
 			
-			$message = "Le coiffeur a été ajoutée";
+			$message = "Vous êtes enregistré en tant que coiffeur";
             $this->addFlash('notice', $message);
             
             return $this->redirectToRoute('homepage.index');

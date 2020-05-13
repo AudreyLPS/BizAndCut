@@ -25,8 +25,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 class InscCoifType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
+    {	
+		$builder
+			
             ->add('civiliteCoiffeur', TextType::class, [
                 'constraints' => [
                     new NotBlank([
@@ -86,12 +87,11 @@ class InscCoifType extends AbstractType
 	            ]
             ])
             
-            ->add('adresseCoiffeur', TextType::class, [
-            	'constraints' => [
-            		new NotBlank([
-            		    'message' => "Votre adresse est obligatoire"
-		            ])
-	            ]
+            ->add('adresseCoiffeur', TextareaType::class, [
+            	
+				'attr' => [
+					'rows' => 1, 'cols' => 66
+				]
             ])
             
             ->add('villeCoiffeur', TextType::class, [
@@ -119,20 +119,18 @@ class InscCoifType extends AbstractType
             ])
 
             ->add('mdpCoiffeur', PasswordType::class, [
+				
             	'constraints' => [
             		new NotBlank([
             		    'message' => "Votre mot de passe est obligatoire"
-		            ])
+					])
+					
 	            ]
 			])
 			
-			->add('deletedCoiffeur', TextType::class, [
-            	'constraints' => [
-            		new NotBlank([
-            		    'message' => "Votre mot de passe est obligatoire"
-		            ])
-	            ]
-            ]);
+			
+			->add('deletedCoiffeur', TextareaType::class, [
+			]);
 
         // ajout d'un soucripteur de formulaire
 	    $builder->addEventSubscriber( new InscCoifFormSubscriber() );
@@ -143,5 +141,15 @@ class InscCoifType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Coiffeurs::class,
         ]);
-    }
+	}
+
+	public function create($data)
+    {
+		$data = ['deletedCoiffeur' => 1];
+		$form =$this->createFormBuilder($data)
+			->add('deletedCoiffeur', TextareaType::class[
+
+		]);
+	}
+	
 }
