@@ -3,13 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Coiffeurs;
-use App\Form\InscCoifType;
+use App\Form\Insc_coifType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Image;
-use App\EventSubscriber\Form\InscCoifFormSubscriber;
+use App\EventSubscriber\Form\Insc_coifFormSubscriber;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +22,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class InscCoifType extends AbstractType
+class Insc_coifType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
@@ -133,7 +133,7 @@ class InscCoifType extends AbstractType
 			]);
 
         // ajout d'un soucripteur de formulaire
-	    $builder->addEventSubscriber( new InscCoifFormSubscriber() );
+	    $builder->addEventSubscriber( new Insc_coifFormSubscriber() );
     }
 
     public function configureOptions(OptionsResolver $resolver)

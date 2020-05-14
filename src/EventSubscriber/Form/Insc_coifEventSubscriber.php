@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class InscCoifFormSubscriber implements EventSubscriberInterface
+class Insc_coifFormSubscriber implements EventSubscriberInterface
 {
 	public static function getSubscribedEvents()
 	{

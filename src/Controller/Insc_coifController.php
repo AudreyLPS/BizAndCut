@@ -4,15 +4,15 @@ namespace App\Controller;
 
 
 use App\Entity\Coiffeurs;
-use App\Form\InscCoifType;
-use App\Controller\InscCoifController;
+use App\Form\Insc_coifType;
+use App\Controller\Insc_coifController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class InscCoifController extends AbstractController
+class Insc_coifController extends AbstractController
 {
     /**
      * @Route("/insc_coif", name="insc_coif.index")
@@ -21,7 +21,7 @@ class InscCoifController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager, int $id=null):Response
     {
 
-        $type = InscCoifType::class;
+        $type = Insc_coifType::class;
 		$model = new Coiffeurs();
 		$form = $this->createForm($type, $model);
         $form->handleRequest($request);
