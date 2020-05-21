@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Devis;
 use App\Entity\DevisStatut;
+use App\Entity\Entreprises;
 use Symfony\Component\Form\AbstractType;
+use App\Repository\DevisStatutRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\EventSubscriber\Form\DevisFormSubscriber;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -13,7 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use App\Entity\Entreprises;
 
 class DevisType extends AbstractType
 {
@@ -51,22 +52,13 @@ class DevisType extends AbstractType
             ->add('entreprise', EntityType::class, [
                 'class'=> Entreprises::class,
                 'choice_label'=>'nomEntreprise',
-                'placeholder'=>'',
-                'constraints'=>[
-                    new NotBlank([
-                        'message'=>"L'entreprise est obligatoire"
-                    ])
-                ]
+                'placeholder'=>''
             ])
             ->add('devisStatut', EntityType::class, [
                 'class'=>DevisStatut::class,
                 'choice_label'=>'texteDevisStatut',
                 'placeholder'=>'',
-                'constraints'=>[
-                    new NotBlank([
-                        'message'=>'La Status  est obligatoire'
-                    ])
-                ]
+                'data'=> 2
             ])
         ;
         // ajout d'un soucripteur de formulaire

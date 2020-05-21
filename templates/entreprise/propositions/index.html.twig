@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1>Liste des propositions</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+		<table class="table table-striped">
+			<tr>
+				<th>N° devis</th>
+				<th>Fait par</th>
+				<th>Fait le</th>
+				<th>Montant</th>
+				<th>Actions</th>
+			</tr>
+			{% for proposition in results %} 
+				<tr>
+					<td class="col-md-1">{{ proposition.devis.numeroDevis }}</td>
+					<td class="col-md-2">{{ proposition.coiffeur.nomCoiffeur }}</td>
+					<td class="col-md-2">{{ proposition.dateProposition|date("m/d/Y") }}</td>
+					<td class="col-md-2">{{ proposition.montant }}€</td>
+					<td class="col-md-4">
+						<a href="{{ url('entreprise.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.numeroDevis }) }}" class="btn btn-success col-md-4">Accepter</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

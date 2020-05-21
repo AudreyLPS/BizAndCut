@@ -246,5 +246,4 @@ class Coiffeurs
         return $this;
     }
 
-
 }

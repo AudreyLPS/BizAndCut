@@ -30,13 +30,14 @@ class DevisController extends AbstractController
     
 
     /**
-        * @Route("/adddevis", name="entreprise.devis.form")
+        * @Route("/devis/form", name="entreprise.devis.form")
+        * @Route("/devis/form/update/{id}", name="entreprise.devis.form.update")
     */
     
-    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null):Response {
+    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null, DevisRepository $devisRepository):Response {
 
         $type = DevisType::class;
-		$model = new Devis();
+		$model = $id ? $devisRepository->find($id) :  new Devis();
 		$form = $this->createForm($type, $model);
 		$form->handleRequest($request);
         
@@ -58,5 +59,18 @@ class DevisController extends AbstractController
         ]); 
 
     }
+
+    /**
+	 * @Route("/devis/delete/{id}", name="entreprise.devis.delete")
+	 */
+	public function delete( DevisRepository $devisRepository, EntityManagerInterface $entityManager, int $id):Response
+	{
+		$entity= $devisRepository->find($id);
+		$entityManager->remove($entity);
+		$entityManager->flush();
+		$this->addFlash('notice_danger', 'Le produit a été supprimé');
+		return $this->redirectToRoute('entreprise.devis.index');
+        
+	}
     
 }
