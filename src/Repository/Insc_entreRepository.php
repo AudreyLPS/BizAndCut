@@ -19,29 +19,4 @@ class Insc_entreRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Insc_entre::class);
     }
-
-	// public function test():Query
-	// {
-	// 	$results = $this->createQueryBuilder('discovery')
-	// 		->select('COUNT(discovery.id), country.name')
-	// 		->join('discovery.country', 'country')
-	// 		->groupBy('country.name')
-
-	// 		->getQuery()
-	// 	;
-
-	// 	return $results;
- //    }
-
-    // public function find4():Query
-    // {
-    // 	$results = $this->createQueryBuilder('discovery')
-    // 	->select('image')
-    // 	->setMaxResults(4)
-
-    // 	->getQuery()
-    // 	;
-
-    // 	return $results;
-    // }
 }

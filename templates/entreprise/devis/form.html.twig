@@ -25,7 +25,10 @@
 				{{form_label(form.nbParticipantsDevis, 'Nombre de participant:')}}
 				{{form_widget(form.nbParticipantsDevis,
                     { attr: 
-                        {placeholder:'Saisissez un nombre de participant'} 
+                        {
+							placeholder:'Saisissez un nombre de participant', 
+							autofocus:'autofocus'
+							}
                     })}}
 			</p>
 			<p>
