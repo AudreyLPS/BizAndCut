@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -28,13 +29,23 @@ class Insc_coifType extends AbstractType
     {	
 		$builder
 			
-            ->add('civiliteCoiffeur', TextType::class, [
+            ->add('civiliteCoiffeur', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank([
                         'message' => "Votre civilité est obligatoire"
-                    ])
-                ]
-            ])
+					])
+					
+				],
+					'choices'  => [
+						'Mr' => 'monsieur',
+						'Mme' => 'madame',
+				],
+				'expanded' => true,
+				'label_attr'=>[
+					'class'=>'radio-inline'
+				]
+			])
+			
 
             ->add('nomCoiffeur', TextType::class, [
             	'constraints' => [
@@ -60,13 +71,23 @@ class Insc_coifType extends AbstractType
 	            ]
             ])
             
-            ->add('typeCoiffeur', TextType::class, [
-            	'constraints' => [
-            		new NotBlank([
-            		    'message' => "Votre type de coiffure est obligatoire"
-		            ])
-	            ]
-            ])
+            
+			->add('typeCoiffeur', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre civilité est obligatoire"
+					])
+					
+				],
+					'choices'  => [
+						'Coiffeur indépendant' => 'Coiffeur indépendant',
+						"Salarié d'un salon de coiffure" => "Salarié d'un salon de coiffure",
+				],
+				'expanded' => true,
+				'label_attr'=>[
+					'class'=>'radio-inline'
+				]
+			])
 
             ->add('emailCoiffeur', EmailType::class, [
             	'constraints' => [

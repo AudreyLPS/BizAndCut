@@ -9,48 +9,7 @@
 	<div class="row">
 		<div class="col">
 			{{ form_start(form, { attr: { novalidate: 'novalidate' } } ) }}
-				{# <p>
-					{{ form_label(form.civiliteCoiffeur, 'Civilité:') }}
-					{{ form_widget(form.civiliteCoiffeur) }}
-				</p>
-				<p>
-					{{ form_label(form.nomCoiffeur, 'Nom, ') }} 
-					{{ form_label(form.prenomCoiffeur, 'Prenom:') }}
-				</p>
-				<p>
-					{{ form_widget(form.nomCoiffeur) }}
-					{{ form_widget(form.prenomCoiffeur) }}
-				</p>
-				<p>
-					{{ form_label(form.nbAnneesExp, 'Nombres Annees Expériences, ') }}
-					{{ form_widget(form.nbAnneesExp) }} 
-					{{ form_label(form.typeCoiffeur, ' Type de coiffeur:') }}
-					{{ form_widget(form.typeCoiffeur) }}
-				</p>
-				<p>
-					{{ form_label(form.emailCoiffeur, 'Email:') }} 
-					{{ form_widget(form.emailCoiffeur) }}
-					{{ form_label(form.telephoneCoiffeur, 'Téléphone:') }}
-					{{ form_widget(form.telephoneCoiffeur) }}
-				</p>
-				<p>
-					{{ form_label(form.adresseCoiffeur, 'Adresse:') }}
-					{{ form_widget(form.adresseCoiffeur) }}
-				</p>
-				<p>
-					{{ form_label(form.villeCoiffeur, 'Ville:') }} 
-					{{ form_widget(form.villeCoiffeur) }}
-					{{ form_label(form.cpCoiffeur, ' Code Postal:') }}
-					{{ form_widget(form.cpCoiffeur) }}
-				</p>
-				<p>
-					{{ form_label(form.distanceCoiffeur, 'Distance maximal entre le domicile ou le lieu de travail et lévénement:') }}
-					{{ form_widget(form.distanceCoiffeur) }}
-				</p>
-				<p>
-					{{ form_label(form.mdpCoiffeur, 'Mot de passe:') }}
-					{{ form_widget(form.mdpCoiffeur) }}
-				</p> #}
+				
 				
 				
 				<div id="Form" class="mt-4">
@@ -66,10 +25,12 @@
 
 					<div class="row">
 						<div class="col">
-							{{ form_row(form.nomCoiffeur) }} 
+							{{ form_label(form.nomCoiffeur, "Nom, Prénom ") }} 
+							{{ form_widget(form.nomCoiffeur) }}
 						</div>
 						<div class="col">
-							{{ form_row(form.prenomCoiffeur) }} 
+							{{ form_label(form.prenomCoiffeur) }} 
+							{{ form_widget(form.prenomCoiffeur) }}
 						</div>
 					</div >
 
@@ -78,10 +39,12 @@
 
 					<div class="row">
 						<div class="col">
-							{{ form_row(form.nbAnneesExp) }} 
+							{{ form_label(form.nbAnneesExp, "Nombre d'année d'expérience") }} 
+							{{ form_widget(form.nbAnneesExp) }}
 						</div>
 						<div class="col">
-							{{ form_row(form.typeCoiffeur) }} 
+							{{ form_label(form.typeCoiffeur, "Type de coiffure") }} 
+							{{ form_widget(form.typeCoiffeur) }}
 						</div>
 					</div >
 
@@ -91,10 +54,12 @@
 
 					<div class="row">
 						<div class="col">
-							{{ form_row(form.emailCoiffeur) }} 
+							{{ form_label(form.emailCoiffeur, 'Email') }} 
+							{{ form_widget(form.emailCoiffeur) }}
 						</div>
 						<div class="col">
-							{{ form_row(form.telephoneCoiffeur) }} 
+							{{ form_label(form.telephoneCoiffeur, 'Téléphone') }} 
+							{{ form_widget(form.telephoneCoiffeur) }}
 						</div>
 					</div >
 
@@ -104,29 +69,21 @@
 
 					<div ="row">
 						<div class="col"> 
-							{{ form_label(form.adresseCoiffeur, 'Adresse:') }}
+							{{ form_label(form.adresseCoiffeur, 'Adresse') }}
 						 </div>
 						{{ form_widget(form.adresseCoiffeur) }}
 					</div>
 
 
-					{# <div class="row">
-						<div class="col">
-							{{ form_label(form.villeCoiffeur, 'Ville, ') }} 
-							{{ form_label(form.cpCoiffeur, 'Code Postal') }} 
-						</div>
-					</div >	
-					</div class="row">
-						{{ form_widget(form.villeCoiffeur) }}
-						{{ form_widget(form.cpCoiffeur) }}
-					<div> #}
-
+					
 					<div class="row">
 						<div class="col">
-							{{ form_row(form.villeCoiffeur) }} 
+							{{ form_label(form.villeCoiffeur, "Ville ") }} 
+							{{ form_widget(form.villeCoiffeur) }}
 						</div>
 						<div class="col">
-							{{ form_row(form.cpCoiffeur) }} 
+							{{ form_label(form.cpCoiffeur, "Code Postal ") }} 
+							{{ form_widget(form.cpCoiffeur) }}
 						</div>
 					</div >
 
