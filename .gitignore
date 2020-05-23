@@ -18,5 +18,5 @@ yarn-error.log
 
 
 ###< visual studio file ###
-.DS_Store
+/.DS_Store
 /public/.DS_Store

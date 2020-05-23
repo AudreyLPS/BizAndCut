@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			<h1>Gestion des creneaux</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Mes événements</th>
+				<th>Horaire</th>
+				<th>Statut</th>
+				<th>Modifier</th>
+				<th>Annuler</th>
+			</tr>
+			{% for salarie_creneaux in results %}
+				<tr>
+					<td class="col-md-4">{{ salarie_creneaux.evenementId }}</td>
+					<td class="col-md-1">{{ salarie_creneaux.horairesSalarieCreneau }}</td>
+					<td class="col-md-1">A venir - Passé - Annulé</td>
+					<td class="col-md-1">
+						<button class="btn warning">Modifier</button>
+					</td>
+					<td class="col-md-1">
+						<button class="btn danger">Annuler</button>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+		<a href="salarie.creneaux.form">Reserver un nouveau creneau</a>
+
+	</div>
+{% endblock %}
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="{{ url('homepage.index') }}">MySiteWeb</a>
+    <a class="navbar-brand" href="{{ url('homepage.index') }}"><img src="img/logo.png" alt="Biz & Cut" width="160" height="100"></a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('homepage.index') }}">Home <span class="sr-only">(current)</span></a>
@@ -26,6 +26,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('insc_coif.index') }}">Inscription Coiffeur<span class="sr-only">(current)</span></a>
       </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url('salarie.creneaux.index') }}">Creneaux (salarié)<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url('salarie.creneaux.form') }}">Ajouter un creneaux (salarié)<span class="sr-only">(current)</span></a>
+      </li>
+
     </ul> 
   </div>
 </nav>
