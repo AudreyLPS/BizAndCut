@@ -10,6 +10,8 @@
 - composer require symfony/form
 - composer require validator
 
+- composer require symfony/security-bundle
+
 Mettre a jour la BBD: 
  - git pull
  - Vider votre base de donnée 'bizcut' via phpMyAdmin
