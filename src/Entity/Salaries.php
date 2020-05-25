@@ -2,130 +2,42 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Salaries
- *
- * @ORM\Table(name="salaries")
  * @ORM\Entity
  */
-class Salaries
+class Salaries extends User
 {
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprises", inversedBy="salaries")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $entreprise;
+
+    public function getEntreprise(): ?Entreprises
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(Entreprises $entreprise): self
+    {
+        $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @see UserInterface
      */
-    private $id;
-
-     /**
-     * @ORM\Column(type="integer")
-     */
-    private $entrepriseId;
-
-     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nomSalarie;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenomSalarie;
-
-     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $emailSalarie;
-
-     /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $mdpSalarie;
-
-     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $deletedSalarie;
-
-    public function getId(): ?int
+    public function getRoles(): array
     {
-        return $this->id;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_SALARIES';
+
+        return array_unique($roles);
     }
-
-    public function getEntrepriseId(): ?int
-    {
-        return $this->entrepriseId;
-    }
-
-    public function setEntrepriseId(int $entrepriseId): self
-    {
-        $this->entrepriseId = $entrepriseId;
-
-        return $this;
-    }
-
-    public function getNomSalarie(): ?string
-    {
-        return $this->nomSalarie;
-    }
-
-    public function setNomSalarie(string $nomSalarie): self
-    {
-        $this->nomSalarie = $nomSalarie;
-
-        return $this;
-    }
-
-    public function getPrenomSalarie(): ?string
-    {
-        return $this->prenomSalarie;
-    }
-
-    public function setPrenomSalarie(string $prenomSalarie): self
-    {
-        $this->prenomSalarie = $prenomSalarie;
-
-        return $this;
-    }
-
-    public function getEmailSalarie(): ?string
-    {
-        return $this->emailSalarie;
-    }
-
-    public function setEmailSalarie(string $emailSalarie): self
-    {
-        $this->emailSalarie = $emailSalarie;
-
-        return $this;
-    }
-
-    public function getMdpSalarie(): ?string
-    {
-        return $this->mdpSalarie;
-    }
-
-    public function setMdpSalarie(string $mdpSalarie): self
-    {
-        $this->mdpSalarie = $mdpSalarie;
-
-        return $this;
-    }
-
-    public function getDeletedSalarie(): ?bool
-    {
-        return $this->deletedSalarie;
-    }
-
-    public function setDeletedSalarie(bool $deletedSalarie): self
-    {
-        $this->deletedSalarie = $deletedSalarie;
-
-        return $this;
-    }
-
-
 }

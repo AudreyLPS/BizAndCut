@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Devis;
 use App\Entity\Evenements;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EvenementType extends AbstractType
@@ -17,7 +19,13 @@ class EvenementType extends AbstractType
             ->add('heureFEvenement')
             ->add('nbCoiffeursEvenement')
             ->add('descriptionEvenement')
+            ->add('devis', EntityType::class, [
+                'class'=>Devis::class,
+                'choice_label'=>'id',
+                'placeholder'=>''
+            ])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

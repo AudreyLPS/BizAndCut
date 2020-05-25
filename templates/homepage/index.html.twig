@@ -4,11 +4,17 @@
         <div class="col">
         {% include "_inc/flash.messages.html.twig" %}
             <p>
-                <h3>Hello World !!</h3>
+                <h3>Page d'accueil temporaire sans le module de connexion</h3>
             </p>
-            <h1>Administration</h1>
 			<p>
-				
+				<a href="{{ url('entreprise.homepage.index') }}" class="btn btn-info col-md-4">Espace Entreprise</a>
+                </br></br>
+				<a href="{{ url('coiffeurs.homepage.index') }}" class="btn btn-info col-md-4 ">Espace Coiffeurs</a>
+				</br></br>
+                <a href="{{ url('salarie.homepage.index') }}" class="btn btn-info col-md-4">Espace Salariés</a>
+                </br></br>
+                <a href="{{ url('bizandcut.homepage.index') }}" class="btn btn-info col-md-4">Espace Biz And Cut</a>
+						
 			</p>
         </div>
     </div>

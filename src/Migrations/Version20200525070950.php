@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200517182901 extends AbstractMigration
+final class Version20200525070950 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20200517182901 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE propositions (id INT AUTO_INCREMENT NOT NULL, devis_id INT NOT NULL, coiffeur_id INT NOT NULL, montant INT NOT NULL, validation_bc TINYINT(1) NOT NULL, date_proposition DATE NOT NULL, validation_entreprise TINYINT(1) NOT NULL, INDEX IDX_E9AB028641DEFADA (devis_id), INDEX IDX_E9AB0286BD427C57 (coiffeur_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE propositions ADD CONSTRAINT FK_E9AB028641DEFADA FOREIGN KEY (devis_id) REFERENCES devis (id)');
-        $this->addSql('ALTER TABLE propositions ADD CONSTRAINT FK_E9AB0286BD427C57 FOREIGN KEY (coiffeur_id) REFERENCES coiffeurs (id)');
+        $this->addSql('ALTER TABLE devis DROP numero_devis');
     }
 
     public function down(Schema $schema) : void
@@ -32,6 +30,6 @@ final class Version20200517182901 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE propositions');
+        $this->addSql('ALTER TABLE devis ADD numero_devis INT NOT NULL');
     }
 }

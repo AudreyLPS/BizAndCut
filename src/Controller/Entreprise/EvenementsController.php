@@ -30,17 +30,28 @@ class EvenementsController extends AbstractController
     
 	/**
         * @Route("/addevenements", name="entreprise.evenements.form")
+        * @Route("/addevenements/form/update/{id}", name="entreprise.evenements.form.update")
     */
-    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null):Response {
-
+    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null, EvenementsRepository $evenementsRepository):Response {
+         
         $type = EvenementType::class;
-		$model = $id ? $productRepository->find($id) : new Evenements();
+        $DevisArray= $evenementsRepository->findByDevis($id);
+        $model="";
+        foreach ($DevisArray as $key => $var) {
+            $model = $var ;
+            
+        }
+        if ($model ===""){
+            $model=new Evenements();
+        }
+        //dd($model);
 		$form = $this->createForm($type, $model);
 		$form->handleRequest($request);
         
         // Si le formulaire est validé
         if($form->isSubmitted() && $form->isValid()){
-            $id ? null : $entityManager->persist($model);
+           
+            $id && $model==="" ? null : $entityManager->persist($model);
             $entityManager->flush();
             
 			// message de confirmation

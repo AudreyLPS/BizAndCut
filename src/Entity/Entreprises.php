@@ -78,7 +78,7 @@ class Entreprises
     /**
      * @ORM\Column(type="boolean")
      */
-    private $deletedEntreprise;
+    private $deletedEntreprise = 0;
 
     public function getId(): ?int
     {

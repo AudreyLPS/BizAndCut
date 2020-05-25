@@ -5,245 +5,155 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
     /**
-     * Coiffeurs
-     *
-     * @ORM\Table(name="coiffeurs")
      * @ORM\Entity
      */
-class Coiffeurs
+class Coiffeurs extends User
 {
-   /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $civiliteCoiffeur;
+    private $civilite;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nomCoiffeur;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenomCoiffeur;
-
-    /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer")
      */
     private $nbAnneesExp;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $typeCoiffeur;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $emailCoiffeur;
+    private $type;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $telephoneCoiffeur;
+    private $telephone;
 
     /**
      * @ORM\Column(type="string", length=500)
      */
-    private $adresseCoiffeur;
+    private $adresse;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $villeCoiffeur;
+    private $ville;
 
     /**
      * @ORM\Column(type="string", length=10)
      */
-    private $cpCoiffeur;
+    private $cp;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $distanceCoiffeur;
+    private $distance;
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $mdpCoiffeur;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $deletedCoiffeur;
-
-    public function getId(): ?int
+    public function getCivilite(): ?string
     {
-        return $this->id;
+        return $this->civilite;
     }
 
-    public function getCiviliteCoiffeur(): ?string
+    public function setCivilite(string $civilite): self
     {
-        return $this->civiliteCoiffeur;
-    }
-
-    public function setCiviliteCoiffeur(string $civiliteCoiffeur): self
-    {
-        $this->civiliteCoiffeur = $civiliteCoiffeur;
+        $this->civilite = $civilite;
 
         return $this;
     }
 
-    public function getNomCoiffeur(): ?string
-    {
-        return $this->nomCoiffeur;
-    }
-
-    public function setNomCoiffeur(string $nomCoiffeur): self
-    {
-        $this->nomCoiffeur = $nomCoiffeur;
-
-        return $this;
-    }
-
-    public function getPrenomCoiffeur(): ?string
-    {
-        return $this->prenomCoiffeur;
-    }
-
-    public function setPrenomCoiffeur(string $prenomCoiffeur): self
-    {
-        $this->prenomCoiffeur = $prenomCoiffeur;
-
-        return $this;
-    }
-
-    public function getNbAnneesExp(): ?bool
+    public function getNbAnneesExp(): ?int
     {
         return $this->nbAnneesExp;
     }
 
-    public function setNbAnneesExp(bool $nbAnneesExp): self
+    public function setNbAnneesExp(int $nbAnneesExp): self
     {
         $this->nbAnneesExp = $nbAnneesExp;
 
         return $this;
     }
 
-    public function getTypeCoiffeur(): ?bool
+    public function getType(): ?bool
     {
-        return $this->typeCoiffeur;
+        return $this->type;
     }
 
-    public function setTypeCoiffeur(bool $typeCoiffeur): self
+    public function setType(bool $type): self
     {
-        $this->typeCoiffeur = $typeCoiffeur;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getEmailCoiffeur(): ?string
+    public function getTelephone(): ?string
     {
-        return $this->emailCoiffeur;
+        return $this->telephone;
     }
 
-    public function setEmailCoiffeur(string $emailCoiffeur): self
+    public function setTelephone(string $telephone): self
     {
-        $this->emailCoiffeur = $emailCoiffeur;
+        $this->telephone = $telephone;
 
         return $this;
     }
 
-    public function getTelephoneCoiffeur(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->telephoneCoiffeur;
+        return $this->adresse;
     }
 
-    public function setTelephoneCoiffeur(string $telephoneCoiffeur): self
+    public function setAdresse(string $adresse): self
     {
-        $this->telephoneCoiffeur = $telephoneCoiffeur;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
-    public function getAdresseCoiffeur(): ?string
+    public function getVille(): ?string
     {
-        return $this->adresseCoiffeur;
+        return $this->ville;
     }
 
-    public function setAdresseCoiffeur(string $adresseCoiffeur): self
+    public function setVille(string $ville): self
     {
-        $this->adresseCoiffeur = $adresseCoiffeur;
+        $this->ville = $ville;
 
         return $this;
     }
 
-    public function getVilleCoiffeur(): ?string
+    public function getCp(): ?string
     {
-        return $this->villeCoiffeur;
+        return $this->cp;
     }
 
-    public function setVilleCoiffeur(string $villeCoiffeur): self
+    public function setCp(string $cp): self
     {
-        $this->villeCoiffeur = $villeCoiffeur;
+        $this->cp = $cp;
 
         return $this;
     }
 
-    public function getCpCoiffeur(): ?string
+    public function getDistance(): ?int
     {
-        return $this->cpCoiffeur;
+        return $this->distance;
     }
 
-    public function setCpCoiffeur(string $cpCoiffeur): self
+    public function setDistance(int $distance): self
     {
-        $this->cpCoiffeur = $cpCoiffeur;
+        $this->distance = $distance;
 
         return $this;
     }
 
-    public function getDistanceCoiffeur(): ?int
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->distanceCoiffeur;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_COIFFEURS';
+
+        return array_unique($roles);
     }
-
-    public function setDistanceCoiffeur(int $distanceCoiffeur): self
-    {
-        $this->distanceCoiffeur = $distanceCoiffeur;
-
-        return $this;
-    }
-
-    public function getMdpCoiffeur(): ?string
-    {
-        return $this->mdpCoiffeur;
-    }
-
-    public function setMdpCoiffeur(string $mdpCoiffeur): self
-    {
-        $this->mdpCoiffeur = $mdpCoiffeur;
-
-        return $this;
-    }
-
-    public function getDeletedCoiffeur(): ?bool
-    {
-        return $this->deletedCoiffeur;
-    }
-
-    public function setDeletedCoiffeur(bool $deletedCoiffeur): self
-    {
-        $this->deletedCoiffeur = $deletedCoiffeur;
-
-        return $this;
-    }
-
 }

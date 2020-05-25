@@ -21,13 +21,13 @@ class DevisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numeroDevis', NumberType::class, [
+            /*->add('numeroDevis', NumberType::class, [
                 'constraints' => [
                     new NotBlank([
                         'message' => "Le nom de l'entreprise est obligatoire"
                     ])
                 ]
-            ])
+            ])*/
             ->add('nbParticipantsDevis', NumberType::class, [
                 'constraints' => [
                     new NotBlank([
