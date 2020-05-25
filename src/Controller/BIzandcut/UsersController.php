@@ -2,7 +2,7 @@
 
 namespace App\Controller\BIzandcut;
 
-use App\Repository\UsersRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +18,9 @@ class UsersController extends AbstractController
     /**
 	 * @Route("/listeusers/", name="bizandcut.users.index")
      */
-	public function index(UsersRepository $usersRepository):Response
+	public function index(UserRepository $userRepository):Response
 	{
-        $results= $usersRepository->findAll();
+        $results= $userRepository->findAll();
         return $this->render('bizandcut/users/index.html.twig', [
           'results' => $results,
         ]);

@@ -24,7 +24,7 @@
 			</tr>
 			{% for proposition in results %} 
 				<tr>
-					<td class="col-md-1">{{ proposition.devis.numeroDevis }}</td>
+					<td class="col-md-1">{{ proposition.devis.id }}</td>
 					<td class="col-md-2">{{ proposition.coiffeur.nom }}</td>
 					<td class="col-md-2">{{ proposition.dateProposition|date("m/d/Y") }}</td>
 					<td class="col-md-2">{{ proposition.montant }}€</td>
