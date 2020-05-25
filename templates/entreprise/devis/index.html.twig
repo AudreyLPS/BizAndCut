@@ -14,8 +14,9 @@
         
     </p>
 	</div>
-		<a href="{{ url('entreprise.devis.form') }}" class="btn btn-info col-md-4">Nouveau devis</a>	
-		</br>	</br>			
+		<p class="text-right">
+			<a href="{{ url('entreprise.devis.form') }}" class="btn btn-success">+ Nouveau devis</a>		
+		</p>
 		<table class="table table-striped">
 			<tr>
 				<th>N° devis</th>
@@ -34,9 +35,9 @@
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					<td class="col-md-4">
 						{% if devis.devisStatut.texteDevisStatut == "Accepté" %}
-							<a href="{{ url('entreprise.evenements.form.update', { id:devis.id }) }}" class="btn btn-info col-md-6">Editer l'évenement</a>
+							<a href="{{ url('entreprise.evenements.form.update', { id:devis.id }) }}" class="btn btn-dark col-md-6">Editer l'évenement</a>
 						{% else %}	
-							<a href="{{ url('entreprise.propositions.index', { idDevis:devis.id }) }}" class="btn btn-info col-md-4">Propositions</a>
+							<a href="{{ url('entreprise.propositions.index', { idDevis:devis.id }) }}" class="btn btn-dark col-md-4">Propositions</a>
 							<a href="{{ url('entreprise.devis.form.update', { id:devis.id }) }}" class="btn btn-warning col-md-3">Modifier</a>
 							<a href="{{ url('entreprise.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a>
 						{% endif %}
