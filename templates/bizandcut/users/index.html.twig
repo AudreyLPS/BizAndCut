@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1>Gestion des utilisateurs</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>			
+		<table class="table table-striped">
+			<tr>
+				<th>Email</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Rôle</th>
+				<th>Actions</th>
+			</tr>
+			{% for user in results %} 
+				<tr>
+					<td class="col-md-1">{{ user.email }}</td>
+					<td class="col-md-2">{{ user.nom }}</td>
+					<td class="col-md-2">{{ user.prenom}}</td>
+					<td class="col-md-1"></td>
+					
+					<td class="col-md-4">
+						
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+
