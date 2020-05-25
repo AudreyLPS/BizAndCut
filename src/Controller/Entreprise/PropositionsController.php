@@ -42,6 +42,7 @@ class PropositionsController extends AbstractController
         $devisStatus = $dsRepository->find(2);
         $devis=$devisRepository->find($idDevis);
         $devis->setDevisStatut($devisStatus);
+        
         $entityManager->flush();
 
 		$results= $devisRepository->findAll();

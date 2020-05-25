@@ -44,6 +44,12 @@ class Evenements
      */
     private $nbCoiffeursEvenement = '1';
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Devis")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $devis;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,5 +115,16 @@ class Evenements
         return $this;
     }
 
+    public function getDevis(): ?Devis
+    {
+        return $this->devis;
+    }
+
+    public function setDevis(Devis $devis): self
+    {
+        $this->devis = $devis;
+
+        return $this;
+    }
 
 }

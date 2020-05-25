@@ -25,10 +25,10 @@ class Devis
      */
     private $entreprise;
 
-    /**
+    /*
      * @ORM\Column(type="integer")
      */
-    private $numeroDevis; 
+    /*private $numeroDevis; */
 
     /**
      * @ORM\Column(type="integer")
