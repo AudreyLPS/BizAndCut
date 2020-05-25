@@ -164,13 +164,13 @@ class Insc_coifType extends AbstractType
         ]);
 	}
 
-	public function create($data)
+	/* public function create($data)
     {
 		$data = ['deletedCoiffeur' => 1];
 		$form =$this->createFormBuilder($data)
 			->add('deletedCoiffeur', TextareaType::class[
 
 		]);
-	}
+	} */
 	
 }

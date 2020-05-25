@@ -34,8 +34,9 @@ class PropositionsController extends AbstractController
 	 * @Route("/listepropositions/set/{id}/{idDevis}", name="entreprise.propositions.accepte")
      */
 	public function accepte(int $id,int $idDevis ,DevisStatutRepository $dsRepository, DevisRepository $devisRepository,PropositionsRepository $propositionsRepository):Response
-	{
-        $entityManager = $this->getDoctrine()->getManager();
+  {
+       
+     $entityManager = $this->getDoctrine()->getManager();
         $proposition=$propositionsRepository->find($id);
         $proposition->setValidationEntreprise(1);
 

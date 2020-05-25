@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class="row">
+		<div class="col">
+			<h1>Proposition de devis</h1>
+			
+			{{form_start(form,
+                    { attr: 
+                        {
+                            novalidate:'novalidate'
+                        } 
+                    })
+            }}
+			<p>
+				{{form_label(form.nbParticipantsDevis, 'Nombre de participant:')}}
+				{{form_widget(form.nbParticipantsDevis,
+                    
+				)}}
+			</p>
+			<p>
+				{{form_label(form.dateEvenementDevis, "Date de l'evenement")}}
+				{{form_widget(form.dateEvenementDevis,
+                    
+				)}}
+			</p>
+			<p>
+				{{form_label(form.nbHeuresDevis, "Durée de l'evenement:")}}
+				{{form_widget(form.nbHeuresDevis,
+                    
+				)}}
+			</p>
+			<p>
+				{{form_label(form.montantDevis, "Montant devis:")}}
+				{{form_widget(form.montantDevis,
+                    { attr: 
+                        {
+                            placeholder:'Saisissez un montant de devis',
+                            autofocus:'autofocus'
+                        } 
+                    }
+				)}}
+			</p>
+			<p>
+				<input type="submit" value="Valider" class="btn btn-info"/>
+			</p>
+			{{form_end(form)}}
+		</div>
+	</div>
+{% endblock %}

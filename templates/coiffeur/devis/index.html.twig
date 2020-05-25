@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1>Liste des devis</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Nombre de participant</th>
+				<th>Date</th>
+				<th>Durée</th>
+				<th>Status</th>
+			</tr>
+			{% for devis in results %} 
+				<tr>
+					<td class="col-md-2">{{ devis.nbParticipantsDevis }}</td>
+					<td class="col-md-2">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
+					<td class="col-md-1">{{ devis.nbHeuresDevis }}</td>
+					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
+					<td class="col-md-4">
+						<a href="{{ url('coiffeur.propositions.index', { idDevis:devis.id }) }}" class="btn btn-info col-md-4">Propositions</a>
+						<a href="{{ url('coiffeur.devis.form.update', { id:devis.id }) }}" class="btn btn-warning col-md-3">Modifier</a>
+						<a href="{{ url('coiffeur.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+

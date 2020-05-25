@@ -20,4 +20,6 @@ class PropositionsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Propositions::class);
     }
+
+    
 }

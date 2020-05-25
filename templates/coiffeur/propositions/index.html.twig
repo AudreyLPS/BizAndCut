@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1>Liste des propositions</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Nom Entreprise</th>
+				<th>Adresse Entreprise</th>
+				<th>Date Evénement</th>
+				<th>Heure début Evénement</th>
+				<th>Heure fin Evénement</th>
+				<th>Nombre de coiffeur</th>
+				<th>Montant Proposition</th>
+			</tr>
+			{% for proposition in results %} 
+				<tr>
+					<td class="col-md-1">{{ proposition.nomEntrepriseProposition }}</td>
+					<td class="col-md-2">{{ proposition.adresseEntrepriseProposition }}</td>
+					<td class="col-md-2">{{ proposition.dateProposition|date("m/d/Y") }}</td>
+					<td class="col-md-2">{{ proposition.heureProposition }}</td>
+					<td class="col-md-2">{{ proposition.heureFProposition }}</td>
+					<td class="col-md-2">{{ proposition.nbCoiffeursProposition }}</td>
+					<td class="col-md-2">{{ proposition.montantProposition }}</td>
+					<td class="col-md-4">
+						{# <a href="{{ url('coiffeur.propositions.accepte', { id:proposition.id, idPropositions:proposition.devis.numeroDevis }) }}" class="btn btn-success col-md-4">Accepter</a> #}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
