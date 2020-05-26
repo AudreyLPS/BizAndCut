@@ -5,11 +5,11 @@ namespace App\Controller\Bizandcut;
 use App\Repository\DevisRepository;
 use App\Repository\DevisStatutRepository;
 use App\Repository\PropositionsRepository;
-use App\Controller\Bizandcut\PropositionsController;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\Bizandcut\PropositionsController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/bizandcut")
@@ -21,6 +21,7 @@ class PropositionsController extends AbstractController
      */
 	public function index(PropositionsRepository $propositionsRepository):Response
 	{
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $results=$propositionsRepository->findAll();
 		return $this->render('bizandcut/propositions/index.html.twig', [
 			'results' => $results

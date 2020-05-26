@@ -8,6 +8,10 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('homepage.index') }}">Home <span class="sr-only">(current)</span></a>
       </li>
+
+      </ul>
+    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+    <ul class="navbar-nav justify-content-end">
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('app_register', { typeUser:'coiffeurs' }) }}">Inscription Coiffeurs</a>
       </li>
@@ -20,6 +24,19 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('app_register', { typeUser:'admins' }) }}">Inscription Admin</a>
       </li>
-    </ul> 
+      <li class="nav-item active">
+        <a class="btn btn-success" href="{{ url('app_login') }}">Connexion</a>
+      </li>
+    </ul>
+    {% else %}
+    <ul class="navbar-nav justify-content-end">
+      <li class="nav-item active">
+        <div class="nav-link" href="">Bienvenue {{ app.user.prenom }}</div>
+      </li>
+      <li class="nav-item active">
+        <a class="btn btn-danger" href="{{ url('app_logout') }}">Déconnexion</a>
+      </li>
+    </ul>
+    {% endif %}
   </div>
 </nav>

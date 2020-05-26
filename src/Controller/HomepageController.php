@@ -10,12 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomepageController extends AbstractController 
-{     
+{   
+    
     /**
      * @Route("/", name="homepage.index")
      */
-    public function index(Request $request):Response {
-                
+    public function index(Request $request):Response {     
         $userAgent=$request->server->get("HTTP_USER_AGENT");
         return $this->render('homepage/index.html.twig',[
             'param' => $userAgent
@@ -23,7 +23,7 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="bizandcut.homepage.index")
+     * @Route("/bizandcut", name="bizandcut.homepage.index")
      */
     public function indexBC(Request $request):Response {
                 
@@ -34,7 +34,7 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/coiffeurs", name="coiffeurs.homepage.index")
+     * @Route("/coiffeur", name="coiffeurs.homepage.index")
      */
     public function indexCoiffeurs(Request $request):Response {
                 
@@ -45,7 +45,7 @@ class HomepageController extends AbstractController
     }
     
     /**
-     * @Route("/entreprises", name="entreprise.homepage.index")
+     * @Route("/entreprise", name="entreprise.homepage.index")
      */
     public function indexEntreprise(Request $request):Response {
                 
