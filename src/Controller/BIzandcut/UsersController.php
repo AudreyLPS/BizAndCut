@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\BIzandcut;
+namespace App\Controller\Bizandcut;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;

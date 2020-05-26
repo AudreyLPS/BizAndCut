@@ -35,12 +35,12 @@ class SalariesCreneaux
         return $this->id;
     }
 
-    public function getEvenementId(): ?int
+    public function getEvenementId(): ?Evenements
     {
         return $this->evenementId;
     }
 
-    public function setEvenementId(int $evenementId): self
+    public function setEvenementId(Evenements $evenementId): self
     {
         $this->evenementId = $evenementId;
 
