@@ -9,25 +9,16 @@
         <a class="nav-link" href="{{ url('homepage.index') }}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{ url('insc_entre.form') }}">Inscription Entreprise<span class="sr-only">(current)</span></a>
-      </li>
-      <!--li class="nav-item active">
-        <a class="nav-link" href="{{ url('entreprise.devis.index') }}">Devis<span class="sr-only">(current)</span></a>
-      </li-->
-      <!--li class="nav-item active">
-        <a class="nav-link" href="{{ url('entreprise.devis.form') }}">Ajouter un devis<span class="sr-only">(current)</span></a>
-      </li-->
-      <!--li class="nav-item active">
-        <a class="nav-link" href="{{ url('entreprise.evenements.index') }}">Evenements<span class="sr-only">(current)</span></a>
-      </li-->
-      <!--li class="nav-item active">
-        <a class="nav-link" href="{{ url('entreprise.evenements.form') }}">Ajouter un evenement<span class="sr-only">(current)</span></a>
-      </li-->
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('insc_coif.index') }}">Inscription Coiffeur<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ url('app_register', { typeUser:'coiffeurs' }) }}">Inscription Coiffeurs</a>
       </li>
       <li class="nav-item active">
-        {# <a class="nav-link" href="{{ url('coiffeur.propositions.index') }}">Proposition<span class="sr-only">(current)</span></a> #}
+        <a class="nav-link" href="{{ url('app_register', { typeUser:'entreprises' }) }}">Inscription Entreprise</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url('app_register', { typeUser:'salaries' }) }}">Inscription Salarié</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url('app_register', { typeUser:'admins' }) }}">Inscription Admin</a>
       </li>
     </ul> 
   </div>

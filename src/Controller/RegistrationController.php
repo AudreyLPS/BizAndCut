@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Admins;
 use App\Entity\Salaries;
 use App\Entity\Coiffeurs;
+use App\Entity\Entreprises;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
+use App\Form\RegistrationAdminType;
 use App\Form\RegistrationSalarieType;
 use App\Form\RegistrationCoiffeurType;
+use App\Form\RegistrationEntrepriseType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,14 +27,33 @@ class RegistrationController extends AbstractController
      */
     public function register(string $typeUser, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        $user = $typeUser === 'salaries' ? new Salaries() : $typeUser === 'coiffeurs' ? new Coiffeurs() : new User();
-        $formType = $typeUser === 'salaries' ? RegistrationSalarieType::class : $typeUser === 'coiffeurs' ? RegistrationCoiffeurType::class : '';
-        
+        if ( $typeUser === 'salaries'){
+            $user= new Salaries();
+            $formType=RegistrationSalarieType::class;
+            $template='register-salaries';
+        }
+        elseif($typeUser === 'coiffeurs'){
+            $user= new Coiffeurs();
+            $formType=RegistrationCoiffeurType::class;
+            $template='register-coiffeurs';
+        }
+        elseif($typeUser === 'admins'){
+            $user= new Admins();
+            $formType=RegistrationAdminType::class;
+            $template='register-admins';
+        }
+        else{
+            $user= new Entreprises();
+            $formType=RegistrationEntrepriseType::class;
+            $template='register-entreprises';
+        }
+
+        //dd($user, $typeUser);
         $form = $this->createForm($formType, $user);
         $form->handleRequest($request);
-        
+        //dd($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
-           //dd($form->getData()); 
+            
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -48,8 +71,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('homepage.index');
         }
 
-        $template = $typeUser === 'salaries' ? 'register-salaries' : 'register-coiffeurs';
-
+        //dd($typeUser,$template);
         return $this->render("registration/$template.html.twig", [
             'form' => $form->createView(),
         ]);

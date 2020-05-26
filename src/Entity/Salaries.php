@@ -13,7 +13,7 @@ class Salaries extends User
 {
      /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Entreprises", inversedBy="salaries")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $entreprise;
 
@@ -40,4 +40,5 @@ class Salaries extends User
 
         return array_unique($roles);
     }
+    
 }

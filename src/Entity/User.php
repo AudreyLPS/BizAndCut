@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"salaries" = "Salaries","coiffeurs" = "Coiffeurs"})
+ * @ORM\DiscriminatorMap({"salaries" = "Salaries","coiffeurs" = "Coiffeurs","admins" = "Admins","entreprises" = "Entreprises"})
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 abstract class User implements UserInterface
@@ -29,12 +29,12 @@ abstract class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180, unique=false)
      */
     private $nom;
     
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180, unique=false)
      */
     private $prenom;
 

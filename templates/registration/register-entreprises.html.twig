@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Inscription coiffeurs</h1>
+    <h1>Inscription Entreprises</h1>
+
 
 {{ form_start(form, { attr: { novalidate: 'novalidate' } } ) }}
 				
 				<div id="Form" class="mt-4">
 					<div class="row">
-                        <div class="col">
-							{{ form_label(form.civilite, "Civilité") }} 
-							{{ form_widget(form.civilite) }}
-						</div>
 						<div class="col">
 							{{ form_label(form.nom, "Nom") }} 
 							{{ form_widget(form.nom) }}
@@ -19,49 +16,49 @@
 							{{ form_label(form.prenom,"Prénom") }} 
 							{{ form_widget(form.prenom) }}
 						</div>
-					</div >
-
-					<div class="row">
 						<div class="col">
-							{{ form_label(form.type, "Type de coiffeur") }} 
-							{{ form_widget(form.type) }}
-						</div>
-						<div class="col">
-							{{ form_label(form.nbAnneesExp, "Nombre d'année d'expérience") }} 
-							{{ form_widget(form.nbAnneesExp) }}
-						</div>
-						<div class="col"> 
-                            {{ form_label(form.distance, 'Km max pour se rendre a un événements:') }}
-						    {{ form_widget(form.distance) }}
-                        </div>
-					</div >
-
-					<div class="row">
-						<div class="col">
-							{{ form_label(form.email, 'Email') }} 
+							{{ form_label(form.email,"Email") }} 
 							{{ form_widget(form.email) }}
 						</div>
+					</div >
+
+					<div class="row">
 						<div class="col">
-							{{ form_label(form.telephone, 'Téléphone') }} 
-							{{ form_widget(form.telephone) }}
+							{{ form_label(form.fonctionEntreprise, "Fonction au sein de l'entreprise") }} 
+							{{ form_widget(form.fonctionEntreprise) }}
+						</div>
+						<div class="col">
+							{{ form_label(form.telephoneEntreprise,"Téléphone") }} 
+							{{ form_widget(form.telephoneEntreprise) }}
+						</div>
+					</div >
+
+					<div class="row">
+						<div class="col">
+							{{ form_label(form.nomEntreprise,"Nom de l'entreprise") }} 
+							{{ form_widget(form.nomEntreprise) }}
+						</div>
+						<div class="col">
+							{{ form_label(form.sirenEntreprise,"Siren de l'entreprise") }} 
+							{{ form_widget(form.sirenEntreprise) }}
 						</div>
 					</div >
 
 					<div ="row">
 						<div class="col"> 
-							{{ form_label(form.adresse, 'Adresse') }}
+							{{ form_label(form.adresseEntreprise, 'Adresse') }}
 						 </div>
-						{{ form_widget(form.adresse) }}
+						{{ form_widget(form.adresseEntreprise) }}
 					</div>
                     
 					<div class="row">
 						<div class="col">
-							{{ form_label(form.ville, "Ville ") }} 
-							{{ form_widget(form.ville) }}
+							{{ form_label(form.villeEntreprise, "Ville ") }} 
+							{{ form_widget(form.villeEntreprise) }}
 						</div>
 						<div class="col">
-							{{ form_label(form.cp, "Code Postal ") }} 
-							{{ form_widget(form.cp) }}
+							{{ form_label(form.cpEntreprise, "Code Postal ") }} 
+							{{ form_widget(form.cpEntreprise) }}
 						</div>
 					</div >
 
@@ -79,6 +76,6 @@
 			<p>
                 </br>
 				<button type="submit" class="btn btn-info">Validé</button>
-			</p> 
+			</p>
     {{ form_end(form) }}
 {% endblock %}

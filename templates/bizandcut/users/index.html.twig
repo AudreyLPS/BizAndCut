@@ -9,10 +9,15 @@
 	</div>
 	<div class="row">
 	<div class="col-md-12">
-	
-    <p class="text-right">
-        
-    </p>
+		<div class="row">
+        	<div class="col">
+			Il y a __ coiffeurs inscrit.
+			</div>
+        	<div class="col">
+			Il y a __ entrepises inscrite.
+			</div>
+			
+		</div></br>
 	</div>			
 		<table class="table table-striped">
 			<tr>
@@ -26,11 +31,25 @@
 				<tr>
 					<td class="col-md-1">{{ user.email }}</td>
 					<td class="col-md-2">{{ user.nom }}</td>
-					<td class="col-md-2">{{ user.prenom}}</td>
-					<td class="col-md-1"></td>
-					
+					<td class="col-md-2">{{ user.prenom }}</td>
+					{% for role in user.roles %}
+						<td class="col-md-1">
+							{% if role == 'ROLE_COIFFEURS' %} Coiffeur  {% endif %}
+							{% if role == 'ROLE_ADMINS' %} Administrateur  {% endif %}
+							{% if role == 'ROLE_SALARIES' %} Salarié  {% endif %}
+							{% if role == 'ROLE_ENTREPRISES' %} Entreprise  {% endif %}
+						</td>
+					{% endfor %} 
 					<td class="col-md-4">
-						
+					{% for role in user.roles %}
+						{% if role == 'ROLE_COIFFEURS' %} 
+								<a href="" class="btn btn-dark col-md-4">Profil</a>
+								<a href="" class="btn btn-dark col-md-4">Valider</a>
+						{% endif %}
+						{% if role == 'ROLE_ADMINS' %}{% endif %}
+						{% if role == 'ROLE_SALARIES' %}{% endif %}
+						{% if role == 'ROLE_ENTREPRISES' %}{% endif %}
+					{% endfor %} 
 					</td>
 				</tr>
 			{% endfor %}

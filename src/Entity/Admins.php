@@ -5,110 +5,19 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Admins
- *
- * @ORM\Table(name="admins")
  * @ORM\Entity
  */
-class Admins
+class Admins extends User
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @see UserInterface
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nomAdmin;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenomAdmin;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $identifiantAdmin;
-
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $mdpAdmin;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $deletedAdmin;
-
-    public function getId(): ?int
+    public function getRoles(): array
     {
-        return $this->id;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_ADMINS';
+
+        return array_unique($roles);
     }
-
-    public function getNomAdmin(): ?string
-    {
-        return $this->nomAdmin;
-    }
-
-    public function setNomAdmin(string $nomAdmin): self
-    {
-        $this->nomAdmin = $nomAdmin;
-
-        return $this;
-    }
-
-    public function getPrenomAdmin(): ?string
-    {
-        return $this->prenomAdmin;
-    }
-
-    public function setPrenomAdmin(string $prenomAdmin): self
-    {
-        $this->prenomAdmin = $prenomAdmin;
-
-        return $this;
-    }
-
-    public function getIdentifiantAdmin(): ?string
-    {
-        return $this->identifiantAdmin;
-    }
-
-    public function setIdentifiantAdmin(string $identifiantAdmin): self
-    {
-        $this->identifiantAdmin = $identifiantAdmin;
-
-        return $this;
-    }
-
-    public function getMdpAdmin(): ?string
-    {
-        return $this->mdpAdmin;
-    }
-
-    public function setMdpAdmin(string $mdpAdmin): self
-    {
-        $this->mdpAdmin = $mdpAdmin;
-
-        return $this;
-    }
-
-    public function getDeletedAdmin(): ?bool
-    {
-        return $this->deletedAdmin;
-    }
-
-    public function setDeletedAdmin(bool $deletedAdmin): self
-    {
-        $this->deletedAdmin = $deletedAdmin;
-
-        return $this;
-    }
-
-
 }

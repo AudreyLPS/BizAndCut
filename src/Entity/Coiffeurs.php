@@ -20,7 +20,7 @@ class Coiffeurs extends User
     private $nbAnneesExp;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string")
      */
     private $type;
 
@@ -73,12 +73,12 @@ class Coiffeurs extends User
         return $this;
     }
 
-    public function getType(): ?bool
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(bool $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 

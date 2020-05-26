@@ -2,32 +2,18 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Entreprises
- *
- * @ORM\Table(name="entreprises")
  * @ORM\Entity
  */
-class Entreprises
+class Entreprises extends User
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
     /**
      * @ORM\Column(type="string", length=500)
      */
     private $nomEntreprise;
-
-    /**
-     * @ORM\Column(type="string", length=500)
-     */
-    private $prenomNomUserEntreprise;
 
     /**
      * @ORM\Column(type="string", length=500)
@@ -38,16 +24,6 @@ class Entreprises
      * @ORM\Column(type="string", length=10)
      */
     private $sirenEntreprise;
-
-    /**
-     * @ORM\Column(type="string", length=500)
-     */
-    private $statutEntreprise;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $emailEntreprise;
 
    /**
      * @ORM\Column(type="string", length=20)
@@ -69,22 +45,6 @@ class Entreprises
      */
     private $cpEntreprise;
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $mdpEntreprise;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $deletedEntreprise = 0;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getNomEntreprise(): ?string
     {
         return $this->nomEntreprise;
@@ -93,18 +53,6 @@ class Entreprises
     public function setNomEntreprise(string $nomEntreprise): self
     {
         $this->nomEntreprise = $nomEntreprise;
-
-        return $this;
-    }
-
-    public function getPrenomNomUserEntreprise(): ?string
-    {
-        return $this->prenomNomUserEntreprise;
-    }
-
-    public function setPrenomNomUserEntreprise(string $prenomNomUserEntreprise): self
-    {
-        $this->prenomNomUserEntreprise = $prenomNomUserEntreprise;
 
         return $this;
     }
@@ -129,30 +77,6 @@ class Entreprises
     public function setSirenEntreprise(string $sirenEntreprise): self
     {
         $this->sirenEntreprise = $sirenEntreprise;
-
-        return $this;
-    }
-
-    public function getStatutEntreprise(): ?string
-    {
-        return $this->statutEntreprise;
-    }
-
-    public function setStatutEntreprise(string $statutEntreprise): self
-    {
-        $this->statutEntreprise = $statutEntreprise;
-
-        return $this;
-    }
-
-    public function getEmailEntreprise(): ?string
-    {
-        return $this->emailEntreprise;
-    }
-
-    public function setEmailEntreprise(string $emailEntreprise): self
-    {
-        $this->emailEntreprise = $emailEntreprise;
 
         return $this;
     }
@@ -205,29 +129,15 @@ class Entreprises
         return $this;
     }
 
-    public function getMdpEntreprise(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->mdpEntreprise;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_ENTREPRISES';
+
+        return array_unique($roles);
     }
-
-    public function setMdpEntreprise(string $mdpEntreprise): self
-    {
-        $this->mdpEntreprise = $mdpEntreprise;
-
-        return $this;
-    }
-
-    public function getDeletedEntreprise(): ?bool
-    {
-        return $this->deletedEntreprise;
-    }
-
-    public function setDeletedEntreprise(bool $deletedEntreprise): self
-    {
-        $this->deletedEntreprise = $deletedEntreprise;
-
-        return $this;
-    }
-
-
 }
