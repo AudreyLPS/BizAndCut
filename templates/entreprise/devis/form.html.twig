@@ -21,26 +21,30 @@
 							}
                     })}}
 			</p>
+			<div class="row">
+				<div class="col">
+					{{ form_label(form.dateEvenementDevis, "Date de l'evenement ") }} 
+					{{form_widget(form.dateEvenementDevis,
+					{ attr: 
+						{placeholder:'Saisissez un date'} 
+					})}}
+				</div>
+				<div class="col">
+					{{form_label(form.nbHeuresDevis, "Durée de l'evenement:")}}
+					{{form_widget(form.nbHeuresDevis,
+						{ attr: 
+							{
+								placeholder:'Saisissez une durée en heure',
+								autofocus:'autofocus'
+							} 
+						})
+					}}
+				</div>
+			</div >
+			
 			<p>
-				{{form_label(form.dateEvenementDevis, "Date de l'evenement")}}
-				{{form_widget(form.dateEvenementDevis,
-                    { attr: 
-                        {placeholder:'Saisissez un date'} 
-                    })}}
-			</p>
-			<p>
-				{{form_label(form.nbHeuresDevis, "Durée de l'evenement:")}}
-				{{form_widget(form.nbHeuresDevis,
-                    { attr: 
-                        {
-                            placeholder:'Saisissez une durée en heure',
-                            autofocus:'autofocus'
-                        } 
-                    })
-                }}
-			</p>
-			<p>
-				<input type="submit" value="Valider" class="btn btn-info"/>
+				</br>
+				<input type="submit" value="Valider" class="btn btn-dark"/>
 			</p>
 			{{form_end(form)}}
 		</div>

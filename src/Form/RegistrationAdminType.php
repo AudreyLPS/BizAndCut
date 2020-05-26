@@ -22,7 +22,6 @@ class RegistrationAdminType extends AbstractType
             ->add('email')
             ->add('nom')
             ->add('prenom')
-            //->add('roles',HiddenType::class,['data' => ,])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'mapped' => false,

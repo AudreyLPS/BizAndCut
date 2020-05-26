@@ -7,9 +7,11 @@ use App\Form\DevisType;
 use App\Repository\DevisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * @Route("/entreprise")
@@ -17,12 +19,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DevisController extends AbstractController 
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     /**
 	 * @Route("/listdevis", name="entreprise.devis.index")
 	 */
 	public function index(DevisRepository $devisRepository):Response
 	{
-        $results= $devisRepository->findAll();
+        $results= $devisRepository->findBy(array('entreprise'=>$this->security->getUser()));
 		return $this->render('entreprise/devis/index.html.twig', [
 			'results' => $results,
 		]);

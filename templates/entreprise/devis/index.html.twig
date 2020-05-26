@@ -30,8 +30,14 @@
 				<tr>
 					<td class="col-md-1">{{ devis.id }}</td>
 					<td class="col-md-2">{{ devis.nbParticipantsDevis }}</td>
-					<td class="col-md-2">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
-					<td class="col-md-1">{{ devis.nbHeuresDevis }}</td>
+					<td class="col-md-1">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
+					<td class="col-md-2">
+						{% if devis.nbHeuresDevis == 1 %}
+							Une journée
+						{% else %}	
+							Une demie journée
+						{% endif %}
+					</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					<td class="col-md-4">
 						{% if devis.devisStatut.texteDevisStatut == "Accepté" %}

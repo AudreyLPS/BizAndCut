@@ -7,6 +7,7 @@ use App\Entity\DevisStatut;
 use App\Entity\Entreprises;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\DevisStatutRepository;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\EventSubscriber\Form\DevisFormSubscriber;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,20 +15,24 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class DevisType extends AbstractType
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $entreprise = $this->security->getUser();
+        //dd($user->getId());
         $builder
-            /*->add('numeroDevis', NumberType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => "Le nom de l'entreprise est obligatoire"
-                    ])
-                ]
-            ])*/
             ->add('nbParticipantsDevis', NumberType::class, [
                 'constraints' => [
                     new NotBlank([
@@ -42,17 +47,23 @@ class DevisType extends AbstractType
                     ])
                 ]
             ])
-            ->add('nbHeuresDevis', NumberType::class, [
+            ->add('nbHeuresDevis', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => "La durée est obligatoire"
+                        'message' => "Votre civilité est obligatoire"
                     ])
+                ],
+                    'choices'  => [
+                        'Une Journée' => 1,
+                        'Une demie journée' => 0.5,
+                ],
+                'expanded' => true,
+                'label_attr'=>[
+                    'class'=>'radio-inline'
                 ]
             ])
-            ->add('entreprise', EntityType::class, [
-                'class'=> Entreprises::class,
-                'choice_label'=>'nomEntreprise',
-                'placeholder'=>''
+            ->add('entreprise', HiddenType::class, [
+                'empty_data'=> $entreprise,
             ])
             ->add('devisStatut', EntityType::class, [
                 'class'=>DevisStatut::class,

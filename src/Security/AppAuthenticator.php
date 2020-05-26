@@ -81,7 +81,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
     {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
- 
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
