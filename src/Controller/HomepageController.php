@@ -34,12 +34,12 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/coiffeur", name="coiffeurs.homepage.index")
+     * @Route("/coiffeur", name="coiffeur.homepage.index")
      */
     public function indexCoiffeurs(Request $request):Response {
                 
         $userAgent=$request->server->get("HTTP_USER_AGENT");
-        return $this->render('coiffeurs/homepage/index.html.twig',[
+        return $this->render('coiffeur/homepage/index.html.twig',[
             'param' => $userAgent
         ]); 
     }

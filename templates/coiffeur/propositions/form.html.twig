@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			<h1>Proposition de devis</h1>
+			
+			
+			<div class="col">
+			
+			{{form_start(form,
+                    { attr: 
+                        {
+                            novalidate:'novalidate'
+                        } 
+                    })
+            }}
+			<p>
+				{{form_label(form.montant, "Montant devis:")}}
+				{{form_widget(form.montant,
+                    { attr: 
+                        {
+                            placeholder:'Saisissez un montant de devis',
+                            autofocus:'autofocus'
+                        } 
+                    }
+				)}}
+			</p>
+			<p>
+				<input type="submit" value="Valider" class="btn btn-info"/>
+			</p>
+			{{form_end(form)}}
+		</div>
+	</div>
+{% endblock %}

@@ -7,6 +7,8 @@
 			<h1>Liste des propositions</h1>
 		</div>
 	</div>
+
+	
 	<div class="row">
 	<div class="col-md-12">
 	
@@ -24,7 +26,7 @@
 				<th>Nombre de coiffeur</th>
 				<th>Montant Proposition</th>
 			</tr>
-			{% for proposition in results %} 
+			{% for proposition in propositions %} 
 				<tr>
 					<td class="col-md-1">{{ proposition.nomEntrepriseProposition }}</td>
 					<td class="col-md-2">{{ proposition.adresseEntrepriseProposition }}</td>

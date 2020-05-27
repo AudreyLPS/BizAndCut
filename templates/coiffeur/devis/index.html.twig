@@ -16,22 +16,38 @@
 	</div>
 		<table class="table table-striped">
 			<tr>
+				<th>N° devis</th>
 				<th>Nombre de participant</th>
 				<th>Date</th>
 				<th>Durée</th>
 				<th>Status</th>
+				<th>Montant</th>
+				<th>Action</th>
+				
 			</tr>
 			{% for devis in results %} 
 				<tr>
+					<td class="col-md-1">{{ devis.id }}</td>
 					<td class="col-md-2">{{ devis.nbParticipantsDevis }}</td>
 					<td class="col-md-2">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
-					<td class="col-md-1">{{ devis.nbHeuresDevis }}</td>
+					<td class="col-md-2">{{	devis.nbHeuresDevis}}</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
+					{% for proposition in propositions %}
+						{% if proposition.devis == devis %}
+							<td class="col-md-2">{{ proposition.montant }} € </td>
+						{% else %}
+							<td class="col-md-2"></td>
+						{% endif %}
+					{% endfor %}
 					<td class="col-md-4">
-						<a href="{{ url('coiffeur.propositions.index', { idDevis:devis.id }) }}" class="btn btn-info col-md-4">Propositions</a>
-						<a href="{{ url('coiffeur.devis.form.update', { id:devis.id }) }}" class="btn btn-warning col-md-3">Modifier</a>
-						<a href="{{ url('coiffeur.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a>
-					</td>
+					{% if devis.devisStatut.id == 2 %}
+						<a href="" class="btn btn-warning col-md-3">Participer à l'événement</a>
+					{% else %}
+						<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info col-md-4">Propositions</a>
+					{% endif %}
+
+					</td> 
+					
 				</tr>
 			{% endfor %}
 		</table>
