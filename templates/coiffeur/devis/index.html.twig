@@ -43,9 +43,20 @@
 					{% if devis.devisStatut.id == 2 %}
 						<a href="" class="btn btn-warning col-md-3">Participer à l'événement</a>
 					{% else %}
-						<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info col-md-4">Propositions</a>
-					{% endif %}
+						{% set var = 1 %}
+						{% for proposition in propositions %}
+							{% if proposition.devis == devis %}
+								<p>Poposition en cours</p>
+								{% set var = 1 %}
+							{% else %}
+								{% set var = 0 %}
+							{% endif %} 
+						{% endfor %}
 
+						{% if var == 0 %}
+							<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info col-md-4">Propositions</a>
+						{% endif %} 
+					{% endif %} 
 					</td> 
 					
 				</tr>

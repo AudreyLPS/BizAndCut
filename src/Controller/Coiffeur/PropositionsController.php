@@ -22,16 +22,16 @@ class PropositionsController extends AbstractController
 {
     
 	/**
-	 * @Route("/liste/form/update/{id}", name="coiffeur.propositions.form.update")
-	 * @Route("/liste/form", name="coiffeur.propositions.form")
+	 * @Route("/liste/form/{id}", name="coiffeur.propositions.form")
 	 */
 	 
     
-    public function form(PropositionsRepository $propositionsRepository, int $id=null, Request $request, EntityManagerInterface $entityManager):Response
+    public function form(PropositionsRepository $propositionsRepository, int $id, Request $request, EntityManagerInterface $entityManager):Response
 	{
-    $type = PropositionType::class;
+        $type = PropositionType::class;
         $model = $id ? $propositionsRepository->find($id) :  new Propositions();
-		$form = $this->createForm($type, $model);
+        
+        $form = $id? $this->createForm($type, $model, array('idDevis'=>$id)): $this->createForm($type, $model);
 		$form->handleRequest($request);
         
         // Si le formulaire est validé
@@ -46,7 +46,7 @@ class PropositionsController extends AbstractController
             //redirection
             return $this->redirectToRoute('homepage.index'); // on redirige vers le nom d'une route
         }
-
+        
         return $this->render('coiffeur/propositions/form.html.twig',[
             'form'=> $form->createView()
         ]); 

@@ -19,23 +19,27 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class PropositionType extends AbstractType
 {
-    public function __construct(Security $security, DevisRepository $devisRepository)
+    public function __construct(Security $security, DevisRepository $er)
     {
         $this->security = $security;
-        $this->devis = $devisRepository->find(1);
+        $this->er= $er;
     }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $coiffeur = $this->security->getUser();
+        $idDevis= $options['idDevis'];
+        $devis = $this->er ->find($idDevis);
+        
         $builder
+
             ->add('coiffeur', HiddenType::class, [
                 'empty_data'=> $coiffeur,
                 'data'=>""
             ])
-            ->add('devis', EntityType::class, [
-                'class'=>Devis::class,
-                'choice_label'=>'id',
-                'placeholder'=>''
+            ->add('devis', HiddenType::class, [
+                'empty_data'=> $devis,
+                'data'=>""
             ])
            
             ->add('validationBC', HiddenType::class, [
@@ -64,6 +68,7 @@ class PropositionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Propositions::class,
+            'idDevis'=> '',
         ]);
     }
 }
