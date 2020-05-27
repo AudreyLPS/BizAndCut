@@ -46,7 +46,8 @@ class DevisController extends AbstractController
     public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null, DevisRepository $devisRepository):Response {
 
         $type = DevisType::class;
-		$model = $id ? $devisRepository->find($id) :  new Devis();
+        $model = $id ? $devisRepository->find($id) :  new Devis();
+        
 		$form = $this->createForm($type, $model);
 		$form->handleRequest($request);
         

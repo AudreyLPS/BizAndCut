@@ -21,17 +21,20 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class DevisType extends AbstractType
 {
-    private $security;
+    private $security, $devisStatut;
 
-    public function __construct(Security $security)
+    public function __construct(Security $security, DevisStatutRepository $devisStatutRepository)
     {
         $this->security = $security;
+        $this->devisStatut = $devisStatutRepository->find(1);
+        
     }
 
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $entreprise = $this->security->getUser();
-        //dd($user->getId());
+       
         $builder
             ->add('nbParticipantsDevis', NumberType::class, [
                 'constraints' => [
@@ -50,12 +53,12 @@ class DevisType extends AbstractType
             ->add('nbHeuresDevis', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => "Votre civilité est obligatoire"
+                        'message' => "L'heure est obligatoire"
                     ])
                 ],
                     'choices'  => [
-                        'Une Journée' => 1,
-                        'Une demie journée' => 0.5,
+                        'Une Journée' => 2,
+                        'Une demie journée' => 1,
                 ],
                 'expanded' => true,
                 'label_attr'=>[
@@ -64,12 +67,11 @@ class DevisType extends AbstractType
             ])
             ->add('entreprise', HiddenType::class, [
                 'empty_data'=> $entreprise,
+                'data'=>""
             ])
-            ->add('devisStatut', EntityType::class, [
-                'class'=>DevisStatut::class,
-                'choice_label'=>'texteDevisStatut',
-                'placeholder'=>'',
-                'data'=> 2
+            ->add('devisStatut', HiddenType::class, [
+                'empty_data'=> $this->devisStatut,
+                'data'=>""
             ])
         ;
         // ajout d'un soucripteur de formulaire

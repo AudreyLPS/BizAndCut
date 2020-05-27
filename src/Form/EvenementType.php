@@ -25,7 +25,6 @@ class EvenementType extends AbstractType
                 'placeholder'=>''
             ])
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
