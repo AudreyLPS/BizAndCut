@@ -33,7 +33,7 @@
 					<td class="col-md-2">{{	devis.nbHeuresDevis}}</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					{% for proposition in propositions %}
-						{% if proposition.devis == devis %}
+						{% if proposition.devis == devis and proposition.validationEntreprise == 1 %}
 							<td class="col-md-2">{{ proposition.montant }} € </td>
 						{% else %}
 							<td class="col-md-2"></td>
