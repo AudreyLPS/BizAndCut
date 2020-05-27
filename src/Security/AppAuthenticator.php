@@ -66,8 +66,10 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        /**
+         * check by Email and deleted status
+         */
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email'], 'deleted' => 1]);
 
         if (!$user) {
             // fail authentication with a custom error
