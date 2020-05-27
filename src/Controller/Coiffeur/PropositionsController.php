@@ -29,14 +29,14 @@ class PropositionsController extends AbstractController
     public function form(PropositionsRepository $propositionsRepository, int $id, Request $request, EntityManagerInterface $entityManager):Response
 	{
         $type = PropositionType::class;
-        $model = $id ? $propositionsRepository->find($id) :  new Propositions();
+        $model = new Propositions();
         
-        $form = $id? $this->createForm($type, $model, array('idDevis'=>$id)): $this->createForm($type, $model);
+        $form = $this->createForm($type, $model, array('idDevis'=>$id));
 		$form->handleRequest($request);
         
         // Si le formulaire est validé
         if($form->isSubmitted() && $form->isValid()){
-            $id ? null : $entityManager->persist($model);
+            $entityManager->persist($model);
             $entityManager->flush();
             
 			// message de confirmation

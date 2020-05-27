@@ -28,35 +28,48 @@
 			{% for devis in results %} 
 				<tr>
 					<td class="col-md-1">{{ devis.id }}</td>
-					<td class="col-md-2">{{ devis.nbParticipantsDevis }}</td>
-					<td class="col-md-2">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
-					<td class="col-md-2">{{	devis.nbHeuresDevis}}</td>
+					<td class="col-md-3">{{ devis.nbParticipantsDevis }}</td>
+					<td class="col-md-1">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
+					<td class="col-md-2">
+						{% if devis.nbHeuresDevis == 1 %}
+							Une journée
+						{% else %}	
+							Une demie journée
+						{% endif %}
+					</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
+					<td class="col-md-1">
+					{% set var1 = 1 %}
 					{% for proposition in propositions %}
 						{% if proposition.devis == devis and proposition.validationEntreprise == 1 %}
-							<td class="col-md-2">{{ proposition.montant }} € </td>
-						{% else %}
-							<td class="col-md-2"></td>
+							{{ proposition.montant }} € 
+							{% set var1 = 1 %}
 						{% endif %}
 					{% endfor %}
-					<td class="col-md-4">
-					{% if devis.devisStatut.id == 2 %}
-						<a href="" class="btn btn-warning col-md-3">Participer à l'événement</a>
-					{% else %}
-						{% set var = 1 %}
-						{% for proposition in propositions %}
-							{% if proposition.devis == devis %}
-								<p>Poposition en cours</p>
-								{% set var = 1 %}
-							{% else %}
-								{% set var = 0 %}
-							{% endif %} 
-						{% endfor %}
-
-						{% if var == 0 %}
-							<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info col-md-4">Propositions</a>
+					{% if var1 == 0 %}
+						/
+					{% endif %}
+					</td>
+					<td class="col-md-2">
+						{% set var = 0 %}
+						{% if devis.devisStatut.id == 2 %}
+							{% set var = 1 %}
+						{% else %}
+							{% for proposition in propositions %}
+								{% if proposition.devis == devis and proposition.coiffeur == app.user %}
+									{% set var = 2 %}
+								{% endif %} 
+							{% endfor %}
 						{% endif %} 
-					{% endif %} 
+						
+						{% if var == 2 %}
+							<p>Poposition en cours</p>
+						{% endif %} 
+						{% if var == 1 %}
+							<a href="" class="btn btn-warning">Participer à l'événement</a>{% endif %} 
+						{% if var == 0 %}
+							<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info">Propositions</a>
+						{% endif %} 
 					</td> 
 					
 				</tr>
@@ -64,4 +77,3 @@
 		</table>
 	</div>
 {% endblock %}
-

@@ -25,6 +25,7 @@
 				<th>Nom</th>
 				<th>Prénom</th>
 				<th>Rôle</th>
+				<th>Statut</th>
 				<th>Actions</th>
 			</tr>
 			{% for user in results %} 
@@ -40,6 +41,14 @@
 							{% if role == 'ROLE_ENTREPRISES' %} Entreprise  {% endif %}
 						</td>
 					{% endfor %} 
+					
+					<td class="col-md-1">
+					{% if user.deleted == 0  %}
+						<a href="{{ url('bizandcut.users.desactive', { id:user.id}) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: green;"></div></a>
+					{% else %}
+						<a href="{{ url('bizandcut.users.active', { id:user.id}) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: red;"></div></a>
+					{% endif %} 
+					</td>
 					<td class="col-md-4">
 					{% for role in user.roles %}
 						{% if role == 'ROLE_COIFFEURS' %} 

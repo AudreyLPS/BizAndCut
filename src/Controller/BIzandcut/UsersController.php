@@ -16,10 +16,46 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UsersController extends AbstractController
 {
     /**
-	 * @Route("/listeusers/", name="bizandcut.users.index")
-     */
+	  * @Route("/listeusers/", name="bizandcut.users.index")
+    */
 	public function index(UserRepository $userRepository):Response
 	{
+        $results= $userRepository->findAll();
+        return $this->render('bizandcut/users/index.html.twig', [
+          'results' => $results,
+        ]);
+  }
+
+   /**
+	 * @Route("/listeusers/active/{id}", name="bizandcut.users.active")
+     */
+	public function active(int $id, UserRepository $userRepository):Response
+  {
+       
+     $entityManager = $this->getDoctrine()->getManager();
+        $user=$userRepository->find($id);
+        $user->setDeleted(0);
+        
+        $entityManager->flush();
+
+        $results= $userRepository->findAll();
+        return $this->render('bizandcut/users/index.html.twig', [
+          'results' => $results,
+        ]);
+    }
+
+    /**
+	 * @Route("/listeusers/desactive/{id}", name="bizandcut.users.desactive")
+     */
+	public function desactive(int $id, UserRepository $userRepository):Response
+  {
+       
+     $entityManager = $this->getDoctrine()->getManager();
+        $user=$userRepository->find($id);
+        $user->setDeleted(1);
+        
+        $entityManager->flush();
+
         $results= $userRepository->findAll();
         return $this->render('bizandcut/users/index.html.twig', [
           'results' => $results,
