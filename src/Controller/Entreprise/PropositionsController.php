@@ -24,8 +24,8 @@ class PropositionsController extends AbstractController
      */
 	public function index(int $idDevis, PropositionsRepository $propositionsRepository):Response
 	{
-        $results=$propositionsRepository->findBy(array('devis'=>$idDevis));
-		return $this->render('entreprise/propositions/index.html.twig', [
+      $results=$propositionsRepository->findBy(array('devis'=>$idDevis, 'validationBC'=>1 ));
+		  return $this->render('entreprise/propositions/index.html.twig', [
 			'results' => $results
 		]);
     }

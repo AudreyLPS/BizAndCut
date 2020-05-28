@@ -19,6 +19,8 @@
 				<th>N° devis</th>
 				<th>Fait par</th>
 				<th>Fait le</th>
+				<th>Durée</th>
+				<th>Nb participant</th>
 				<th>Montant</th>
 				<th>Actions</th>
 			</tr>
@@ -27,9 +29,21 @@
 					<td class="col-md-1">{{ proposition.devis.id }}</td>
 					<td class="col-md-2">{{ proposition.coiffeur.nom }}</td>
 					<td class="col-md-2">{{ proposition.dateProposition|date("m/d/Y") }}</td>
+					<td class="col-md-2">
+						{% if proposition.devis.nbHeuresDevis == 1 %}
+							Une journée
+						{% else %}	
+							Une demie journée
+						{% endif %}
+					</td>
+					<td class="col-md-2">{{ proposition.devis.nbParticipantsDevis }}</td>
 					<td class="col-md-2">{{ proposition.montant }}€</td>
-					<td class="col-md-4">
-						<a href="{{ url('entreprise.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.id }) }}" class="btn btn-success col-md-4">Accepter</a>
+					<td class="col-md-1">
+						{% if proposition.validationBC == 1  %}
+							<a href="{{ url('bizandcut.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.id }) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: green;"></div></a>
+						{% else %}
+							<a href="{{ url('bizandcut.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.id }) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: red;"></div></a>
+						{% endif %}
 					</td>
 				</tr>
 			{% endfor %}

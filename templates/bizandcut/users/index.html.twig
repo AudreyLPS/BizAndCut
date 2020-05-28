@@ -8,17 +8,41 @@
 		</div>
 	</div>
 	<div class="row">
-	<div class="col-md-12">
-		<div class="row">
-        	<div class="col">
-			Il y a __ coiffeurs inscrit.
-			</div>
-        	<div class="col">
-			Il y a __ entrepises inscrite.
-			</div>
-			
-		</div></br>
-	</div>			
+		<div class="col-md-12">
+			<div class="row">
+				{% set nbCoif = 0 %}
+				{% set nbEnt = 0 %}
+				{% for user in results %} 
+					{% for role in user.roles %}
+						<td class="col-md-1">
+							{% if role == 'ROLE_COIFFEURS' %} {% set nbCoif = nbCoif + 1 %}  {% endif %}
+							{% if role == 'ROLE_ENTREPRISES' %} {% set nbEnt = nbEnt + 1 %}  {% endif %}
+						</td>
+					{% endfor %} 
+				{% endfor %} 
+				<div class="col">
+					Il y a {{ nbCoif }} coiffeurs inscrit.
+				</div>
+				<div class="col">
+					Il y a {{ nbEnt }} entrepises inscrite.
+				</div>
+			</div></br>
+		</div>
+	</div>
+	<div class="row" >		
+		<div class="col-md-4">
+			<a href="{{ url('app_register', { typeUser:'entreprises' }) }}" class="btn btn-dark col-md-10">+ Ajouter une entreprise</a>
+		</div>
+				
+		<div class="col-md-4">
+			<a href="{{ url('app_register', { typeUser:'admins' }) }}" class="btn btn-dark col-md-10">+ Ajouter un administrateur</a>
+		</div>
+				
+		<div class="col-md-4">
+			<a href="{{ url('app_register', { typeUser:'coiffeurs' }) }}" class="btn btn-dark col-md-10">+ Ajouter un coiffeurs</a>
+		</div>
+		
+	</div></br>
 		<table class="table table-striped">
 			<tr>
 				<th>Email</th>
@@ -63,6 +87,7 @@
 				</tr>
 			{% endfor %}
 		</table>
+		
 	</div>
 {% endblock %}
 

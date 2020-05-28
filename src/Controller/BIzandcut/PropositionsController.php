@@ -36,16 +36,12 @@ class PropositionsController extends AbstractController
        
      $entityManager = $this->getDoctrine()->getManager();
         $proposition=$propositionsRepository->find($id);
-        $proposition->setValidationEntreprise(1);
-
-        $devisStatus = $dsRepository->find(2);
-        $devis=$devisRepository->find($idDevis);
-        $devis->setDevisStatut($devisStatus);
+        $proposition->setValidationBC(1);
         
         $entityManager->flush();
 
-		$results= $devisRepository->findAll();
-		return $this->render('entreprise/devis/index.html.twig', [
+		    $results= $propositionsRepository->findAll();
+		return $this->render('bizandcut/propositions/index.html.twig', [
 			'results' => $results,
 		]);
     }
