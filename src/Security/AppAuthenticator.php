@@ -69,7 +69,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
         /**
          * check by Email and deleted status
          */
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email'], 'deleted' => 1]);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email'], 'deleted' => 0]);
 
         if (!$user) {
             // fail authentication with a custom error
