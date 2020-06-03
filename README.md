@@ -11,6 +11,7 @@
 - composer require validator
 
 - composer require symfony/security-bundle
+- composer require knplabs/knp-paginator-bundle
 
 Mettre a jour la BBD: 
  - git pull
