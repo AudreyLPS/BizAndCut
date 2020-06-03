@@ -2,31 +2,38 @@
 
 {% block body %}
 	<div class="row">
-		<div class="col">
+		<div class="col-md-8">
+			<h1>Gestion des utilisateurs</h1> 
 			{% include "_inc/flash.messages.html.twig" %}
-			<h1>Gestion des utilisateurs</h1>
+		</div>
+		<div class="col-md-4">
+		<p>
+			{% include "_inc/search.html.twig" with {form: form} only %}
+		</p>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="row">
-				{% set nbCoif = 0 %}
-				{% set nbEnt = 0 %}
-				{% for user in results %} 
-					{% for role in user.roles %}
-						<td class="col-md-1">
-							{% if role == 'ROLE_COIFFEURS' %} {% set nbCoif = nbCoif + 1 %}  {% endif %}
-							{% if role == 'ROLE_ENTREPRISES' %} {% set nbEnt = nbEnt + 1 %}  {% endif %}
-						</td>
+			
+				<div class="row">
+					{% set nbCoif = 0 %}
+					{% set nbEnt = 0 %}
+					{% for user in results %} 
+						{% for role in user.roles %}
+							<td class="col-md-1">
+								{% if role == 'ROLE_COIFFEURS' %} {% set nbCoif = nbCoif + 1 %}  {% endif %}
+								{% if role == 'ROLE_ENTREPRISES' %} {% set nbEnt = nbEnt + 1 %}  {% endif %}
+							</td>
+						{% endfor %} 
 					{% endfor %} 
-				{% endfor %} 
-				<div class="col">
-					Il y a {{ nbCoif }} coiffeurs inscrit.
-				</div>
-				<div class="col">
-					Il y a {{ nbEnt }} entrepises inscrite.
-				</div>
-			</div></br>
+					<div class="col">
+						Il y a {{ nbCoif }} coiffeurs dans la base de donnée.
+					</div>
+					<div class="col">
+						Il y a {{ nbEnt }} entrepises dans la base de donnée.
+					</div>
+				</div></br>
+			
 		</div>
 	</div>
 	<div class="row" >		
@@ -39,7 +46,7 @@
 		</div>
 				
 		<div class="col-md-4">
-			<a href="{{ url('app_register', { typeUser:'coiffeurs' }) }}" class="btn btn-dark col-md-10">+ Ajouter un coiffeurs</a>
+			<a href="{{ url('app_register', { typeUser:'coiffeurs' }) }}" class="btn btn-dark col-md-10">+ Ajouter un coiffeur</a>
 		</div>
 		
 	</div></br>

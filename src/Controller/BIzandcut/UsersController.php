@@ -2,6 +2,9 @@
 
 namespace App\Controller\Bizandcut;
 
+//use App\Data\SearchData;
+use App\src\SearchData;
+use App\Form\SearchType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,11 +21,17 @@ class UsersController extends AbstractController
     /**
 	  * @Route("/listeusers/", name="bizandcut.users.index")
     */
-	public function index(UserRepository $userRepository):Response
+	public function index(UserRepository $userRepository, Request $request):Response
 	{
-        $results= $userRepository->findAll();
+        $data = new SearchData();
+        $form = $this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $results=$userRepository->findSearch($data);
+        //dd ($data);
         return $this->render('bizandcut/users/index.html.twig', [
           'results' => $results,
+          'form'=> $form->createView(), 
+          'data'=> $data,
         ]);
   }
 
@@ -31,17 +40,13 @@ class UsersController extends AbstractController
      */
 	public function active(int $id, UserRepository $userRepository):Response
   {
-       
-     $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
         $user=$userRepository->find($id);
         $user->setDeleted(0);
         
         $entityManager->flush();
 
-        $results= $userRepository->findAll();
-        return $this->render('bizandcut/users/index.html.twig', [
-          'results' => $results,
-        ]);
+        return $this->redirectToRoute('bizandcut.users.index');
     }
 
     /**
@@ -49,17 +54,13 @@ class UsersController extends AbstractController
      */
 	public function desactive(int $id, UserRepository $userRepository):Response
   {
-       
-     $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
         $user=$userRepository->find($id);
         $user->setDeleted(1);
         
         $entityManager->flush();
 
-        $results= $userRepository->findAll();
-        return $this->render('bizandcut/users/index.html.twig', [
-          'results' => $results,
-        ]);
+        return $this->redirectToRoute('bizandcut.users.index');
     }
 }
 
