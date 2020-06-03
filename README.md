@@ -11,6 +11,10 @@
 - composer require validator
 
 - composer require symfony/security-bundle
+- composer require knplabs/knp-paginator-bundle
+
+- composer require egulias/email-validator
+- composer require symfony/amazon-mailer
 
 Mettre a jour la BBD: 
  - git pull
