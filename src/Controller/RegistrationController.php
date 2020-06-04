@@ -4,14 +4,12 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Admins;
-use App\Entity\Salaries;
 use App\Entity\Coiffeurs;
 use App\Entity\Entreprises;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use App\Form\RegistrationAdminType;
-use App\Form\RegistrationSalarieType;
 use App\Form\RegistrationCoiffeurType;
 use App\Form\RegistrationEntrepriseType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -30,12 +28,7 @@ class RegistrationController extends AbstractController
      */
     public function register(UserRepository $userRepository,MailerInterface $mailer, string $typeUser, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        if ( $typeUser === 'salaries'){
-            $user= new Salaries();
-            $formType=RegistrationSalarieType::class;
-            $template='register-salaries';
-        }
-        elseif($typeUser === 'coiffeurs'){
+        if($typeUser === 'coiffeurs'){
             $user= new Coiffeurs();
             $formType=RegistrationCoiffeurType::class;
             $template='register-coiffeurs';
@@ -44,7 +37,7 @@ class RegistrationController extends AbstractController
             $user= new Admins();
             $formType=RegistrationAdminType::class;
             $template='register-admins';
-        }
+        } 
         else{
             $user= new Entreprises();
             $formType=RegistrationEntrepriseType::class;

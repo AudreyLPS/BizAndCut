@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Devis;
 use App\Entity\DevisStatut;
 use App\Entity\Entreprises;
+use App\Form\EvenementType;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\DevisStatutRepository;
 use Symfony\Component\Security\Core\Security;
@@ -36,43 +37,33 @@ class DevisType extends AbstractType
         $entreprise = $this->security->getUser();
        
         $builder
-            ->add('nbParticipantsDevis', NumberType::class, [
+            ->add('nbParticipants', NumberType::class, [
                 'constraints' => [
                     new NotBlank([
                         'message' => "Le nombre de participant est obligatoire"
                     ])
                 ]
             ])
-            ->add('dateEvenementDevis', DateType::class, [
+            ->add('date', DateType::class, [
                 'constraints' => [
                     new NotBlank([
                         'message' => "La date est obligatoire"
                     ])
                 ]
             ])
-            ->add('nbHeuresDevis', ChoiceType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => "L'heure est obligatoire"
-                    ])
-                ],
-                    'choices'  => [
-                        'Une Journée' => 2,
-                        'Une demie journée' => 1,
-                ],
-                'expanded' => true,
-                'label_attr'=>[
-                    'class'=>'radio-inline'
-                ]
-            ])
             ->add('entreprise', HiddenType::class, [
                 'empty_data'=> $entreprise,
                 'data'=>""
             ])
+            ->add('heureDebut')
+            ->add('heureFin')
+            ->add('nbCoiffeurs')
+            ->add('libelle')
             ->add('devisStatut', HiddenType::class, [
                 'empty_data'=> $this->devisStatut,
                 'data'=>""
             ])
+            
         ;
         // ajout d'un soucripteur de formulaire
 	    $builder->addEventSubscriber( new DevisFormSubscriber() );

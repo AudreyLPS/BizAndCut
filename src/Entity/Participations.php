@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CoiffeursCreneaux
+ * Participations
  *
- * @ORM\Table(name="coiffeurs_creneaux")
+ * @ORM\Table(name="participations")
  * @ORM\Entity
  */
-class CoiffeursCreneaux
+class Participations
 {
     /**
      * @ORM\Id()
@@ -28,11 +28,6 @@ class CoiffeursCreneaux
      * @ORM\Column(type="integer")
      */
     private $coiffeurId;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $horairesCoiffeurCreneau;
 
     public function getId(): ?int
     {
@@ -62,18 +57,4 @@ class CoiffeursCreneaux
 
         return $this;
     }
-
-    public function getHorairesCoiffeurCreneau(): ?int
-    {
-        return $this->horairesCoiffeurCreneau;
-    }
-
-    public function setHorairesCoiffeurCreneau(int $horairesCoiffeurCreneau): self
-    {
-        $this->horairesCoiffeurCreneau = $horairesCoiffeurCreneau;
-
-        return $this;
-    }
-
-
 }

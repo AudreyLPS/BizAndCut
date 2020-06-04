@@ -15,38 +15,33 @@
     </p>
 	</div>
 		<p class="text-right">
-			<a href="{{ url('entreprise.devis.form') }}" class="btn btn-success">+ Nouveau devis</a>		
+			<a href="{{ url('entreprise.devis.form') }}" class="btn btn-success">+ Nouvel événement</a>		
 		</p>
 		<table class="table table-striped">
 			<tr>
-				<th>N° devis</th>
-				<th>Nombre de participant</th>
+				<th>Evénement</th>
 				<th>Date</th>
 				<th>Durée</th>
+				<th>Nombre de participant</th>
 				<th>Status</th>
 				<th>Actions</th>
 			</tr>
 			{% for devis in results %} 
 				<tr>
-					<td class="col-md-1">{{ devis.id }}</td>
-					<td class="col-md-2">{{ devis.nbParticipantsDevis }}</td>
-					<td class="col-md-1">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
+					<td class="col-md-1">{{ devis.libelle }}</td>
+					<td class="col-md-1">{{ devis.date|date("m/d/Y") }}</td>
 					<td class="col-md-2">
-						{% if devis.nbHeuresDevis == 1 %}
-							Une journée
-						{% else %}	
-							Une demie journée
-						{% endif %}
+						{{ devis.heureDebut }} - {{ devis.heureFin }}
 					</td>
+					<td class="col-md-2">{{ devis.nbParticipants }}</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					<td class="col-md-4">
 						{% if devis.devisStatut.texteDevisStatut == "Accepté" %}
-							<a href="{{ url('entreprise.evenements.form.update', { id:devis.id }) }}" class="btn btn-dark col-md-6">Editer l'évenement</a>
+							<a href="{{ url('entreprise.devis.form.update', { id:devis.id }) }}" class="btn btn-dark col-md-6">Editer l'évenement</a>
 						{% else %}	
-							<a href="{{ url('entreprise.propositions.index', { idDevis:devis.id }) }}" class="btn btn-dark col-md-4">Propositions</a>
-							<a href="{{ url('entreprise.devis.form.update', { id:devis.id }) }}" class="btn btn-warning col-md-3">Modifier</a>
-							<a href="{{ url('entreprise.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a>
+							<a href="{{ url('entreprise.propositions.index', { idDevis:devis.id }) }}" class="btn btn-dark col-md-6">Liste propositions</a>
 						{% endif %}
+							<a href="{{ url('entreprise.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a>
 					</td>
 				</tr>
 			{% endfor %}

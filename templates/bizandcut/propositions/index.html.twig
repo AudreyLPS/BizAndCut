@@ -16,7 +16,7 @@
 	</div>
 		<table class="table table-striped">
 			<tr>
-				<th>N° devis</th>
+				<th>Evénement</th>
 				<th>Fait par</th>
 				<th>Fait le</th>
 				<th>Durée</th>
@@ -26,17 +26,13 @@
 			</tr>
 			{% for proposition in results %} 
 				<tr>
-					<td class="col-md-1">{{ proposition.devis.id }}</td>
+					<td class="col-md-1">{{ proposition.devis.libelle }}</td>
 					<td class="col-md-2">{{ proposition.coiffeur.nom }}</td>
 					<td class="col-md-2">{{ proposition.dateProposition|date("m/d/Y") }}</td>
 					<td class="col-md-2">
-						{% if proposition.devis.nbHeuresDevis == 1 %}
-							Une journée
-						{% else %}	
-							Une demie journée
-						{% endif %}
+						{{ proposition.devis.heureDebut }} - {{ proposition.devis.heureFin }}
 					</td>
-					<td class="col-md-2">{{ proposition.devis.nbParticipantsDevis }}</td>
+					<td class="col-md-2">{{ proposition.devis.nbParticipants}}</td>
 					<td class="col-md-2">{{ proposition.montant }}€</td>
 					<td class="col-md-1">
 						{% if proposition.validationBC == 1  %}

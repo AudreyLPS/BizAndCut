@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EvenementsSalaries
+ * Planning
  *
- * @ORM\Table(name="evenements_salaries")
+ * @ORM\Table(name="planning")
  * @ORM\Entity
  */
-class EvenementsSalaries
+class Planning
 {
     /**
      * @ORM\Id()
@@ -19,13 +19,11 @@ class EvenementsSalaries
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Devis", inversedBy="evenements_salaries")
+     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Devis", inversedBy="planning")
      * @ORM\JoinColumn(nullable=false)
      */
     private $devis;
-
-    
 
     public function getId(): ?int
     {
