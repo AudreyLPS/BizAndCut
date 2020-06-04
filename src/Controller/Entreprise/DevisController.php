@@ -37,7 +37,6 @@ class DevisController extends AbstractController
 		]);
     }
     
-
     /**
         * @Route("/devis/form", name="entreprise.devis.form")
         * @Route("/devis/form/update/{id}", name="entreprise.devis.form.update")

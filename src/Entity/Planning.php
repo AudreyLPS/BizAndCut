@@ -20,24 +20,24 @@ class Planning
     private $id;
 
      /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Evenements", inversedBy="planning")
+     * @ORM\OneToOne(targetEntity="App\Entity\Devis", inversedBy="planning")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $evenement;
+    private $devis;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEvenement(): ?Evenements
+    public function getDevis(): ?Devis
     {
-        return $this->evenement;
+        return $this->devis;
     }
 
-    public function setEvenement(Evenements $evenement): self
+    public function setDevis(Devis $devis): self
     {
-        $this->evenement = $evenement;
+        $this->devis = $devis;
 
         return $this;
     }

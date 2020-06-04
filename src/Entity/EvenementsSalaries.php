@@ -20,10 +20,10 @@ class EvenementsSalaries
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements", inversedBy="evenements_salaries")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Devis", inversedBy="evenements_salaries")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $evenement;
+    private $devis;
 
     
 
@@ -32,14 +32,14 @@ class EvenementsSalaries
         return $this->id;
     }
 
-    public function getEvenement(): ?int
+    public function getDevis(): ?Devis
     {
-        return $this->evenement;
+        return $this->devis;
     }
 
-    public function setEvenement(int $evenement): self
+    public function setDevis(Devis $devis): self
     {
-        $this->evenement = $evenement;
+        $this->devis = $devis;
 
         return $this;
     }
