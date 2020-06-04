@@ -74,7 +74,7 @@ class RegistrationController extends AbstractController
             $message = (new TemplatedEmail())
             ->from('alcnm2018@gmail.com')
             ->to($to)
-            ->subject('Conatct')
+            ->subject('Contact')
             ->textTemplate('emailing/registerMail.txt.twig')//cibler un template twig
             ->context([ // permet d'envoyer des information a la vue 
                 'nom' => $form->get('nom')->getData() ,

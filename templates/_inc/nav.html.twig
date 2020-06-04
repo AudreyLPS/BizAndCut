@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="{{ url('homepage.index') }}">BizAndCut</a>
+    <a class="navbar-brand" href="{{ url('homepage.index') }}">Biz&Cut</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('homepage.index') }}">Home <span class="sr-only">(current)</span></a>
@@ -13,7 +13,7 @@
     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
     <ul class="navbar-nav justify-content-end">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ url('app_register', { typeUser:'coiffeurs' }) }}">Inscription Coiffeurs</a>
+        <a class="nav-link" href="{{ url('app_register', { typeUser:'coiffeurs' }) }}">Inscription Coiffeur</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('app_register', { typeUser:'entreprises' }) }}">Inscription Entreprise</a>
