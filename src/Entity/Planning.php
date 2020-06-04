@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EvenementsSalaries
+ * Planning
  *
- * @ORM\Table(name="evenements_salaries")
+ * @ORM\Table(name="planning")
  * @ORM\Entity
  */
-class EvenementsSalaries
+class Planning
 {
     /**
      * @ORM\Id()
@@ -19,25 +19,23 @@ class EvenementsSalaries
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements", inversedBy="evenements_salaries")
+     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Evenements", inversedBy="planning")
      * @ORM\JoinColumn(nullable=false)
      */
     private $evenement;
-
-    
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEvenement(): ?int
+    public function getEvenement(): ?Evenements
     {
         return $this->evenement;
     }
 
-    public function setEvenement(int $evenement): self
+    public function setEvenement(Evenements $evenement): self
     {
         $this->evenement = $evenement;
 
