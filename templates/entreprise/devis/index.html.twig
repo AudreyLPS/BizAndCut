@@ -15,25 +15,25 @@
     </p>
 	</div>
 		<p class="text-right">
-			<a href="{{ url('entreprise.devis.form') }}" class="btn btn-success">+ Nouveau devis</a>		
+			<a href="{{ url('entreprise.devis.form') }}" class="btn btn-success">+ Nouvel événement</a>		
 		</p>
 		<table class="table table-striped">
 			<tr>
 				<th>Evénement</th>
-				<th>Nombre de participant</th>
 				<th>Date</th>
 				<th>Durée</th>
+				<th>Nombre de participant</th>
 				<th>Status</th>
 				<th>Actions</th>
 			</tr>
 			{% for devis in results %} 
 				<tr>
 					<td class="col-md-1">{{ devis.libelle }}</td>
-					<td class="col-md-2">{{ devis.nbParticipants }}</td>
 					<td class="col-md-1">{{ devis.date|date("m/d/Y") }}</td>
 					<td class="col-md-2">
 						{{ devis.heureDebut }} - {{ devis.heureFin }}
 					</td>
+					<td class="col-md-2">{{ devis.nbParticipants }}</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					<td class="col-md-4">
 						{% if devis.devisStatut.texteDevisStatut == "Accepté" %}
