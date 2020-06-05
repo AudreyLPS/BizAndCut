@@ -23,16 +23,6 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/homepageCoiffeur", name="homepageCoiffeur.index")
-     */
-    public function indexAccueilCoiffeur(Request $request):Response {     
-        $userAgent=$request->server->get("HTTP_USER_AGENT");
-        return $this->render('homepageCoiffeur/index.html.twig',[
-            'param' => $userAgent
-        ]); 
-    }
-
-    /**
      * @Route("/bizandcut", name="bizandcut.homepage.index")
      */
     public function indexBC(Request $request):Response {
