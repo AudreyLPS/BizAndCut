@@ -2,7 +2,7 @@
 {% block body %}
 	<div class="row">
 		<div class="col">
-			<h1>Demander un devis</h1>
+			<h1>Créer un événement</h1>
 			
 			{{form_start(form,
                     { attr: 
@@ -11,37 +11,44 @@
                         } 
                     })
             }}
+			
 			<p>
-				{{form_label(form.nbParticipantsDevis, 'Nombre de participant:')}}
-				{{form_widget(form.nbParticipantsDevis,
+				{{form_label(form.libelle, "Nom de l'evenement")}}
+				{{form_widget(form.libelle,
                     { attr: 
                         {
-							placeholder:'Saisissez un nombre de participant', 
 							autofocus:'autofocus'
-							}
+						}
                     })}}
 			</p>
 			<div class="row">
-				<div class="col">
-					{{ form_label(form.dateEvenementDevis, "Date de l'evenement ") }} 
-					{{form_widget(form.dateEvenementDevis,
+				<div class="col-md-6">
+					{{ form_label(form.date, "Date de l'evenement ") }} 
+					{{form_widget(form.date,
 					{ attr: 
 						{placeholder:'Saisissez un date'} 
 					})}}
 				</div>
-				<div class="col">
-					{{form_label(form.nbHeuresDevis, "Durée de l'evenement:")}}
-					{{form_widget(form.nbHeuresDevis,
-						{ attr: 
-							{
-								placeholder:'Saisissez une durée en heure',
-								autofocus:'autofocus'
-							} 
-						})
-					}}
+				
+				<div class="col-md-3">
+					{{ form_label(form.heureDebut, "Debut de l'evenement ") }} 
+					{{form_widget(form.heureDebut,
+					{ attr: 
+						{placeholder:'Saisissez une heure de debut'} 
+					})}}
+				</div>
+				
+				<div class="col-md-3">
+					{{ form_label(form.heureFin, "Fin de l'evenement ") }} 
+					{{form_widget(form.heureFin,
+					{ attr: 
+						{placeholder:'Saisissez une heure de fin'} 
+					})}}
 				</div>
 			</div >
 			
+			<div class="row">
+			</div >
 			<p>
 				</br>
 				<input type="submit" value="Valider" class="btn btn-dark"/>

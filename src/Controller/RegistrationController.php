@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
             $user= new Admins();
             $formType=RegistrationAdminType::class;
             $template='register-admins';
-        }
+        } 
         else{
             $user= new Entreprises();
             $formType=RegistrationEntrepriseType::class;

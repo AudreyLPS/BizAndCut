@@ -18,32 +18,42 @@ class Devis
      * @ORM\Column(type="integer")
      */
     private $id;
-
+ 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Entreprises", inversedBy="devis")
      * @ORM\JoinColumn(nullable=false)
      */
     private $entreprise;
 
-    /*
-     * @ORM\Column(type="integer")
-     */
-    /*private $numeroDevis; */
-
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbParticipantsDevis;
+    private $nbParticipants;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $dateEvenementDevis;
+    private $date;
 
-   /**
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $heureDebut;
+
+     /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $heureFin;
+ 
+    /**
+     * @ORM\Column(type="string", length=500)
+     */
+    private $libelle;
+
+     /**
      * @ORM\Column(type="integer")
      */
-    private $nbHeuresDevis;
+    private $nbCoiffeurs = '1';
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DevisStatut", inversedBy="devis")
@@ -80,38 +90,26 @@ class Devis
         return $this;
     }
 
-    public function getNbParticipantsDevis(): ?int
+    public function getNbParticipants(): ?int
     {
-        return $this->nbParticipantsDevis;
+        return $this->nbParticipants;
     }
 
-    public function setNbParticipantsDevis(int $nbParticipantsDevis): self
+    public function setNbParticipants(int $nbParticipants): self
     {
-        $this->nbParticipantsDevis = $nbParticipantsDevis;
+        $this->nbParticipants = $nbParticipants;
 
         return $this;
     }
 
-    public function getDateEvenementDevis(): ?\DateTimeInterface
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->dateEvenementDevis;
+        return $this->date;
     }
 
-    public function setDateEvenementDevis(\DateTimeInterface $dateEvenementDevis): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->dateEvenementDevis = $dateEvenementDevis;
-
-        return $this;
-    }
-
-    public function getNbHeuresDevis(): ?int
-    {
-        return $this->nbHeuresDevis;
-    }
-
-    public function setNbHeuresDevis(int $nbHeuresDevis): self
-    {
-        $this->nbHeuresDevis = $nbHeuresDevis;
+        $this->date = $date;
 
         return $this;
     }
@@ -128,5 +126,51 @@ class Devis
         return $this;
     }
 
+    public function getHeureDebut(): ?string
+    {
+        return $this->heureDebut;
+    }
 
+    public function setHeureDebut(string $heureDebut): self
+    {
+        $this->heureDebut = $heureDebut;
+
+        return $this;
+    }
+
+    public function getLibelle(): ?string
+    {
+        return $this->libelle;
+    }
+
+    public function setLibelle(string $libelle): self
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function getHeureFin(): ?string
+    {
+        return $this->heureFin;
+    }
+
+    public function setHeureFin(string $heureFin): self
+    {
+        $this->heureFin = $heureFin;
+
+        return $this;
+    }
+
+    public function getNbCoiffeurs(): ?int
+    {
+        return $this->nbCoiffeurs;
+    }
+
+    public function setNbCoiffeurs(int $nbCoiffeurs): self
+    {
+        $this->nbCoiffeurs = $nbCoiffeurs;
+
+        return $this;
+    }
 }
