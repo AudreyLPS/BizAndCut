@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1> Profil </h1>
+		</div>
+	</div>
+
+	
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+		<table class="table table-striped">
+			
+			<ul>
+				<li> 
+					<b> Civilite : </b> 
+					{{ app.user.civilite }}
+				</li>
+				<li> 
+					<b> Nom : </b> 
+					{{ app.user.nom }}
+				</li>
+				<li> 
+					<b> Prénom: </b>
+					{{ app.user.prenom }} 
+				</li>
+				<li> 
+					<b> Adresse: </b>
+					{{ app.user.adresse }}
+					</li>
+				<li> 
+					<b> Ville: </b>
+					{{ app.user.ville }}
+				</li>
+				<li> 
+					<b> Code postal: </b>
+					{{ app.user.cp }}
+				</li>
+				<li> 
+					<b> Téléphone: </b>
+					{{ app.user.telephone }}
+				</li>
+				<li> 
+					<b> Email: </b>
+					{{ app.user.email }}
+				</li>
+				<li> 
+					<b> Nombre d'année d'expérience: </b>
+					{{ app.user.nbAnneesExp }}
+				</li>
+				<li> 
+					<b> Distance entre votre adresse souhaitée et l'adresse de l'entreprise: </b>
+					{{ app.user.distance }}
+				</li>
+			</ul>
+
+
+
+			<td>	
+				<a href="{{ url('coiffeur.profil.form', { id:app.user.id }) }}" class="btn btn-info">Complétez votre profil</a> 
+			</td>
+
+		</table>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

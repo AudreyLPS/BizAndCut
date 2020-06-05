@@ -16,7 +16,7 @@
 	</div>
 		<table class="table table-striped">
 			<tr>
-				<th>Evenement</th>
+				<th>N° devis</th>
 				<th>Nombre de participant</th>
 				<th>Date</th>
 				<th>Durée</th>
@@ -27,11 +27,15 @@
 			</tr>
 			{% for devis in results %} 
 				<tr>
-					<td class="col-md-1">{{ devis.libelle }}</td>
-					<td class="col-md-3">{{ devis.nbParticipants }}</td>
-					<td class="col-md-1">{{ devis.date|date("m/d/Y") }}</td>
+					<td class="col-md-1">{{ devis.id }}</td>
+					<td class="col-md-3">{{ devis.nbParticipantsDevis }}</td>
+					<td class="col-md-1">{{ devis.dateEvenementDevis|date("m/d/Y") }}</td>
 					<td class="col-md-2">
-						{{ devis.heureDebut }} - {{ devis.heureFin }}
+						{% if devis.nbHeuresDevis == 1 %}
+							Une journée
+						{% else %}	
+							Une demie journée
+						{% endif %}
 					</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					<td class="col-md-1">
@@ -62,7 +66,8 @@
 							<p>Proposition en cours</p>
 						{% endif %} 
 						{% if var == 1 %}
-							<a href="{{ url('coiffeur.creneau.index', { id:devis.id }) }}" class="btn btn-warning">Participer à l'événement</a>{% endif %} 
+							<a href="{{ url('coiffeur.creneau.index', { id:devis.id }) }}" class="btn btn-warning">Participer à l'événement</a>
+						{% endif %}  
 						{% if var == 0 %}
 							<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info">Propositions</a>
 						{% endif %} 
