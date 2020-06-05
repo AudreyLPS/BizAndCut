@@ -1,0 +1,14 @@
+{% extends 'baseCoiffeur.html.twig'  %}
+{% block body %}
+    <div class="row">
+        <div class="col">
+        {% include "_inc/flash.messages.html.twig" %}
+            <p>
+                <h3>Page d'accueil temporaire coiffeur</h3>
+            </p>
+			<p>
+				<a href="{{ url('coiffeur.homepage.index') }}" class="btn btn-dark col-md-2 ">Espace Coiffeur</a>	
+			</p>
+        </div>
+    </div>
+{% endblock %}

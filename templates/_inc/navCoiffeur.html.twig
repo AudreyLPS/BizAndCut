@@ -14,22 +14,10 @@
     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
     <ul class="navbar-nav justify-content-end">
       <li class="nav-item active">
-        <a class="nav-link" href="">Prestation de coiffure sur votre lieu de travail</a>
-      </li>
-      <li class="nav-item active">
         <a class="nav-link" href="">Comment ça marche ?</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="">Nos prestations</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('homepageCoiffeur.index') }}">Vous êtes coiffeur ?</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('app_register', { typeUser:'entreprises' }) }}">Inscription Entreprise</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('app_register', { typeUser:'admins' }) }}">(Inscription Admin)</a>
+        <a class="nav-link" href="{{ url('app_register', { typeUser:'coiffeurs' }) }}">Inscription Coiffeur</a>
       </li>
       <li class="nav-item active">
         <a class="btn btn-success" href="{{ url('app_login') }}">Connexion</a>

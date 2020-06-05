@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Biz And Cut{% endblock %}</title>
+
+        {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}{% endblock %}
+        <style>
+        </style>
+    </head>
+    <body>
+       
+        {% include '_inc/navCoiffeur.html.twig' %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        {{ encore_entry_script_tags('app') }}
+        {% block javascripts %}{% endblock %}
+       
+    </body> 
+    <footer>
+        {% include '_inc/foot.html.twig' %}
+    </footer>
+</html>
