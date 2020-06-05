@@ -51,6 +51,24 @@ class PropositionsController extends AbstractController
             'form'=> $form->createView()
         ]); 
     }
+
+    /**
+	 * @Route("/proposition/delete/{id}", name="coiffeur.propositions.delete")
+	 */
+	public function delete(PropositionsRepository $propositionsRepository, EntityManagerInterface $entityManager, int $id):Response
+	{
+		/*
+		 * avec doctrine, pour supprimer une entité, il faut la sélectionner au préalable
+		 * méthode remove pour DELETE
+		 */
+		$entity = $propositionsRepository->find($id);
+		$entityManager->remove($entity);
+		$entityManager->flush();
+
+		// message de confirmation et redirection
+		$this->addFlash('notice', "L'événement' a été supprimé");
+		return $this->redirectToRoute('coiffeur.propositions.index');
+	}
 }
 
 

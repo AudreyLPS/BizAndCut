@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Profil_coiffeur
+ * Profil
  *
- * @ORM\Table(name="profil_coiffeur")
+ * @ORM\Table(name="profil")
  * @ORM\Entity
  */ 
-class Profil_coiffeur
+class Profil
 {
     /**
      * @ORM\Id()

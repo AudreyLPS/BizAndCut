@@ -66,7 +66,8 @@
 							<p>Proposition en cours</p>
 						{% endif %} 
 						{% if var == 1 %}
-							<a href="{{ url('coiffeur.creneau.index', { id:devis.id }) }}" class="btn btn-warning">Participer à l'événement</a>{% endif %} 
+							<a href="{{ url('coiffeur.creneau.index', { id:devis.id }) }}" class="btn btn-warning">Participer à l'événement</a>
+						{% endif %}  
 						{% if var == 0 %}
 							<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info">Propositions</a>
 						{% endif %} 
