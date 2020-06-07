@@ -28,33 +28,31 @@ class ProfilController extends AbstractController
 	/**
 	 * @Route("/profil", name="coiffeur.profil.index")
 	 */
-	public function index(DevisRepository $devisRepository, PropositionsRepository $propositionsRepository):Response
+	public function index(ProfilRepository $profilRepository):Response
 	{
-		$results= $devisRepository->findAll();
-		$propositions= $propositionsRepository -> findAll();
+		/* $results= $profilRepository->findBy(array("user"=>app.user.id));
 		return $this->render('coiffeur/profil/index.html.twig', [
 			'results' => $results,
-			'propositions' => $propositions,
-		]);
+		]); */
     }
     
 
 
     /**
-	 * @Route("/profil/form/{id}", name="coiffeur.profil.form")
+	 * @Route("/profil/form", name="coiffeur.profil.form")
 	 */
 
-    public function form(ProfilRepository $profilRepository, int $id, Request $request, EntityManagerInterface $entityManager):Response
+    public function form(ProfilRepository $profilRepository, int $id=null, Request $request, EntityManagerInterface $entityManager):Response
 	{
-       /*  $type = ProfilType::class;
-        $model = new Profil();
-        
-        $form = $this->createForm($type, $model, array('idDevis'=>$id));
+        /* $type = ProfilType::class;
+        $model = $id? $profilRepository -> find($id):new Profil();
+
+        $form = $this->createForm($type, $model);
 		$form->handleRequest($request);
         
         // Si le formulaire est validé
         if($form->isSubmitted() && $form->isValid()){
-            $entityManager->persist($model);
+            $id? null: $entityManager -> persist($model);
             $entityManager->flush();
             
 			// message de confirmation
@@ -65,36 +63,9 @@ class ProfilController extends AbstractController
             return $this->redirectToRoute('homepage.index'); // on redirige vers le nom d'une route
         }
         
-        return $this->render('coiffeur/profil/form.html.twig',[
-            'form'=> $form->createView()
-        ]);  */
-
-
-
-        $profil = new Profil();
-        
-        $form = $this->createForm(ProfilType::class, $profil);
-		$form->handleRequest($request);
-        
-        // Si le formulaire est validé
-        if($form->isSubmitted() && $form->isValid()){
-            $entityManager = $this-> getDoctrine()->getManager();
-
-            $entityManager->persist($profil);
-            $entityManager->flush();
-            
-			// message de confirmation
-			$message = "Votre profil a été mis à jour";
-            $this->addFlash('notice', $message);
-            
-            //redirection
-            return $this->redirectToRoute('homepage.index'); // on redirige vers le nom d'une route
-        }
-        $formView = $form->createView();
-        
-        return $this->render('coiffeur/profil/form.html.twig',
-            array('form'=>$formView)); 
-    }
+        return $this->render('coiffeur/profil/form.html.twig', [ "form" => $form->createView()]);
+        */
+    } 
 }
 
 

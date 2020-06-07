@@ -61,15 +61,33 @@
 						{% if var == 2 %}
 							<p>Proposition en cours</p>
 						{% endif %} 
+
 						{% if var == 1 %}
-							<a href="{{ url('coiffeur.creneau.index', { id:devis.id }) }}" class="btn btn-warning">Participer à l'événement</a>{% endif %} 
+							{% set parti = 0 %}
+							{% set idParti = null %}
+							{% for participation in participations %}
+								{% if participation.coiffeurId == app.user.id  and participation.evenementId == devis.id %}
+									{% set idParti = participation.id %}
+									{% set parti = 1 %}
+								{% endif %}
+							{% endfor %}
+							
+							{% if parti == 1 %}
+								<a href="{{ url('coiffeur.participations.decline', { id:idParti}) }}" class="btn btn-danger">Ne plus Participer </a>
+							{% else %}
+								<a href="{{ url('coiffeur.participations.accepte', { idDevis:devis.id, idCoiffeur:app.user.id }) }}" class="btn btn-warning">Participer à l'événement</a>
+							{% endif %}
+						{% endif %}
+
 						{% if var == 0 %}
 							<a href="{{ url('coiffeur.propositions.form', { id:devis.id }) }}" class="btn btn-info">Propositions</a>
 						{% endif %} 
+						
 					</td> 
 					
 				</tr>
 			{% endfor %}
+			
 		</table>
 	</div>
 {% endblock %}

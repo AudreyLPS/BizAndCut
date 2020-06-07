@@ -59,12 +59,20 @@
 					<b> Distance entre votre adresse souhaitée et l'adresse de l'entreprise: </b>
 					{{ app.user.distance }}
 				</li>
+				<li> 
+					<b> RIB: </b>
+					{{ app.user.distance }}
+				</li>
+				<li> 
+					<b> Saisissez votre diplôme: </b>
+					{{ app.user.distance }}
+				</li>
 			</ul>
 
 
 
 			<td>	
-				<a href="{{ url('coiffeur.profil.form', { id:app.user.id }) }}" class="btn btn-info">Complétez votre profil</a> 
+				<a href="{{ url('coiffeur.profil.form') }}" class="btn btn-info">Complétez votre profil</a> 
 			</td>
 
 		</table>
