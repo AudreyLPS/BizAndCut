@@ -22,6 +22,43 @@ class HomepageController extends AbstractController
         ]); 
     }
 
+    
+    /**
+     * @Route("/prestationDeCoiffure", name="bizAndCutOtherPage.prestationDeCoiffure.index")
+     */
+    public function indexPrestationDeCoiffure(Request $request):Response {
+                
+        $userAgent=$request->server->get("HTTP_USER_AGENT");
+        return $this->render('bizAndCutOtherPage/prestationDeCoiffure/index.html.twig',[
+            'param' => $userAgent
+        ]); 
+    }
+
+    /**
+     * @Route("/commentCaMarche", name="bizAndCutOtherPage.commentCaMarche.index")
+     */
+    public function indexCommentCaMarche(Request $request):Response {
+                
+        $userAgent=$request->server->get("HTTP_USER_AGENT");
+        return $this->render('bizAndCutOtherPage/commentCaMarche/index.html.twig',[
+            'param' => $userAgent
+        ]); 
+    }
+
+    /**
+     * @Route("/detailsDeNosPrestation", name="bizAndCutOtherPage.detailsDeNosPrestation.index")
+     */
+    public function indexDetailsDeNosPrestation(Request $request):Response {
+                
+        $userAgent=$request->server->get("HTTP_USER_AGENT");
+        return $this->render('bizAndCutOtherPage/detailsDeNosPrestation/index.html.twig',[
+            'param' => $userAgent
+        ]); 
+    }
+
+
+    
+
     /**
      * @Route("/bizandcut", name="bizandcut.homepage.index")
      */

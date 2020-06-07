@@ -4,7 +4,21 @@
         <div class="col">
         {% include "_inc/flash.messages.html.twig" %}
             <p>
-                <h3>Page d'accueil Public</h3>
+                <div class="title font-primary">
+                    <h1>Jamais le temps d'aller chez le coiffeur ?</h1>
+                </div>
+                <div>
+                    <a class="btn waves" href="{{ url('app_login') }}"
+                            >Contactez nous, on vient à vous !</a>
+                </div>
+
+                <video controls loop autoplay>
+                    <source src="{{ asset('img/video_acc.mp4') }}" type="video/mp4">
+                    <source src="{{ asset('img/video_acc.mp4') }}" type="video/ogg">
+                </video>
+
+
+
             </p>
         </div>
     </div>

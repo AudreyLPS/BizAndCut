@@ -1,0 +1,51 @@
+{% extends 'base.html.twig'  %}
+{% block body %}
+    <div class="row">
+        <div class="col">
+        {% include "_inc/flash.messages.html.twig" %}
+
+            <img src="{{ asset('img/details.jpg') }}" width="100%" class="img-fluid"/>
+            </br></br>
+
+            <p>Nous proposons des prestations mixtes, homme et femme. La durée des prestations est "taillée" pour être compatible avec vos contraintes professionnelles (environ 20 minutes).</p>
+
+            <p>Toutes nos prestations sont réalisées sur cheveux secs. Selon votre nature de cheveux, nos coiffeurs peuvent utiliser un vaporisateur d'eau pour les humidifier.</p>
+
+            <p><strong>Prestations pour homme :</strong></p>
+
+            <ul>
+                <li>
+                    <u>Coupe de cheveux</u> : A la tondeuse ou aux ciseaux ? Si vous avez une préférence, n'hésitez pas à en parler lors de votre rendez-vous.
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <u>Entretien de la barbe</u> : Nous vous offrons un service unique qui vous permet d'ajuster votre barbe et de la garder toujours bien entretenue grâce à ce service.
+                </li>
+            </ul>
+
+            <p><strong>Prestations pour femme :</strong></p>
+
+            <ul>
+                <li>
+                    <u>Coupe de cheveux</u> : Un changement ou un rafraîchissement ? Nos coiffeurs sont à votre disposition pour vous satisfaire.
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <u>Brushing</u> : Prestation idéale si vous devez partir du bureau pour un rendez-vous ou une soirée.
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <u>Tresses ou chignon simple</u> : Nos coiffeurs experts sauront réaliser la coiffure de votre choix.
+                </li>
+            </ul>
+
+            <p><em>Selon la nature de vos cheveux, une coupe + un brushing peuvent nécessiter de réserver 2 créneaux. Le plus simple est de nous contacter sur notre chat ou par <a href="mailto:contact@bizcut.fr">email</a>. Nos coiffeurs experts se feront un plaisir de vous répondre.</em></p>
+        </div>
+    </div>
+{% endblock %} 

@@ -3,24 +3,25 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="{{ url('homepage.index') }}">Biz&Cut</a>
-    <img class="fit-picture" src="/public/img/logo.png" alt="logo">
+    <!--a class="navbar-brand" >Biz&Cut</a-->
+    <a  href="{{ url('homepage.index') }}">
+      <img src="{{ asset('img/logo_blanc.png') }}" width="150" class="img-fluid"/>
+    </a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ url('homepage.index') }}">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
 
     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
     <ul class="navbar-nav justify-content-end">
       <li class="nav-item active">
-        <a class="nav-link" href="">Prestation de coiffure sur votre lieu de travail</a>
+        <a class="nav-link" href="{{url('bizAndCutOtherPage.prestationDeCoiffure.index')}}">Prestation de coiffure sur votre lieu de travail</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="">Comment ça marche ?</a>
+        <a class="nav-link" href="{{url('bizAndCutOtherPage.commentCaMarche.index')}}">Comment ça marche ?</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="">Nos prestations</a>
+        <a class="nav-link" href="{{url('bizAndCutOtherPage.detailsDeNosPrestation.index')}}">Nos prestations</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
