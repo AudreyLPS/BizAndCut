@@ -2,59 +2,73 @@
 
 namespace App\Form;
 
-use App\Entity\Devis;
-use App\Entity\Coiffeurs;
-use App\Entity\Propositions;
 use App\Entity\Profil;
-use App\Repository\DevisRepository;
+use App\Form\ProfilType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ProfilType extends AbstractType
 {
-    public function __construct(Security $security, DevisRepository $er)
+    private $security;
+
+    public function _construct(Security $security)
     {
         $this->security = $security;
-        $this->er= $er;
     }
+
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $coiffeur = $this->security->getUser();
-        $idDevis= $options['idDevis'];
-        $devis = $this->er ->find($idDevis);
-        
+        $bla= $this->security->getUser(); 
         $builder
-
-            ->add('rib', HiddenType::class, [
-                'empty_data'=> $coiffeur,
+            ->add('rib', NumberType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre RIB est obligatoire"
+                    ])
+                ]
+            ])
+            ->add('note')
+            ->add('diplome', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre diplome est obligatoire"
+                    ])
+                ],
+                    'choices'  => [
+                        'CAP' => 'CAP',
+                        'BP' => 'BP',
+                        'MC' => 'MC',
+                        'BM' => 'BM',
+                        'CQP' => 'CQP',
+                        'BTS' => 'BTS',
+                ],
+                'expanded' => true,
+                'label_attr'=>[
+                    'class'=>'radio-inline'
+                ]
+            ])
+            ->add('user', HiddenType::class,[
+                'empty_data'=>$user,
                 'data'=>""
             ])
-            ->add('note', HiddenType::class, [
-                'empty_data'=> $devis,
-                'data'=>""
-            ])
-           
-            ->add('diplome', HiddenType::class, [
-                'empty_data'=> 0,
-            ]);
+        ;
         
-            
     }
+
+
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Profil::class,
-            'idDevis'=> '',
         ]);
     }
 }
