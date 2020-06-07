@@ -30,8 +30,7 @@ class DevisType extends AbstractType
         $this->devisStatut = $devisStatutRepository->find(1);
         
     }
-
-    
+        
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $entreprise = $this->security->getUser();
