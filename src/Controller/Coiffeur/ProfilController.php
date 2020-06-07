@@ -68,11 +68,11 @@ class ProfilController extends AbstractController
         // Si le formulaire est validé
         if($form->isSubmitted() && $form->isValid()){
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($profil);
+            $entityManager->persist($model);
             $entityManager->flush();
             
 			// message de confirmation
-			$message = "La proposition a été envoyé";
+			$message = "Votre profil a été mise à jour";
             $this->addFlash('notice', $message);
             
             //redirection
@@ -81,6 +81,7 @@ class ProfilController extends AbstractController
         
         return $this->render('coiffeur/profil/form.html.twig',[
             'form' => $form->createView(),
+            
         ]);
             // 'form'=> $form->createView()
       

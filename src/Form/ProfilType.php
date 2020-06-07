@@ -18,7 +18,7 @@ class ProfilType extends AbstractType
 {
     private $security;
 
-    public function _construct(Security $security)
+    public function __construct(Security $security)
     {
         $this->security = $security;
     }
@@ -26,7 +26,7 @@ class ProfilType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $bla= $this->security->getUser(); 
+        $user= $this->security->getUser(); 
         $builder
             ->add('rib', NumberType::class, [
                 'constraints' => [
@@ -35,7 +35,13 @@ class ProfilType extends AbstractType
                     ])
                 ]
             ])
-            ->add('note')
+            ->add('note', NumberType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre RIB est obligatoire"
+                    ])
+                ]
+            ])
             ->add('diplome', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank([
