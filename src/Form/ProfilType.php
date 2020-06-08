@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Profil;
 use App\Form\ProfilType;
+use App\Entity\Coiffeurs;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +28,8 @@ class ProfilType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user= $this->security->getUser(); 
+        $user= $this->security->getUser()->getId(); 
+        //dd($this->security);
         $builder
             ->add('rib', NumberType::class, [
                 'constraints' => [
@@ -61,12 +64,12 @@ class ProfilType extends AbstractType
                     'class'=>'radio-inline'
                 ]
             ])
-            ->add('user', HiddenType::class,[
-                'empty_data'=>$user,
+            ->add('user', HiddenType::class, [
+                'empty_data'=> $user,
                 'data'=>""
             ])
         ;
-        
+    
     }
 
 

@@ -54,7 +54,7 @@ class DevisController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $id ? null : $entityManager->persist($model);
             $entityManager->flush();
-            
+             
 			// message de confirmation
 			$message = "Le devis a été envoyé";
             $this->addFlash('notice', $message);

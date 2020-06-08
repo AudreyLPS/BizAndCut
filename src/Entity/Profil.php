@@ -35,8 +35,7 @@ class Profil
     private $diplome;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $user;
 
@@ -80,13 +79,13 @@ class Profil
 
         return $this;
     }
-
-    public function getUser(): ?User
+    
+    public function getUser(): ?int
     {
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(int $user): self
     {
         $this->user = $user;
 

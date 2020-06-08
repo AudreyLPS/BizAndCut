@@ -45,7 +45,7 @@
           <div class="nav-link">|</div>
         </li>
         <li class="nav-item active">
-          <a href="{{ url('coiffeur.profil.index') }}" class="nav-link">Mon profil</a>
+          <a href="{{ url('coiffeur.profil.index',  { coiffeur:app.user.id}) }}" class="nav-link">Mon profil</a>
         </li>
       </ul>
       {% endif %}

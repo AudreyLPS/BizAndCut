@@ -156,4 +156,5 @@ class Coiffeurs extends User
 
         return array_unique($roles);
     }
+
 }

@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1> Profil </h1>
+		</div>
+	</div>
+
+	
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+	
+		<table class="table table-striped">
+			<ul>
+				<li> 
+					<b> Civilite : </b> 
+					{{user.civilite}}
+						
+				</li>
+				<li> 
+					<b> Nom: </b> 
+					{{user.nom}}
+				</li>
+				<li> 
+					<b> Prénom: </b>
+					{{user.prenom}} 
+				</li>
+				<li> 
+					<b> Adresse: </b>
+					{{user.adresse}}
+					</li>
+				<li> 
+					<b> Ville: </b>
+					{{user.ville}}
+				</li>
+				<li> 
+					<b> Code postal: </b>
+					{{user.cp}}
+				</li>
+				<li> 
+					<b> Téléphone: </b>
+					{{user.telephone}}
+				</li>
+				<li> 
+					<b> Email: </b>
+					{{user.email}}
+				</li>
+				<li> 
+					<b> Nombre d'année d'expérience: </b>
+					{{user.nbAnneesExp}}
+				</li>
+				<li> 
+					<b> Distance entre votre adresse souhaitée et l'adresse de l'entreprise: </b>
+					{{user.distance}}
+				</li>
+				
+				{% if profil != null %}
+					<li> 
+						<b> RIB: </b>
+						{{profil.rib}}
+					</li>
+					<li> 
+						<b> Saisissez votre diplôme: </b>
+						{{profil.diplome}}
+					</li>
+				{% endif %}
+			</ul>
+
+		</table>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
