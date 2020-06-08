@@ -46,6 +46,17 @@ class HomepageController extends AbstractController
     }
 
     /**
+     * @Route("/commentCaMarcheCoiffeur", name="bizAndCutOtherPage.commentCaMarche.indexCoiffeur")
+     */
+    public function indexCommentCaMarcheCoiffeur(Request $request):Response {
+                
+        $userAgent=$request->server->get("HTTP_USER_AGENT");
+        return $this->render('bizAndCutOtherPage/commentCaMarche/indexCoiffeur.html.twig',[
+            'param' => $userAgent
+        ]); 
+    }
+
+    /**
      * @Route("/detailsDeNosPrestation", name="bizAndCutOtherPage.detailsDeNosPrestation.index")
      */
     public function indexDetailsDeNosPrestation(Request $request):Response {

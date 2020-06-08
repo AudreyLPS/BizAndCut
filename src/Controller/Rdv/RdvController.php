@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller\Salarie;
+namespace App\Controller\Rdv;
 
-use App\Entity\SalariesCreneaux;
+use App\Entity\Rdv;
 use App\Form\CreneauxType;
-use App\Repository\SalariesCreneauxRepository;
+use App\Repository\RdvRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,32 +12,30 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/salarie")
+ * @Route("/rdv")
  */
  
-class SalariesCreneauxController extends AbstractController 
+class RdvController extends AbstractController 
 {
     /**
-	 * @Route("/listcreneaux", name="salarie.creneaux.index")
+	 * @Route("/", name="rdv.creneaux.index")
 	 */
-	public function index(SalariesCreneauxRepository $salariesCreneauxRepository):Response
+	public function index( RdvRepository $rdvRepository):Response
 	{
-        $results= $salariesCreneauxRepository->findAll();
-		return $this->render('salarie/creneaux/index.html.twig', [
+        $results= $rdvRepository->findAll();
+		return $this->render('rdv/creneaux/index.html.twig', [
 			'results' => $results,
 		]);
     }
-    
 
-    /*
-        * @Route("/creneaux/form", name="salarie.creneaux.form")
-        * @Route("/creneaux/form/update/{id}", name="salarie.creneaux.form.update")
+    /**
+    * @Route("/form", name="rdv.creneaux.form")
     */
-    /*
-    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null, SalariesCreneauxRepository $salariesCreneauxRepository):Response {
+    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null, RdvRepository $rdvRepository):Response {
 
         $type = CreneauxType::class;
-		$model = $id ? $salariesCreneauxRepository->find($id) : new SalariesCreneaux();
+        $model = $id ? $rdvRepository->find($id) :  new Rdv();
+        
 		$form = $this->createForm($type, $model);
 		$form->handleRequest($request);
         
@@ -47,27 +45,27 @@ class SalariesCreneauxController extends AbstractController
             $entityManager->flush();
             
 			// message de confirmation
-			$message = "Votre creneau a été validé";
+			$message = "Votre rendez-vous a été enregistré. ";
             $this->addFlash('notice', $message);
             
             //redirection
             return $this->redirectToRoute('homepage.index'); // on redirige vers le nom d'une route
         }
 
-        return $this->render('salarie/creneaux/form.html.twig',[
+        return $this->render('rdv/creneaux/form.html.twig',[
             'form'=> $form->createView()
         ]); 
 
-    }*/
+    }
 
     /*
 	 * @Route("/salarie/creneaux/{id}", name="salarie.creneaux.delete")
 	 */
 
      /*
-	public function delete( SalariesCreneauxRepository $salariesCreneauxRepository, EntityManagerInterface $entityManager, int $id):Response
+	public function delete(  RdvRepository $rdvRepository, EntityManagerInterface $entityManager, int $id):Response
 	{
-		$entity= $salariesCreneauxRepository->find($id);
+		$entity= $rdvRepository->find($id);
 		$entityManager->remove($entity);
 		$entityManager->flush();
 		$this->addFlash('notice_danger', 'Votre creneau a été annulé');
