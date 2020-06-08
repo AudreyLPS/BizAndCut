@@ -36,12 +36,18 @@
 					<td class="col-md-2">{{ devis.nbParticipants }}</td>
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					<td class="col-md-4">
+					{% if date() > devis.date %}
+						<a href="{{ url('entreprise.satisfaction.send', { event:devis.libelle }) }}" class="btn btn-dark col-md-12">Generer enquete de satisfaction</a>
+
+					{% else %}
 						{% if devis.devisStatut.texteDevisStatut == "Accepté" %}
 							<a href="{{ url('entreprise.devis.form.update', { id:devis.id }) }}" class="btn btn-dark col-md-6">Editer l'évenement</a>
 						{% else %}	
 							<a href="{{ url('entreprise.propositions.index', { idDevis:devis.id }) }}" class="btn btn-dark col-md-6">Liste propositions</a>
+						
 						{% endif %}
-							<a href="{{ url('entreprise.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a>
+					<!--a href="{{ url('entreprise.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a-->
+					{% endif %}
 					</td>
 				</tr>
 			{% endfor %}

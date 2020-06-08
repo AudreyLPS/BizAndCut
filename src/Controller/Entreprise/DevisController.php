@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -79,6 +81,30 @@ class DevisController extends AbstractController
 		$entityManager->flush();
 		$this->addFlash('notice_danger', 'Le produit a été supprimé');
 		return $this->redirectToRoute('entreprise.devis.index');
+        
+    }
+    
+    /**
+	 * @Route("/satisfaction/{event}", name="entreprise.satisfaction.send")
+	 */
+	public function send( MailerInterface $mailer, string $event):Response
+	{
+		$to=$this->security->getUser()->getEmail();
+        $message = (new TemplatedEmail())
+            ->from('alcnm2018@gmail.com')
+            ->to($to)
+            ->subject('Formulaire de satisfaction')
+            ->textTemplate('emailing/satisfactionMail.txt.twig')
+            ->context([
+                'evenement' => $event ,
+                
+            ])                
+        ;
+        $mailer->send($message);
+
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('homepage.index');
         
 	}
     
