@@ -1,9 +1,6 @@
 {% extends 'base.html.twig'  %}
-{% block body %}
-    <div class="row">
-        <div class="col">
+{% block bodyHome %}
         {% include "_inc/flash.messages.html.twig" %}
-            <p>
                 <video controls loop autoplay style="
                     position: fixed; right: 0; bottom: 0;
                     min-width: 100%; min-height: 100%;
@@ -22,14 +19,13 @@
                 </div>
 
                 <div id="prestation"
-                    style="    background-color: white;
+                    style="     background-color: white;
                                 margin-top: 182px;
                                 padding-top:75px;
                                 padding-bottom:75px;
-                                min-width: 138%;
-                                margin-left: -212px;
                                 text-align: center;
-                                min-he">
+                                top: 0; left: 0;
+                                ">
                     <h1>Prestations de coiffure sur votre lieu de travail</h1>
                     <p style="  margin-top: 40px; text-align: left; margin-left: 112px;  line-height:36px; font-size:1.2em  ">
                         Pour 97% des hommes, et pour 32 % des femmes, aller chez le coiffeur est une véritable contrainte.</br>
@@ -43,14 +39,13 @@
                     </p>
                 </div>
                 <div id="comment_ca_marche"
-                    style="    background-color: black;
+                    style="     background-color: black;
                                 color:white;
                                 padding-top:75px;
                                 padding-bottom:75px;
-                                min-width: 138%;
-                                margin-left: -212px;
                                 text-align: center;
-                                min-he">
+                                top: 0; left: 0;
+                                ">
                     <h1>Comment ça marche ?</h1>
                     <p style=" margin-top: 40px; ">
                         <center>
@@ -79,7 +74,4 @@
                         </table></center>
                     </p>
                 </div>
-            </p>
-        </div>
-    </div>
 {% endblock %} 
