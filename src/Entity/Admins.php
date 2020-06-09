@@ -9,6 +9,23 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Admins extends User
 {
+   /**
+     * @ORM\Column(type="boolean")
+     */
+    private $notif;
+
+    public function getNotif(): ?bool
+    {
+        return $this->notif;
+    }
+
+    public function setNotif(bool $notif): self
+    {
+        $this->notif = $notif;
+
+        return $this;
+    }
+
     /**
      * @see UserInterface
      */

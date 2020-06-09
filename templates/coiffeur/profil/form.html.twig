@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col">
 			<h1>Complétez votre profil</h1>
-			
+			{{ dump(form)}}
 			{{ form_start(form, { attr: { novalidate: 'novalidate' } } ) }}	
 				<p>
 					{{ form_label(form.rib, "RIB:") }} 

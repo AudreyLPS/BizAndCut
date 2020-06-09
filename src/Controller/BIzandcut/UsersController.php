@@ -8,6 +8,7 @@ use App\Form\SearchType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class UsersController extends AbstractController
 {
+   private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     /**
 	  * @Route("/listeusers/", name="bizandcut.users.index")
     */
@@ -61,7 +69,36 @@ class UsersController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('bizandcut.users.index');
-    }
+  }
+
+  /**
+  * @Route("/notif/true", name="bizandcut.notif.true")
+  */
+public function notiftrue(UserRepository $userRepository):Response
+{
+      $entityManager = $this->getDoctrine()->getManager();
+      $admin=$userRepository->find($this->security->getUser());
+      $admin->setNotif(true);
+      
+      $entityManager->flush();
+
+      return $this->redirectToRoute('bizandcut.users.index');
+}
+
+/**
+* @Route("/notif/false", name="bizandcut.notif.false")
+*/
+public function notiffalse(UserRepository $userRepository):Response
+{
+    $entityManager = $this->getDoctrine()->getManager();
+    $admin=$userRepository->find($this->security->getUser());
+    $admin->setNotif(false);
+    
+    $entityManager->flush();
+
+    return $this->redirectToRoute('bizandcut.users.index');
+}
+
 }
 
 

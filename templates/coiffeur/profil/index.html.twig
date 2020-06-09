@@ -21,70 +21,60 @@
 			<ul>
 				<li> 
 					<b> Civilite : </b> 
-					{{results.civilite}}
+					{{user.civilite}}
 						
 				</li>
 				<li> 
 					<b> Nom: </b> 
-					{{results.nom}}
+					{{user.nom}}
 				</li>
 				<li> 
 					<b> Prénom: </b>
-					{{results.prenom}} 
+					{{user.prenom}} 
 				</li>
 				<li> 
 					<b> Adresse: </b>
-					{{results.adresse}}
+					{{user.adresse}}
 					</li>
 				<li> 
 					<b> Ville: </b>
-					{{results.ville}}
+					{{user.ville}}
 				</li>
 				<li> 
 					<b> Code postal: </b>
-					{{results.cp}}
+					{{user.cp}}
 				</li>
 				<li> 
 					<b> Téléphone: </b>
-					{{results.telephone}}
+					{{user.telephone}}
 				</li>
 				<li> 
 					<b> Email: </b>
-					{{results.email}}
+					{{user.email}}
 				</li>
 				<li> 
 					<b> Nombre d'année d'expérience: </b>
-					{{results.nbAnneesExp}}
+					{{user.nbAnneesExp}}
 				</li>
 				<li> 
 					<b> Distance entre votre adresse souhaitée et l'adresse de l'entreprise: </b>
-					{{results.distance}}
+					{{user.distance}}
 				</li>
 				
-				{% if results.rib = null and results.diplome = null %}
+				{% if profil != null %}
 					<li> 
 						<b> RIB: </b>
+						{{profil.rib}}
 					</li>
 					<li> 
 						<b> Saisissez votre diplôme: </b>
+						{{profil.diplome}}
 					</li>
+			<a href="{{ url('coiffeur.profil.form.update', {id:profil.id}) }}" class="btn btn-info">Complétez votre profil</a>
 				{% else %}
-					<li> 
-						<b> RIB: </b>
-						{{results.rib}}
-					</li>
-					<li> 
-						<b> Saisissez votre diplôme: </b>
-						{{results.diplome}}
-					</li>
+					<a href="{{ url('coiffeur.profil.form') }}" class="btn btn-info">Complétez votre profil</a>
 				{% endif %}
 			</ul>
-
-		
-
-			<td>	
-				<a href="{{ url('coiffeur.profil.form') }}" class="btn btn-info">Complétez votre profil</a> 
-			</td>
 
 		</table>
 	</div>

@@ -15,13 +15,13 @@
     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
     <ul class="navbar-nav justify-content-end">
       <li class="nav-item active">
-        <a class="nav-link" href="{{url('bizAndCutOtherPage.prestationDeCoiffure.index')}}">Prestation de coiffure sur votre lieu de travail</a>
+        <a class="nav-link" href="#prestation">Prestation de coiffure sur votre lieu de travail</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Comment ça marche ? </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">	
-          <a href="{{url('bizAndCutOtherPage.commentCaMarche.index')}}" class="dropdown-item"> Pour les entreprises </a>
+          <a href="#comment_ca_marche" class="dropdown-item"> Pour les entreprises </a>
           <a href="{{url('bizAndCutOtherPage.commentCaMarche.indexCoiffeur')}}" class="dropdown-item"> Pour les coiffeurs </a>
         </div>
       </li>
@@ -50,7 +50,7 @@
           <div class="nav-link">|</div>
         </li>
         <li class="nav-item active">
-          <a href="{{ url('coiffeur.profil.index') }}" class="nav-link">Mon profil</a>
+          <a href="{{ url('coiffeur.profil.index',  { coiffeur:app.user.id}) }}" class="nav-link">Mon profil</a>
         </li>
       </ul>
       {% endif %}

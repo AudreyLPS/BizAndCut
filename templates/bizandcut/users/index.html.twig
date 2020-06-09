@@ -44,9 +44,13 @@
 		<div class="col-md-4">
 			<a href="{{ url('app_register', { typeUser:'admins' }) }}" class="btn btn-dark col-md-10">+ Ajouter un administrateur</a>
 		</div>
-				
+
 		<div class="col-md-4">
-			<a href="{{ url('app_register', { typeUser:'coiffeurs' }) }}" class="btn btn-dark col-md-10">+ Ajouter un coiffeur</a>
+			{% if app.user.notif == true %}
+				<a href="{{ url('bizandcut.notif.false') }}" class="btn btn-dark col-md-10">Refuser les notifications</a>
+			{% else %}
+				<a href="{{ url('bizandcut.notif.true') }}" class="btn btn-dark col-md-10">Autoriser les notifications</a>
+			{% endif %}
 		</div>
 		
 	</div></br>
@@ -83,7 +87,7 @@
 					<td class="col-md-4">
 					{% for role in user.roles %}
 						{% if role == 'ROLE_COIFFEURS' %} 
-								<a href="" class="btn btn-dark col-md-4">Profil</a>
+								<a href="{{ url('bizandcut.profil.index', { coiffeur:user.id}) }}" class="btn btn-dark col-md-4">Profil</a>
 								<a href="" class="btn btn-dark col-md-4">Valider</a>
 						{% endif %}
 						{% if role == 'ROLE_ADMINS' %}{% endif %}
