@@ -49,7 +49,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         //dd($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
-            $to='audrey-lopes-correia@hotmail.fr';
+            
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -61,9 +61,10 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
+            
             //envoi d'email
-
+            $to ='audrey-lopes-correia@hotmail.fr';
+            
             $message = (new TemplatedEmail())
             ->from('alcnm2018@gmail.com')
             ->to($to)

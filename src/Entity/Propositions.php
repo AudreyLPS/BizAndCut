@@ -52,7 +52,6 @@ class Propositions
     private $validationEntreprise;
 
 
-
     public function getId(): ?int
     {
         return $this->id;
