@@ -9,9 +9,11 @@
         <style>
         </style>
     </head>
-    <body>
-       
+    <nav>
         {% include '_inc/nav.html.twig' %}
+    </nav>
+    {% block bodyHome %}{% endblock %}
+    <body>
         <div class="container">
             {% block body %}{% endblock %}
         </div>
