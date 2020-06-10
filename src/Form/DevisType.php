@@ -36,12 +36,13 @@ class DevisType extends AbstractType
         $entreprise = $this->security->getUser();
        
         $builder
-            ->add('nbParticipants', NumberType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => "Le nombre de participant est obligatoire"
-                    ])
-                ]
+            ->add('nbParticipants', HiddenType::class, [
+                'empty_data'=> 0,
+                'data'=>""
+            ])
+            ->add('nbInscrit', HiddenType::class, [
+                'empty_data'=> 0,
+                'data'=>""
             ])
             ->add('date', DateType::class, [
                 'constraints' => [
@@ -56,7 +57,10 @@ class DevisType extends AbstractType
             ])
             ->add('heureDebut')
             ->add('heureFin')
-            ->add('nbCoiffeurs')
+            ->add('nbCoiffeurs', HiddenType::class, [
+                'empty_data'=> 1,
+                'data'=>""
+            ])
             ->add('libelle')
             ->add('devisStatut', HiddenType::class, [
                 'empty_data'=> $this->devisStatut,

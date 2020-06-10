@@ -31,12 +31,26 @@ class PropositionsController extends AbstractController
     }
 
     /**
-	 * @Route("/listepropositions/set/{id}/{idDevis}", name="entreprise.propositions.accepte")
+	 * @Route("/listepropositions/accompte/{id}/{idDevis}", name="entreprise.propositions.accompte")
+     */
+    public function accompte(int $id,int $idDevis ,DevisStatutRepository $dsRepository, DevisRepository $devisRepository,PropositionsRepository $propositionsRepository):Response
+    {  
+      $entityManager = $this->getDoctrine()->getManager();
+      $proposition=$propositionsRepository->find($id);
+
+      $devis=$devisRepository->find($idDevis);
+      return $this->render('entreprise/devis/accepte.html.twig', [
+        'devis' => $devis,
+        'proposition'=> $proposition
+      ]);
+      }
+
+    /**
+	   * @Route("/listepropositions/set/{id}/{idDevis}", name="entreprise.propositions.accepte")
      */
 	public function accepte(int $id,int $idDevis ,DevisStatutRepository $dsRepository, DevisRepository $devisRepository,PropositionsRepository $propositionsRepository):Response
   {
-       
-     $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
         $proposition=$propositionsRepository->find($id);
         $proposition->setValidationEntreprise(1);
 
@@ -45,6 +59,8 @@ class PropositionsController extends AbstractController
         $devis->setDevisStatut($devisStatus);
         
         $entityManager->flush();
+        
+        //envoie de mail pour l'inscription salarié 
 
 		$results= $devisRepository->findAll();
 		return $this->render('entreprise/devis/index.html.twig', [

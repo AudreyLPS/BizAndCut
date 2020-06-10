@@ -30,6 +30,12 @@ class Devis
      */
     private $nbParticipants;
 
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbInscrit;
+
     /**
      * @ORM\Column(type="date")
      */
@@ -98,6 +104,18 @@ class Devis
     public function setNbParticipants(int $nbParticipants): self
     {
         $this->nbParticipants = $nbParticipants;
+
+        return $this;
+    }
+
+    public function getNbInscrit(): ?int
+    {
+        return $this->nbInscrit;
+    }
+
+    public function setNbInscrit(int $nbInscrit): self
+    {
+        $this->nbInscrit = $nbInscrit;
 
         return $this;
     }

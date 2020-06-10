@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			<h1>Reglement de l'accompte</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+				<p class="text-left">
+					Pour finaliser votre evenement, </br>
+					vous devez payer un accompte. </br>
+					Mode de paiement par virement bancaire: </br>
+					<strong>RIB</strong> 		
+				</p>
+				<div class="row">
+					<div class="col-md-6">
+						<a href="{{ url('entreprise.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.id }) }}" class="btn btn-success col-md-8">Paiement effectué</a>
+					</div>
+					<div class="col-md-6 text-right">
+						<a href="{{ url('entreprise.devis.index') }}" class="btn btn-dark col-md-8">Payer plus tard</a>
+					</div>
+				</div>
+		</div>
+	</div>
+{% endblock %}
+
