@@ -28,8 +28,9 @@
 		{% for devi in devis %} 
 			{% set nbDevis = nbDevis + 1 %}
 				<td class="col-md-1">
-					{% if devi.devisStatut == '1' %}{% set nbDevisEnAtt = nbDevisEnAtt + 1 %}{% endif %}
-					{% if devi.devisStatut == '2' %}{% set nbDevisAcc = nbDevisAcc + 1 %}{% endif %}
+				
+					{% if devi.devisStatut.id == '1' %}{% set nbDevisEnAtt = nbDevisEnAtt + 1 %}{% endif %}
+					{% if devi.devisStatut.id == '2' %}{% set nbDevisAcc = nbDevisAcc + 1 %}{% endif %}
 				</td>
 		{% endfor %} 
 

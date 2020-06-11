@@ -34,14 +34,20 @@
 			<p>
 			</p>
 			<div class="row">
-				<div class="col-md-6">
-					{{ form_label(form.date, "Date de l'evenement ") }} 
-					{{form_widget(form.date,
-					{ attr: 
-						{placeholder:'Saisissez un date'} 
-					})}}
-				</div>
-				
+				{% if form.vars.value.id == null %}
+					<div class="col-md-6">
+						{{ form_label(form.date, "Date de l'evenement ") }} 
+						{{form_widget(form.date,
+						{ attr: 
+							{placeholder:'Saisissez un date'} 
+						})}}
+					</div>
+				{% else %}
+					<div class="col-md-6">
+						<p>Date de l'événement
+						<p style="margin-left:30px"><strong>{{ form.vars.value.date |date("m/d/Y") }} </strong></p>
+					</div>
+				{% endif %}
 				<div class="col-md-3">
 					{{ form_label(form.heureDebut, "Debut estimé de l'evenement ") }} 
 					{{form_widget(form.heureDebut,
