@@ -34,12 +34,22 @@ class DevisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $entreprise = $this->security->getUser();
-       
+        
+        $heures = [
+                '7h' => '7h',
+                '8h' => '7h',
+                '9h' => '7h',
+                '10h' => '7h',
+                '11h' => '7h'
+        ];
         $builder
-            ->add('nbParticipants', HiddenType::class, [
-                'empty_data'=> 0,
-                'data'=>""
-            ])
+            ->add('nbParticipants',NumberType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre RIB est obligatoire"
+                    ])
+                ]
+            ])  
             ->add('nbInscrit', HiddenType::class, [
                 'empty_data'=> 0,
                 'data'=>""
@@ -53,10 +63,31 @@ class DevisType extends AbstractType
             ])
             ->add('entreprise', HiddenType::class, [
                 'empty_data'=> $entreprise,
-                'data'=>""
+                'data'=>''
             ])
-            ->add('heureDebut')
-            ->add('heureFin')
+            ->add('heureDebut', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre civilité est obligatoire"
+                    ])
+                ],
+                'choices'  => $heures
+            ])
+            ->add('heureFin', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre civilité est obligatoire"
+                    ])
+                ],
+                    'choices'  => [
+                        'Mr' => 'monsieur',
+                        'Mme' => 'madame',
+                ],
+                'expanded' => true,
+                'label_attr'=>[
+                    'class'=>'radio-inline'
+                ]
+            ])
             ->add('nbCoiffeurs', HiddenType::class, [
                 'empty_data'=> 1,
                 'data'=>""
