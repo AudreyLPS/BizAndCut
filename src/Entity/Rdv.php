@@ -40,6 +40,11 @@ class Rdv
      */
     private $prenom;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $heureCreneau;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -65,6 +70,18 @@ class Rdv
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getHeureCreneau(): ?string
+    {
+        return $this->heureCreneau;
+    }
+
+    public function setHeureCreneau(string $heureCreneau): self
+    {
+        $this->heureCreneau = $heureCreneau;
 
         return $this;
     }
