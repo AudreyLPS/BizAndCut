@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200608120906 extends AbstractMigration
+final class Version20200611131337 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,11 +22,12 @@ final class Version20200608120906 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, nom VARCHAR(180) NOT NULL, prenom VARCHAR(180) NOT NULL, deleted INT NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, discr VARCHAR(255) NOT NULL, civilite VARCHAR(50) DEFAULT NULL, nb_annees_exp INT DEFAULT NULL, type VARCHAR(255) DEFAULT NULL, telephone VARCHAR(20) DEFAULT NULL, adresse VARCHAR(500) DEFAULT NULL, ville VARCHAR(255) DEFAULT NULL, cp VARCHAR(10) DEFAULT NULL, distance INT DEFAULT NULL, nom_entreprise VARCHAR(500) DEFAULT NULL, fonction_entreprise VARCHAR(500) DEFAULT NULL, siren_entreprise VARCHAR(10) DEFAULT NULL, telephone_entreprise VARCHAR(20) DEFAULT NULL, adresse_entreprise VARCHAR(500) DEFAULT NULL, ville_entreprise VARCHAR(255) DEFAULT NULL, cp_entreprise VARCHAR(20) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE devis (id INT AUTO_INCREMENT NOT NULL, entreprise_id INT NOT NULL, devis_statut_id INT NOT NULL, nb_participants INT NOT NULL, date DATE NOT NULL, heure_debut VARCHAR(10) NOT NULL, heure_fin VARCHAR(10) NOT NULL, libelle VARCHAR(500) NOT NULL, nb_coiffeurs INT NOT NULL, INDEX IDX_8B27C52BA4AEAFEA (entreprise_id), INDEX IDX_8B27C52B87F3F27E (devis_statut_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, nom VARCHAR(180) NOT NULL, prenom VARCHAR(180) NOT NULL, deleted INT NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, discr VARCHAR(255) NOT NULL, civilite VARCHAR(50) DEFAULT NULL, nb_annees_exp INT DEFAULT NULL, type VARCHAR(255) DEFAULT NULL, telephone VARCHAR(20) DEFAULT NULL, adresse VARCHAR(500) DEFAULT NULL, ville VARCHAR(255) DEFAULT NULL, cp VARCHAR(10) DEFAULT NULL, distance INT DEFAULT NULL, notif TINYINT(1) DEFAULT NULL, nom_entreprise VARCHAR(500) DEFAULT NULL, fonction_entreprise VARCHAR(500) DEFAULT NULL, siren_entreprise VARCHAR(10) DEFAULT NULL, telephone_entreprise VARCHAR(20) DEFAULT NULL, adresse_entreprise VARCHAR(500) DEFAULT NULL, ville_entreprise VARCHAR(255) DEFAULT NULL, cp_entreprise VARCHAR(20) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE devis (id INT AUTO_INCREMENT NOT NULL, entreprise_id INT NOT NULL, devis_statut_id INT NOT NULL, nb_participants INT NOT NULL, nb_inscrit INT NOT NULL, date DATE NOT NULL, heure_debut VARCHAR(10) NOT NULL, heure_fin VARCHAR(10) NOT NULL, libelle VARCHAR(500) NOT NULL, nb_coiffeurs INT NOT NULL, INDEX IDX_8B27C52BA4AEAFEA (entreprise_id), INDEX IDX_8B27C52B87F3F27E (devis_statut_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE devis_statut (id INT AUTO_INCREMENT NOT NULL, texte_devis_statut VARCHAR(500) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE evenements_entreprises (id INT AUTO_INCREMENT NOT NULL, entreprise_id_id INT NOT NULL, evenement_id INT NOT NULL, INDEX IDX_8DE59B0FDAC5BE2B (entreprise_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE evenements_salaries (id INT AUTO_INCREMENT NOT NULL, devis_id INT NOT NULL, INDEX IDX_331112A441DEFADA (devis_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE mails (id INT AUTO_INCREMENT NOT NULL, date DATE NOT NULL, email VARCHAR(180) NOT NULL, nom VARCHAR(500) NOT NULL, telephone VARCHAR(20) NOT NULL, message VARCHAR(500) NOT NULL, UNIQUE INDEX UNIQ_63582005E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE participations (id INT AUTO_INCREMENT NOT NULL, evenement_id INT NOT NULL, coiffeur_id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE planning (id INT AUTO_INCREMENT NOT NULL, devis_id INT NOT NULL, UNIQUE INDEX UNIQ_D499BFF641DEFADA (devis_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE profil (id INT AUTO_INCREMENT NOT NULL, rib VARCHAR(500) NOT NULL, note INT NOT NULL, diplome VARCHAR(150) NOT NULL, user INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -60,6 +61,7 @@ final class Version20200608120906 extends AbstractMigration
         $this->addSql('DROP TABLE devis_statut');
         $this->addSql('DROP TABLE evenements_entreprises');
         $this->addSql('DROP TABLE evenements_salaries');
+        $this->addSql('DROP TABLE mails');
         $this->addSql('DROP TABLE participations');
         $this->addSql('DROP TABLE planning');
         $this->addSql('DROP TABLE profil');

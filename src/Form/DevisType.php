@@ -34,12 +34,17 @@ class DevisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $entreprise = $this->security->getUser();
-       
+        
+        $heures = [ '7h' => '7h','8h' => '8h','9h' => '9h','10h' => '10h','11h' => '11h','12h' => '12h','13h' => '13h','14h' => '14h','15h' => '15h','16h' => '16h',
+                    '17h' => '17h','18h' => '18h','19h' => '19h','20h' => '20h'];
         $builder
-            ->add('nbParticipants', HiddenType::class, [
-                'empty_data'=> 0,
-                'data'=>""
-            ])
+            ->add('nbParticipants',NumberType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre RIB est obligatoire"
+                    ])
+                ]
+            ])  
             ->add('nbInscrit', HiddenType::class, [
                 'empty_data'=> 0,
                 'data'=>""
@@ -53,10 +58,24 @@ class DevisType extends AbstractType
             ])
             ->add('entreprise', HiddenType::class, [
                 'empty_data'=> $entreprise,
-                'data'=>""
+                'data'=>''
             ])
-            ->add('heureDebut')
-            ->add('heureFin')
+            ->add('heureDebut', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre civilité est obligatoire"
+                    ])
+                ],
+                'choices'  => $heures
+            ])
+            ->add('heureFin', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Votre civilité est obligatoire"
+                    ])
+                ],
+                'choices'  => $heures
+            ])
             ->add('nbCoiffeurs', HiddenType::class, [
                 'empty_data'=> 1,
                 'data'=>""

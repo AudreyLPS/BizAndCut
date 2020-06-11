@@ -52,6 +52,7 @@ class DevisController extends AbstractController
 		$form = $this->createForm($type, $model);
 		$form->handleRequest($request);
         
+
         // Si le formulaire est validé
         if($form->isSubmitted() && $form->isValid()){
             $id ? null : $entityManager->persist($model);

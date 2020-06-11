@@ -4,6 +4,9 @@
 // App provient de composer.json -- autoload
 namespace App\Controller;
 
+use App\Entity\Mails;
+use App\Form\MailsType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,10 +18,31 @@ class HomepageController extends AbstractController
     /**
      * @Route("/", name="homepage.index")
      */
-    public function index(Request $request):Response {     
+    public function index(Request $request, EntityManagerInterface $entityManager):Response {     
         $userAgent=$request->server->get("HTTP_USER_AGENT");
+
+         //formulaire contact
+         $type = MailsType::class;
+         $model = new Mails();
+         $form = $this->createForm($type, $model);
+         $form->handleRequest($request);
+             
+         // Si le formulaire est validé
+         if($form->isSubmitted() && $form->isValid()){
+             $entityManager->persist($model);
+             $entityManager->flush();
+              
+             // message de confirmation
+             $message = "Le devis a été envoyé";
+                   $this->addFlash('notice', $message);
+                   
+                   //redirection
+                   return $this->redirectToRoute('homepage.index'); // on redirige vers le nom d'une route
+         }
+
         return $this->render('homepage/index.html.twig',[
-            'param' => $userAgent
+            'param' => $userAgent, 
+            'form'  => $form->createView()
         ]); 
     }
 

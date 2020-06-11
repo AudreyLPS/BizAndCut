@@ -11,27 +11,45 @@
                         } 
                     })
             }}
-			
-			<p>
-				{{form_label(form.libelle, "Nom de l'evenement")}}
-				{{form_widget(form.libelle,
-                    { attr: 
-                        {
-							autofocus:'autofocus'
-						}
-                    })}}
-			</p>
 			<div class="row">
 				<div class="col-md-6">
-					{{ form_label(form.date, "Date de l'evenement ") }} 
-					{{form_widget(form.date,
+					{{form_label(form.libelle, "Nom de l'evenement")}}
+					{{form_widget(form.libelle,
+						{ attr: 
+							{
+								autofocus:'autofocus', 
+								placeholder:'Saisissez un nombre de participant'
+							}
+						})
+					}}
+				</div>
+				<div class="col-md-6">
+					{{ form_label(form.nbParticipants, "Nombre estimé d’employés intéressés") }} 
+					{{form_widget(form.nbParticipants,
 					{ attr: 
-						{placeholder:'Saisissez un date'} 
+						{placeholder:'Saisissez un nombre de participant'} 
 					})}}
 				</div>
-				
+			</div >
+			<p>
+			</p>
+			<div class="row">
+				{% if form.vars.value.id == null %}
+					<div class="col-md-6">
+						{{ form_label(form.date, "Date de l'evenement ") }} 
+						{{form_widget(form.date,
+						{ attr: 
+							{placeholder:'Saisissez un date'} 
+						})}}
+					</div>
+				{% else %}
+					<div class="col-md-6">
+						<p>Date de l'événement
+						<p style="margin-left:30px"><strong>{{ form.vars.value.date |date("m/d/Y") }} </strong></p>
+					</div>
+				{% endif %}
 				<div class="col-md-3">
-					{{ form_label(form.heureDebut, "Debut de l'evenement ") }} 
+					{{ form_label(form.heureDebut, "Debut estimé de l'evenement ") }} 
 					{{form_widget(form.heureDebut,
 					{ attr: 
 						{placeholder:'Saisissez une heure de debut'} 
@@ -39,7 +57,7 @@
 				</div>
 				
 				<div class="col-md-3">
-					{{ form_label(form.heureFin, "Fin de l'evenement ") }} 
+					{{ form_label(form.heureFin, "Fin estimé de l'evenement ") }} 
 					{{form_widget(form.heureFin,
 					{ attr: 
 						{placeholder:'Saisissez une heure de fin'} 

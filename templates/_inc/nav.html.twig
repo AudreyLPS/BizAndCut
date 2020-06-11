@@ -58,6 +58,12 @@
       {% if is_granted('ROLE_ADMINS') %}
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
+          <a href="{{ url('bizandcut.index') }}" class="nav-link">Tableau de bord</a>
+        </li>
+        <li class="nav-item active">
+          <div class="nav-link">|</div>
+        </li>
+        <li class="nav-item active">
           <a href="{{ url('bizandcut.users.index') }}" class="nav-link">Gestion des utilisateurs</a>
         </li>
         <li class="nav-item active">
