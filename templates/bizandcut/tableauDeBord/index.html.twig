@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1>Tableau de bord</h1>
+		</div>
+	</div>
+	
+	<div class="row">
+		{% set nbCoif = 0 %}
+		{% set nbEnt = 0 %}
+		{% set nbUser = 0 %}
+		{% for user in users %} 
+			{% set nbUser = nbUser + 1 %}
+			{% for role in user.roles %}
+				<td class="col-md-1">
+					{% if role == 'ROLE_COIFFEURS' %} {% set nbCoif = nbCoif + 1 %}  {% endif %}
+					{% if role == 'ROLE_ENTREPRISES' %} {% set nbEnt = nbEnt + 1 %}  {% endif %}
+				</td>
+			{% endfor %} 
+		{% endfor %} 
+
+		{% set nbDevis = 0 %}
+		{% set nbDevisAcc = 0 %}
+		{% set nbDevisEnAtt = 0 %}
+		{% for devi in devis %} 
+			{% set nbDevis = nbDevis + 1 %}
+				<td class="col-md-1">
+					{% if devi.devisStatut == '1' %}{% set nbDevisEnAtt = nbDevisEnAtt + 1 %}{% endif %}
+					{% if devi.devisStatut == '2' %}{% set nbDevisAcc = nbDevisAcc + 1 %}{% endif %}
+				</td>
+		{% endfor %} 
+
+		{% set nbMails = 0 %}
+		{% for mail in mails %} 
+			{% set nbMails = nbMails + 1 %}
+		{% endfor %} 
+		<div class="box col-md-5"></br>
+			<p style="text-align: right;">
+			Il y a {{ nbCoif }} coiffeur(s).</br>
+			Il y a {{ nbEnt }} entreprise(s).</br>
+			Il y a {{ nbUser }} utilisateur(s).</br></br>
+			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.users.index') }}">Gerer les utilisateurs</a>
+			</p>
+			<img src="{{ asset('img/user.png') }}" width="150" class="img-fluid imgBox"/>
+		</div>
+		<div class="box col-md-5"></br>
+			<p style="text-align: right;">
+			</br>
+			Il y a {{ nbMails }} message(s).</br>
+			</br>
+			</br>
+			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.mail') }}">Voir les messages</a>
+			</p>
+			<img src="{{ asset('img/mail.png') }}" width="150" class="img-fluid imgBox"/>
+		</div>
+		<div class="box col-md-11"></br>
+			<p style="text-align: right;">
+			Il y a {{ nbDevisEnAtt }} devis en attente.</br>
+			Il y a {{ nbDevisAcc }} devis accepté.</br></br></br>
+			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.propositions.index') }}">Gerer les propositions</a>
+			</p>
+			<img src="{{ asset('img/devis.png') }}" style="margin-top:-120px" width="150" class="img-fluid imgBox"/>
+		</div>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

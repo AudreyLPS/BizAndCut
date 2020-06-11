@@ -50,28 +50,106 @@
                     <p style=" margin-top: 40px; ">
                         <center>
                             <table style=" text-align: center ">
-                            <tr>
-                                <td class="col-md-4"> 
-                                    <h5><strong>On vous informe de notre passage</strong></h5>
-                                    Biz&Cut m'informe régulièrement de sa</br>
-                                    venue sur mon lieu de travail.</br>
-                                    Plus besoin d'y penser.
-                                </td>
-                                <td class="col-md-4">
-                                    <h5><strong>Choisissez votre créneau</strong></h5>
-                                    Je sélectionne sur l'agenda en ligne</br> 
-                                    le créneau de 15 minutes qui me convient </br>
-                                    et je paye en ligne.</br>
-                                    C'est simple et rapide.
-                                </td>
-                                <td class="col-md-4">
-                                    <h5><strong>On s'occupe de tout</strong></h5>
-                                    Mon rendez-vous s'inscrit </br> automatiquement dans mon agenda.</br> 
-                                    Je reçois un rappel par sms</br> 1 heure avant ma prestation.
+                                <tr>
+                                    <td class="col-md-4"> 
+                                        <h5><strong>On vous informe de notre passage</strong></h5>
+                                        Biz&Cut m'informe régulièrement de sa</br>
+                                        venue sur mon lieu de travail.</br>
+                                        Plus besoin d'y penser.
+                                    </td>
+                                    <td class="col-md-4">
+                                        <h5><strong>Choisissez votre créneau</strong></h5>
+                                        Je sélectionne sur l'agenda en ligne</br> 
+                                        le créneau de 15 minutes qui me convient </br>
+                                        et je paye en ligne.</br>
+                                        C'est simple et rapide.
+                                    </td>
+                                    <td class="col-md-4">
+                                        <h5><strong>On s'occupe de tout</strong></h5>
+                                        Mon rendez-vous s'inscrit </br> automatiquement dans mon agenda.</br> 
+                                        Je reçois un rappel par sms</br> 1 heure avant ma prestation.
 
-                                </td>
-                            </tr>
-                        </table></center>
+                                    </td>
+                                </tr>
+                            </table>
+                        </center>
+                    </p>
+                </div>
+                <div id="test"
+                    style="     background-color: white;
+                                color:black;
+                                padding-top:75px;
+                                padding-bottom:75px;
+                                text-align: center;
+                                top: 0; left: 0;
+                                ">
+                </div>
+                <div id="contact"
+                    style="     background-color: black;
+                                color:white;
+                                padding-top:75px;
+                                padding-bottom:75px;
+                                text-align: center;
+                                top: 0; left: 0;
+                                ">
+                    <h1>Vous aussi découvrez la coiffure en entreprise :</h1>
+                    <p style=" margin-top: 40px; ">
+                        <center>
+                            <table>
+                                <tr>
+                                    <td class="col-md-6"> 
+                                       {{form_start(form,{ attr: {novalidate:'novalidate'}})}}
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ form_label(form.nom, "Nom ") }} 
+                                                    {{ form_widget(form.nom,
+                                                    { attr: 
+                                                        { placeholder:'Saisissez un nom'} 
+                                                    })}}
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    {{ form_label(form.telephone, "Téléphone") }} 
+                                                    {{form_widget(form.telephone,
+                                                    { attr: 
+                                                        {placeholder:'Saisissez un numéro de téléphone'} 
+                                                    })}}
+                                                </div>
+                                            </div >
+                                            <p>
+                                                {{form_label(form.email, "Email")}}
+                                                {{form_widget(form.email,
+                                                    { attr: 
+                                                        {
+                                                            autofocus:'autofocus'
+                                                        }
+                                                    })}}
+                                            </p>
+                                            <p>
+                                                {{form_label(form.message, "Message")}}
+                                                {{form_widget(form.message,
+                                                    { attr: 
+                                                        {
+                                                            autofocus:'autofocus'
+                                                        }
+                                                    })}}
+                                            </p>
+			                                <p>
+                                                </br>
+                                                <input type="submit" value="Envoyer" class="btn btn-dark"/>
+                                            </p>
+			                             {{ form_end(form) }}
+                                    </td>
+                                    <td class="col-md-6" style="text-align:center;">
+                                        <strong>Biz&Cut</strong></br>
+                                        18 rue Boyer Barret</br>
+                                        75014 - Paris</br></br></br>
+                                        <strong>Ouvert du lundi au vendredi</strong></br>
+                                        <img>logo</img>
+                                    </td>
+                                </tr>
+                            </table>
+                        </center>
                     </p>
                 </div>
 {% endblock %} 
