@@ -41,7 +41,7 @@ class Rdv
     private $prenom;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=20, unique=false)
      */
     private $heureCreneau;
 
@@ -55,7 +55,7 @@ class Rdv
         return $this->planning;
     }
 
-    public function setTexteDevisStatut(Planning $planning): self
+    public function setPlanning(Planning $planning): self
     {
         $this->planning = $planning;
 
@@ -82,7 +82,6 @@ class Rdv
     public function setHeureCreneau(string $heureCreneau): self
     {
         $this->heureCreneau = $heureCreneau;
-
         return $this;
     }
 

@@ -20,7 +20,7 @@ class Planning
     private $id;
 
      /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Devis", inversedBy="planning")
+     * @ORM\OneToOne(targetEntity="App\Entity\Devis")
      * @ORM\JoinColumn(nullable=false)
      */
     private $devis;

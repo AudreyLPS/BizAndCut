@@ -18,30 +18,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RdvController extends AbstractController 
 {
     /**
-	 * @Route("/", name="rdv.creneaux.index")
-	 */
-	public function index( RdvRepository $rdvRepository):Response
-	{
-        $results= $rdvRepository->findAll();
-		return $this->render('rdv/creneaux/index.html.twig', [
-			'results' => $results,
-		]);
-    }
-
-    /**
-    * @Route("/form", name="rdv.creneaux.form")
+    * @Route("/form/{planning_id}", name="rdv.creneaux.form")
     */
-    public function formEvenement(Request $request, EntityManagerInterface $entityManager, int $id = null, RdvRepository $rdvRepository):Response {
+    public function formRdv(Request $request, EntityManagerInterface $entityManager, RdvRepository $rdvRepository, int $planning_id ):Response {
+
+        //dd($planning_id);
 
         $type = CreneauxType::class;
-        $model = $id ? $rdvRepository->find($id) :  new Rdv();
+        $model = new Rdv();
         
-		$form = $this->createForm($type, $model);
+		$form = $this->createForm($type, $model, ["label"=>$planning_id]);
 		$form->handleRequest($request);
         
         // Si le formulaire est validé
         if($form->isSubmitted() && $form->isValid()){
-            $id ? null : $entityManager->persist($model);
+            $entityManager->persist($model);
             $entityManager->flush();
             
 			// message de confirmation
@@ -53,9 +44,9 @@ class RdvController extends AbstractController
         }
 
         return $this->render('rdv/creneaux/form.html.twig',[
-            'form'=> $form->createView()
+            'form'=> $form->createView(),
+            //'planning_id' => $planning_id           
         ]); 
-
     }
 
     /*
