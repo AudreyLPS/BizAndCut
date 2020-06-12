@@ -22,8 +22,6 @@ class RdvController extends AbstractController
     */
     public function formRdv(Request $request, EntityManagerInterface $entityManager, RdvRepository $rdvRepository, int $planning_id ):Response {
 
-        //dd($planning_id);
-
         $type = CreneauxType::class;
         $model = new Rdv();
         
@@ -44,8 +42,7 @@ class RdvController extends AbstractController
         }
 
         return $this->render('rdv/creneaux/form.html.twig',[
-            'form'=> $form->createView(),
-            //'planning_id' => $planning_id           
+            'form'=> $form->createView(),           
         ]); 
     }
 
