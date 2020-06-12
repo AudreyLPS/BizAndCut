@@ -5,6 +5,8 @@ namespace App\Controller\Rdv;
 use App\Entity\Rdv;
 use App\Form\CreneauxType;
 use App\Repository\RdvRepository;
+use App\Repository\DevisRepository;
+use App\Repository\PlanningRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +22,7 @@ class RdvController extends AbstractController
     /**
     * @Route("/form/{planning_id}", name="rdv.creneaux.form")
     */
-    public function formRdv(Request $request, EntityManagerInterface $entityManager, RdvRepository $rdvRepository, int $planning_id ):Response {
+    public function formRdv(Request $request, EntityManagerInterface $entityManager, PlanningRepository $planningRepository, DevisRepository $devisRepository, RdvRepository $rdvRepository, int $planning_id ):Response {
 
         $type = CreneauxType::class;
         $model = new Rdv();
@@ -31,6 +33,10 @@ class RdvController extends AbstractController
         // Si le formulaire est validé
         if($form->isSubmitted() && $form->isValid()){
             $entityManager->persist($model);
+            $planning=$planningRepository->find($planning_id);
+            $devis=$planning->getDevis();
+            $participant=$devis->getNbInscrit();
+            $devis->setNbInscrit($participant+1);
             $entityManager->flush();
             
 			// message de confirmation

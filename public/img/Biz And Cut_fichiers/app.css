@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+    padding-top: 75px;
+}
+
+nav {
+    position: fixed;
+    width:100%;
+    top: 0;
+}
+
+footer {
+    width:100%;
+    bottom: 0;
+    position: absolute;
+}
+
+.box {
+    transition: box-shadow .3s;
+    margin: 15px 0 0 85px;
+    padding: 15px 15px 0 15px;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    background: #FFF;
+    float: left;
+}
+
+.box:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+.imgBox{
+    opacity: 0.2;
+    margin-top: -30%;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDJCQUEyQjtBQUMvQiIsImZpbGUiOiJhcHAuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRncmF5O1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==*/
