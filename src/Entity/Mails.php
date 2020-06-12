@@ -40,6 +40,11 @@ class Mails
      * @ORM\Column(type="string", length=500)
      */
     private $message;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $lu;
 
     public function getId(): ?int
     {
@@ -101,6 +106,18 @@ class Mails
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+    
+    public function getLu(): ?bool
+    {
+        return $this->lu;
+    }
+
+    public function setLu(bool $lu): self
+    {
+        $this->lu = $lu;
 
         return $this;
     }

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1>Message</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		
+		<p class="text-right">
+			
+		</p>
+		</div>
+			<table>
+				<tr>
+					<td classe="col-md-4"><strong>Date de reception :</strong> </td><td>{{ mail.date|date("m/d/Y") }}</td>
+				</tr>
+				<tr>
+					<td classe="col-md-4"><strong>Nom :</strong> </td><td>{{ mail.nom }}</td>
+				</tr>
+				<tr>
+					<td classe="col-md-4"><strong>Téléphone :</strong></td><td>{{ mail.telephone }}</td>
+				</tr>
+				<tr>
+					<td classe="col-md-4"><strong>Email :</strong></td><td>{{ mail.Email }}</td>
+				</tr>
+				<tr>
+					<td classe="col-md-4"><strong>Message :</strong></td><td>{{ mail.message }}</td>
+				</tr>
+			<table>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

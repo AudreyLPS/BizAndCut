@@ -10,6 +10,7 @@ use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use App\Form\RegistrationAdminType;
+use App\Repository\AdminsRepository;
 use App\Form\RegistrationCoiffeurType;
 use App\Form\RegistrationEntrepriseType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -26,7 +27,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register/{typeUser}", name="app_register")
      */
-    public function register(UserRepository $userRepository,MailerInterface $mailer, string $typeUser, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(AdminsRepository $adminRepository, UserRepository $userRepository,MailerInterface $mailer, string $typeUser, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         if($typeUser === 'coiffeurs'){
             $user= new Coiffeurs();
@@ -63,20 +64,27 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             
             //envoi d'email
-            $to ='audrey-lopes-correia@hotmail.fr';
-            
-            $message = (new TemplatedEmail())
-            ->from('alcnm2018@gmail.com')
-            ->to($to)
-            ->subject('Contact')
-            ->textTemplate('emailing/registerMail.txt.twig')//cibler un template twig
-            ->context([ // permet d'envoyer des information a la vue 
-                'nom' => $form->get('nom')->getData() ,
-                'prenom'  => $form->get('prenom')->getData()
+            $admins=$adminRepository->findAll();
+            foreach ($admins as $admin) { 
+                if($admin->getNotif() == 1){
+                    $to = $admin->getEmail(); 
                 
-            ])                
-        ;
-        $mailer->send($message);
+                    $message = (new TemplatedEmail())
+                    ->from('alcnm2018@gmail.com')
+                    ->to($to)
+                    ->subject('Contact')
+                    ->textTemplate('emailing/registerMail.txt.twig')//cibler un template twig
+                    ->context([ // permet d'envoyer des information a la vue 
+                        'nom' => $form->get('nom')->getData() ,
+                        'prenom'  => $form->get('prenom')->getData()
+                        
+                    ]);  
+                    $mailer->send($message);
+                }
+                
+            }             
+        
+        
 
             // do anything else you need here, like send an email
 

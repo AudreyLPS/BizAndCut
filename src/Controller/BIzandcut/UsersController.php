@@ -78,7 +78,7 @@ public function notiftrue(UserRepository $userRepository):Response
 {
       $entityManager = $this->getDoctrine()->getManager();
       $admin=$userRepository->find($this->security->getUser());
-      $admin->setNotif(true);
+      $admin->setNotif(1);
       
       $entityManager->flush();
 
@@ -92,7 +92,7 @@ public function notiffalse(UserRepository $userRepository):Response
 {
     $entityManager = $this->getDoctrine()->getManager();
     $admin=$userRepository->find($this->security->getUser());
-    $admin->setNotif(false);
+    $admin->setNotif(0);
     
     $entityManager->flush();
 

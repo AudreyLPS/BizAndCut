@@ -53,16 +53,22 @@
 			Il y a {{ nbMails }} message(s).</br>
 			</br>
 			</br>
-			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.mail') }}">Voir les messages</a>
+			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.mails') }}">Voir les messages</a>
 			</p>
 			<img src="{{ asset('img/mail.png') }}" width="150" class="img-fluid imgBox"/>
 		</div>
 		<div class="box col-md-11"></br>
-			<p style="text-align: right;">
-			Il y a {{ nbDevisEnAtt }} devis en attente.</br>
-			Il y a {{ nbDevisAcc }} devis accepté.</br></br></br>
-			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.propositions.index') }}">Gerer les propositions</a>
-			</p>
+			<div class="row">
+				<p class="col-md-4" style="margin-left:250px; text-align: left;">
+					Il y a {{ nbDevisEnAtt }} évenements cette semaine.</br>
+					Il y a {{ nbDevisAcc }} évenements en .</br></br></br>
+				</p>
+				<p class="col-md-4" style="text-align: right;">
+					Il y a {{ nbDevisEnAtt }} devis en attente.</br>
+					Il y a {{ nbDevisAcc }} devis accepté.</br></br></br>
+					<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.devis.index') }}">Voir les devis</a>
+				</p>
+			</div>
 			<img src="{{ asset('img/devis.png') }}" style="margin-top:-120px" width="150" class="img-fluid imgBox"/>
 		</div>
 	</div>

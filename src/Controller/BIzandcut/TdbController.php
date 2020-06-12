@@ -44,14 +44,29 @@ class TdbController extends AbstractController
     } 
     
   /**
-	 * @Route("/mail", name="bizandcut.mail")
+	 * @Route("/mails", name="bizandcut.mails")
 	 */
-  public function mail( MailsRepository $mailsRepository):Response
+  public function mails( MailsRepository $mailsRepository):Response
     {
-      $mails = $mail->findAll();
+      $mails = $mailsRepository->findAll();
 
       return $this->render('bizandcut/tableauDeBord/mails.html.twig', [
       'mails'        => $mails
       ]); 
-    } 
+    }     
+
+    /**
+     * @Route("/mail/{id}", name="bizandcut.mail")
+     */
+    public function mail( MailsRepository $mailsRepository, int $id):Response
+      {
+        $entityManager = $this->getDoctrine()->getManager();
+        $mail = $mailsRepository->find($id);
+        $mail->setLu(1);
+        $entityManager->flush();
+        
+        return $this->render('bizandcut/tableauDeBord/mail.html.twig', [
+        'mail'        => $mail
+        ]); 
+      } 
 }

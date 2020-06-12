@@ -45,8 +45,8 @@
 						{% if devis.devisStatut.texteDevisStatut == "Accepté" %}
 							<a href="{{ url('entreprise.devis.form.update', { id:devis.id }) }}" class="btn btn-dark col-md-12">Editer l'évenement</a>
 						{% else %}	
-							<a href="{{ url('entreprise.propositions.index', { idDevis:devis.id }) }}" class="btn btn-dark col-md-12">Liste propositions</a>
-							<a href="{{ url('entreprise.devis.form.update', { id:devis.id }) }}" class="btn btn-dark col-md-12">Editer l'évenement</a>
+							<a href="{{ url('entreprise.propositions.index', { idDevis:devis.id }) }}" style="margin-bottom:5px" class="btn btn-dark col-md-12">Liste propositions</a>
+							<a href="{{ url('entreprise.devis.form.update', { id:devis.id }) }}" class="btn btn-warning col-md-12">Editer l'évenement</a>
 						
 						{% endif %}
 					<!--a href="{{ url('entreprise.devis.delete', { id:devis.id }) }}" class="btn btn-danger col-md-4">Supprimer</a-->

@@ -46,7 +46,7 @@ class Propositions
      */
     private $dateProposition;
 
-   /**
+    /**
      * @ORM\Column(type="boolean")
      */
     private $validationEntreprise;

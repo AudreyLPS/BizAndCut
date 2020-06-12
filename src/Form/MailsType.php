@@ -13,7 +13,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class MailsType extends AbstractType{
  
@@ -21,10 +23,18 @@ class MailsType extends AbstractType{
     {
        
         $builder
+        ->add('date', HiddenType::class, [
+            'empty_data'=> new \DateTime(),
+            'data'=>""
+        ])
         ->add('nom')
         ->add('telephone')
         ->add('email')
-        ->add('message')
+        ->add('message', TextareaType::class)
+        ->add('lu', HiddenType::class, [
+            'empty_data'=> 0,
+            'data'=>""
+        ])
         ;
     }
 

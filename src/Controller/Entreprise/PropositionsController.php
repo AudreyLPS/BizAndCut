@@ -2,6 +2,7 @@
 
 namespace App\Controller\Entreprise;
 
+use App\Entity\Planning;
 use App\Entity\DevisStatut;
 use App\Entity\Propositions;
 use App\Repository\DevisRepository;
@@ -57,7 +58,10 @@ class PropositionsController extends AbstractController
         $devisStatus = $dsRepository->find(2);
         $devis=$devisRepository->find($idDevis);
         $devis->setDevisStatut($devisStatus);
-        
+
+        $planning=new Planning();
+        $planning->setDevis($devis);
+        $entityManager->persist($planning);
         $entityManager->flush();
         
         //envoie de mail pour l'inscription salarié 

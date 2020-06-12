@@ -46,7 +46,7 @@
 		</div>
 
 		<div class="col-md-4">
-			{% if app.user.notif == true %}
+			{% if app.user.notif == 1 %}
 				<a href="{{ url('bizandcut.notif.false') }}" class="btn btn-dark col-md-10">Refuser les notifications</a>
 			{% else %}
 				<a href="{{ url('bizandcut.notif.true') }}" class="btn btn-dark col-md-10">Autoriser les notifications</a>

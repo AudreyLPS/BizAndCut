@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+		<div class="col">
+			{% include "_inc/flash.messages.html.twig" %}
+			<h1>Liste des devis</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	
+    <p class="text-right">
+        
+    </p>
+	</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Evénement</th>
+				<th>Fait le</th>
+				<th>Durée</th>
+				<th>Nb participant</th>
+				<th>Nb Inscrit</th>
+				<th>Montant</th>
+				<th>Actions</th>
+			</tr>
+			{% for devis in results %}
+				<tr>
+					<td class="col-md-1">{{ devis.libelle }}</td>
+					<td class="col-md-2">{{ devis.date|date("m/d/Y") }}</td>
+					<td class="col-md-2">
+						{{ devis.heureDebut }} - {{ devis.heureFin }}
+					</td>
+					<td class="col-md-2">{{ devis.nbParticipants}}</td>
+					<td class="col-md-2">{{ devis.nbInscrit}}</td>
+					
+					<td class="col-md-2">{{ devis.nbInscrit}}</td>
+					<td class="col-md-1">
+						{% if devis.devisStatut.id == 2  %}
+							<a class="btn btn-dark col-md-12" href="{{ url('bizandcut.devis.proposition', { id:devis.id }) }}">Devis</div></a>
+						{% else %}
+							<a class="btn btn-dark col-md-12" href="{{ url('bizandcut.devis.proposition', { id:devis.id }) }}">Voir les proposition</div></a>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
