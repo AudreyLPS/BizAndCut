@@ -42,7 +42,7 @@ class SatisfactionController extends AbstractController
             return $this->redirectToRoute('homepage.index'); // on redirige vers le nom d'une route
         }
 
-        return $this->render('rdv/creneaux/form.html.twig',[
+        return $this->render('rdv/creneaux/satisfaction.html.twig',[
 			'form'=> $form->createView(),
 			'devis' => $devis,
         ]); 

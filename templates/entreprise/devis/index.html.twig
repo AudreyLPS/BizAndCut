@@ -39,7 +39,7 @@
 					<td class="col-md-2">{{ devis.devisStatut.texteDevisStatut }}</td>
 					<td class="col-md-2">
 					{% if date() > devis.date %}
-						<a href="{{ url('entreprise.satisfaction.send', { event:devis.libelle }) }}" class="btn btn-dark col-md-12">Generer enquete de satisfaction</a>
+						<a href="{{ url('entreprise.satisfaction.send', { idDevis:devis.id }) }}" class="btn btn-dark col-md-12">Generer enquete de satisfaction</a>
 
 					{% else %}
 						{% if devis.devisStatut.texteDevisStatut == "Accepté" %}

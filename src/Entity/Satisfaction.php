@@ -41,24 +41,24 @@ class Satisfaction
         return $this->id;
     }
 
-    public function getCoiffeur(): ?int
+    public function getCoiffeur(): ?Coiffeurs
     {
         return $this->coiffeur;
     }
 
-    public function setCoiffeur(int $coiffeur): self
+    public function setCoiffeur(Coiffeurs $coiffeur): self
     {
         $this->coiffeur = $coiffeur;
 
         return $this;
     }
 
-    public function getDevis(): ?int
+    public function getDevis(): ?Devis
     {
         return $this->devis;
     }
 
-    public function setDevis(int $devis): self
+    public function setDevis(Devis $devis): self
     {
         $this->devis = $devis;
 

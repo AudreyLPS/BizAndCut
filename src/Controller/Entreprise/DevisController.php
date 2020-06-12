@@ -88,9 +88,9 @@ class DevisController extends AbstractController
     /**
 	 * @Route("/satisfaction/{idDevis}", name="entreprise.satisfaction.send")
 	 */
-	public function send( MailerInterface $mailer, string $event, DevisRepository $devisRepository,int $idDevis):Response
+	public function send( MailerInterface $mailer, DevisRepository $devisRepository,int $idDevis):Response
 	{
-        $idDevis=$devisRepository->find($idDevis);
+        $devis=$devisRepository->find($idDevis);
 		$to=$this->security->getUser()->getEmail();
         $message = (new TemplatedEmail())
             ->from('audreybizandcut@gmail.com')
@@ -98,7 +98,7 @@ class DevisController extends AbstractController
             ->subject('Formulaire de satisfaction')
             ->textTemplate('emailing/satisfactionMail.txt.twig')
             ->context([
-                'Devis' => $Devis ,
+                'devis' => $devis ,
                 
             ])                
         ;

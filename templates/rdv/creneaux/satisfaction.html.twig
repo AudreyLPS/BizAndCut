@@ -9,15 +9,13 @@
 
 {{ form_start(form, { attr: { novalidate: 'novalidate' } } ) }}
 				
-				<div id="Form" class="mt-4">
-					<div class="row">
-						<div class="col">
-							{{ form_label(form.note, "Quelle note donneriez vous a votre coiffeur: ") }} 
-							{{ form_widget(form.note) }}
-						</div>
-					</div >
-
-
+		    <div id="Form" class="mt-4">
+			<div class="row">
+				<div class="col">
+					{{ form_label(form.note, "Quelle note donneriez vous a votre coiffeur: ") }} 
+					{{ form_widget(form.note) }}
+				</div>
+			</div >
 			<p>
                 </br>
 				<button type="submit" class="btn btn-info">Valider</button>
