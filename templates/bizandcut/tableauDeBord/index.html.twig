@@ -35,14 +35,18 @@
 		{% endfor %} 
 
 		{% set nbMails = 0 %}
+		{% set nbMailsNonLu = 0 %}
 		{% for mail in mails %} 
 			{% set nbMails = nbMails + 1 %}
+			{% if mail.lu == 0 %}
+				{% set nbMailsNonLu = nbMailsNonLu + 1 %}
+			{% endif %}
 		{% endfor %} 
 		<div class="box col-md-5"></br>
 			<p style="text-align: right;">
-			Il y a {{ nbCoif }} coiffeur(s).</br>
-			Il y a {{ nbEnt }} entreprise(s).</br>
-			Il y a {{ nbUser }} utilisateur(s).</br></br>
+			Il y a {{ nbCoif }} coiffeurs.</br>
+			Il y a {{ nbEnt }} entreprises.</br>
+			Il y a {{ nbUser }} utilisateurs.</br></br>
 			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.users.index') }}">Gerer les utilisateurs</a>
 			</p>
 			<img src="{{ asset('img/user.png') }}" width="150" class="img-fluid imgBox"/>
@@ -50,8 +54,8 @@
 		<div class="box col-md-5"></br>
 			<p style="text-align: right;">
 			</br>
-			Il y a {{ nbMails }} message(s).</br>
-			</br>
+			Il y a {{ nbMails }} messages.</br>
+			Il y a {{ nbMailsNonLu }} nouveaux messages.</br>
 			</br>
 			<a class="btn btn-dark col-md-5" href="{{ url('bizandcut.mails') }}">Voir les messages</a>
 			</p>

@@ -49,6 +49,12 @@ class Coiffeurs extends User
      */
     private $distance;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $validationBC;
+
+
     public function getCivilite(): ?string
     {
         return $this->civilite;
@@ -81,6 +87,18 @@ class Coiffeurs extends User
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getValidationBC(): ?bool
+    {
+        return $this->validationBC;
+    }
+
+    public function setValidationBC(bool $validationBC): self
+    {
+        $this->validationBC = $validationBC;
 
         return $this;
     }

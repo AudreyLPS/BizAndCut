@@ -5,11 +5,13 @@ namespace App\Controller\Coiffeur;
 use App\Entity\DevisStatut;
 use App\Entity\Propositions;
 use App\Form\PropositionType;
+use App\Repository\UserRepository;
 use App\Repository\DevisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\DevisStatutRepository;
 use App\Repository\PropositionsRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,17 +22,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class PropositionsController extends AbstractController
 {
-    
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+	}
+	
 	/**
 	 * @Route("/liste/form/{id}", name="coiffeur.propositions.form")
 	 */
 	 
     
-    public function form(PropositionsRepository $propositionsRepository, int $id, Request $request, EntityManagerInterface $entityManager):Response
+    public function form(PropositionsRepository $propositionsRepository,UserRepository $userRepository, int $id, Request $request, EntityManagerInterface $entityManager):Response
 	{
+		
+		$coiffeur=$userRepository->find($this->security->getUser());
+
         $type = PropositionType::class;
         $model = new Propositions();
-        
+		if($coiffeur->getValidationBC() == 1){
+			$model->setValidationBC(1);
+		}
+		
         $form = $this->createForm($type, $model, array('idDevis'=>$id));
 		$form->handleRequest($request);
         

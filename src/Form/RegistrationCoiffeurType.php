@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-#use App\EventSubscriber\Form\Insc_coifEventSubscriber;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -60,6 +59,9 @@ class RegistrationCoiffeurType extends AbstractType
             'label_attr'=>[
                 'class'=>'radio-inline'
             ]
+        ])
+        ->add('validationBC', HiddenType::class, [
+            'empty_data'=> 0,
         ])
         ->add('telephone')
         ->add('adresse')

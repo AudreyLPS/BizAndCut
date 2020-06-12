@@ -36,6 +36,37 @@ class ProfilController extends AbstractController
 			'user' => $user,
 			'profil' => $profil,
 		]); 
+	} 
+	
+	
+	/**
+	 * @Route("/profil/valider/{coiffeur}", name="bizandcut.profil.valider")
+	 */
+	public function valider(CoiffeursRepository $CoiffeursRepository, ProfilRepository $profilRepository, int $coiffeur):Response
+	{
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $coiffeur=$CoiffeursRepository->find($coiffeur);
+        $coiffeur->setValidationBC(1);
+        
+        $entityManager->flush();
+        
+		return $this->redirectToRoute('bizandcut.users.index');
+    } 
+	
+	/**
+	 * @Route("/profil/invalider/{coiffeur}", name="bizandcut.profil.invalider")
+	 */
+	public function invalider(CoiffeursRepository $CoiffeursRepository, ProfilRepository $profilRepository, int $coiffeur):Response
+	{
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $coiffeur=$CoiffeursRepository->find($coiffeur);
+        $coiffeur->setValidationBC(0);
+        
+        $entityManager->flush();
+        
+		return $this->redirectToRoute('bizandcut.users.index');
     } 
     
 }

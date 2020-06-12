@@ -70,7 +70,26 @@
 						<b> Saisissez votre diplôme: </b>
 						{{profil.diplome}}
 					</li>
+				{% else %}
+					<li> 
+						<b> RIB:</b> Non renseigné 
+					</li>
+					<li> 
+						<b> Saisissez votre diplôme: </b> Non renseigné 
+					</li>
 				{% endif %}
+				
+				</br></br>
+				
+				
+				{% if user.validationBC == 0 %}
+					<p>Valider un profil signifie que les propositions de ce coiffeur n'auront pas besoin de votre validation </p>
+					<a class="btn btn-success col-md-8" href="{{ url('bizandcut.profil.valider', { coiffeur:user.id }) }}">Valider le profil</div></a>
+				{% else %}
+					<p>Invalider un profil signifie que les propositions de ce coiffeur auront besoin de votre validation </p>
+					<a class="btn btn-danger col-md-8" href="{{ url('bizandcut.profil.invalider', { coiffeur:user.id }) }}">Invalider le profil</div></a>
+				{% endif %}
+				
 			</ul>
 
 		</table>
