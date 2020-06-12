@@ -86,18 +86,19 @@ class DevisController extends AbstractController
     }
     
     /**
-	 * @Route("/satisfaction/{event}", name="entreprise.satisfaction.send")
+	 * @Route("/satisfaction/{idDevis}", name="entreprise.satisfaction.send")
 	 */
-	public function send( MailerInterface $mailer, string $event):Response
+	public function send( MailerInterface $mailer, string $event, DevisRepository $devisRepository,int $idDevis):Response
 	{
+        $idDevis=$devisRepository->find($idDevis);
 		$to=$this->security->getUser()->getEmail();
         $message = (new TemplatedEmail())
-            ->from('alcnm2018@gmail.com')
+            ->from('audreybizandcut@gmail.com')
             ->to($to)
             ->subject('Formulaire de satisfaction')
             ->textTemplate('emailing/satisfactionMail.txt.twig')
             ->context([
-                'evenement' => $event ,
+                'Devis' => $Devis ,
                 
             ])                
         ;
@@ -107,6 +108,8 @@ class DevisController extends AbstractController
 
             return $this->redirectToRoute('homepage.index');
         
-	}
+    }
+    
+    
     
 }

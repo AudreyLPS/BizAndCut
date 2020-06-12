@@ -20,21 +20,6 @@ class Profil
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=500)
-     */
-    private $rib;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $note;
-
-    /**
-     * @ORM\Column(type="string", length=150)
-     */
-    private $diplome;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $user;
@@ -44,42 +29,6 @@ class Profil
         return $this->id;
     }
 
-    public function getRib(): ?string
-    {
-        return $this->rib;
-    }
-
-    public function setRib(string $rib): self
-    {
-        $this->rib = $rib;
-
-        return $this;
-    }
-
-    public function getNote(): ?int
-    {
-        return $this->note;
-    }
-
-    public function setNote(int $note): self
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    public function getDiplome(): ?string
-    {
-        return $this->diplome;
-    }
-
-    public function setDiplome(string $diplome): self
-    {
-        $this->diplome = $diplome;
-
-        return $this;
-    }
-    
     public function getUser(): ?int
     {
         return $this->user;

@@ -54,6 +54,16 @@ class Coiffeurs extends User
      */
     private $validationBC;
 
+    /**
+     * @ORM\Column(type="string", length=500)
+     */
+    private $rib;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    private $diplome;
+
 
     public function getCivilite(): ?string
     {
@@ -63,6 +73,31 @@ class Coiffeurs extends User
     public function setCivilite(string $civilite): self
     {
         $this->civilite = $civilite;
+
+        return $this;
+    }
+
+
+    public function getRib(): ?string
+    {
+        return $this->rib;
+    }
+
+    public function setRib(string $rib): self
+    {
+        $this->rib = $rib;
+
+        return $this;
+    }
+
+    public function getDiplome(): ?string
+    {
+        return $this->diplome;
+    }
+
+    public function setDiplome(string $diplome): self
+    {
+        $this->diplome = $diplome;
 
         return $this;
     }

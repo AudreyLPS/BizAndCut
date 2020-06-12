@@ -60,24 +60,15 @@
 					<b> Distance entre votre adresse souhaitée et l'adresse de l'entreprise: </b>
 					{{user.distance}}
 				</li>
-				
-				{% if profil != null %}
+			
 					<li> 
 						<b> RIB: </b>
-						{{profil.rib}}
+						{{user.rib}}
 					</li>
 					<li> 
 						<b> Saisissez votre diplôme: </b>
-						{{profil.diplome}}
+						{{user.diplome}}
 					</li>
-				{% else %}
-					<li> 
-						<b> RIB:</b> Non renseigné 
-					</li>
-					<li> 
-						<b> Saisissez votre diplôme: </b> Non renseigné 
-					</li>
-				{% endif %}
 				
 				</br></br>
 				
