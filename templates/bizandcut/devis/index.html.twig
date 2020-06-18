@@ -27,7 +27,7 @@
 			{% for devis in results %}
 				<tr>
 					<td class="col-md-1">{{ devis.libelle }}</td>
-					<td class="col-md-2">{{ devis.date|date("m/d/Y") }}</td>
+					<td class="col-md-2">{{ devis.date|date("d/m/Y") }}</td>
 					<td class="col-md-2">
 						{{ devis.heureDebut }} - {{ devis.heureFin }}
 					</td>

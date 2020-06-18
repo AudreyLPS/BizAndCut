@@ -12,30 +12,6 @@
 		</p>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			
-				<div class="row">
-					{% set nbCoif = 0 %}
-					{% set nbEnt = 0 %}
-					{% for user in results %} 
-						{% for role in user.roles %}
-							<td class="col-md-1">
-								{% if role == 'ROLE_COIFFEURS' %} {% set nbCoif = nbCoif + 1 %}  {% endif %}
-								{% if role == 'ROLE_ENTREPRISES' %} {% set nbEnt = nbEnt + 1 %}  {% endif %}
-							</td>
-						{% endfor %} 
-					{% endfor %} 
-					<div class="col">
-						Il y a {{ nbCoif }} coiffeur(s) dans la base de données.
-					</div>
-					<div class="col">
-						Il y a {{ nbEnt }} entreprise(s) dans la base de données.
-					</div>
-				</div></br>
-			
-		</div>
-	</div>
 	<div class="row" >		
 		<div class="col-md-4">
 			<a href="{{ url('app_register', { typeUser:'entreprises' }) }}" class="btn btn-dark col-md-10">+ Ajouter une entreprise</a>
@@ -47,9 +23,9 @@
 
 		<div class="col-md-4">
 			{% if app.user.notif == 1 %}
-				<a href="{{ url('bizandcut.notif.false') }}" class="btn btn-dark col-md-10">Refuser les notifications</a>
+				<a href="{{ url('bizandcut.notif.false') }}" class="btn btn-warning col-md-10">Refuser les notifications</a>
 			{% else %}
-				<a href="{{ url('bizandcut.notif.true') }}" class="btn btn-dark col-md-10">Autoriser les notifications</a>
+				<a href="{{ url('bizandcut.notif.true') }}" class="btn btn-info col-md-10">Autoriser les notifications</a>
 			{% endif %}
 		</div>
 		

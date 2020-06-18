@@ -76,14 +76,14 @@
           <div class="nav-link">|</div>
         </li>
         <li class="nav-item active">
-        <a href="" class="nav-link">Boite de reception</a>
+        <a href="{{ url('bizandcut.mails') }}" class="nav-link">Boite de reception</a>
         </li>
       </ul>
       {% endif %}
       {% if is_granted('ROLE_ENTREPRISES') %}
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a href="{{ url('entreprise.devis.index') }}" class="nav-link">Tableau de bord</a>
+              <a href="{{ url('entreprise.devis.index') }}" class="nav-link">Gestion des événements</a>
             </li>
             <li class="nav-item active">
               <div class="nav-link">|</div>

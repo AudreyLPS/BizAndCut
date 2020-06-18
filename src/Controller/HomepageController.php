@@ -33,7 +33,7 @@ class HomepageController extends AbstractController
              $entityManager->flush();
               
              // message de confirmation
-             $message = "Le devis a été envoyé";
+             $message = "Votre message à été envoyé";
                    $this->addFlash('notice', $message);
                    
                    //redirection
