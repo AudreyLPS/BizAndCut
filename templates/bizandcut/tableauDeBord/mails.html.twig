@@ -26,9 +26,9 @@
 			{% for mail in mails %}
 				<tr>
 					<td class="col-md-2">
-						{% if mail.lu == 0 %} <a class="btn btn-success col-md-12">Nouveau {% else %} <a class="btn btn-dark col-md-12" style="color:white;">Déjà lu {% endif %}</a>	
+						{% if mail.lu == 0 %} <a class="border border-success rounded col-md-12 text-success">Nouveau {% else %} <a class="border border-info rounded col-md-12 text-info">Déjà lu {% endif %}</a>	
 					</td>
-					<td class="col-md-2">{{ mail.date|date("m/d/Y") }}</td>
+					<td class="col-md-2">{{ mail.date|date("d/m/Y") }}</td>
 					<td class="col-md-2">{{ mail.nom }}</td>
 					<td class="col-md-1">{{ mail.telephone }}</td>
 					<td class="col-md-3">{{ mail.email}}</td>

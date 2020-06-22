@@ -15,7 +15,7 @@
                     <h1 style=" margin-top: 182px;
                                 font-weight: bold;">
                         Jamais le temps d'aller chez le coiffeur ?</h1>
-                        <button style="color: white;"class="btn btn-outline-dark btn-lg" href="{{ url('app_login') }}">Rejoignez-nous, on vient à vous !</button>
+                        <a style="color: white;"class="btn btn-outline-dark btn-lg" href="{{ url('app_register', { typeUser:'entreprises' }) }}">Rejoignez-nous, on vient à vous !</a>
                 </div>
 
                 <div id="prestation"
@@ -118,21 +118,11 @@
                                             </div >
                                             <p>
                                                 {{form_label(form.email, "Email")}}
-                                                {{form_widget(form.email,
-                                                    { attr: 
-                                                        {
-                                                            autofocus:'autofocus'
-                                                        }
-                                                    })}}
+                                                {{form_widget(form.email)}}
                                             </p>
                                             <p>
                                                 {{form_label(form.message, "Message")}}
-                                                {{form_widget(form.message,
-                                                    { attr: 
-                                                        {
-                                                            autofocus:'autofocus'
-                                                        }
-                                                    })}}
+                                                {{form_widget(form.message)}}
                                             </p>
 			                                <p>
                                                 </br>
@@ -144,8 +134,10 @@
                                         <strong>Biz&Cut</strong></br>
                                         18 rue Boyer Barret</br>
                                         75014 - Paris</br></br></br>
-                                        <strong>Ouvert du lundi au vendredi</strong></br>
-                                        <img>logo</img>
+                                        <strong>Ouvert du lundi au vendredi</strong></br></br>
+                                        <a  href="{{url('homepage.index')}}">
+                                            <img src="{{ asset('img/logo_blanc.png') }}" width="150" class="img-fluid"/>
+                                        </a>
                                     </td>
                                 </tr>
                             </table>

@@ -24,12 +24,12 @@
 			</tr>
 			{% for proposition in results %} 
 				<tr>
-					<td class="col-md-1">{{ proposition.devis.libelle }}</td>
+					<td class="col-md-4">{{ proposition.devis.libelle }}</td>
 					<td class="col-md-2">{{ proposition.coiffeur.nom }}</td>
 					<td class="col-md-2">{{ proposition.dateProposition|date("m/d/Y") }}</td>
 					<td class="col-md-2">{{ proposition.montant }}€</td>
-					<td class="col-md-4">
-						<a href="{{ url('entreprise.propositions.accompte', { id:proposition.id, idDevis:proposition.devis.id }) }}" class="btn btn-success col-md-4">Accepter</a>
+					<td class="col-md-2">
+						<a href="{{ url('entreprise.propositions.accompte', { id:proposition.id, idDevis:proposition.devis.id }) }}" class="btn btn-success col-md-10">Accepter</a>
 					</td>
 				</tr>
 			{% endfor %}

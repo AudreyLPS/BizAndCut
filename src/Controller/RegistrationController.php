@@ -65,27 +65,35 @@ class RegistrationController extends AbstractController
             
             //envoi d'email
             $admins=$adminRepository->findAll();
+            
             foreach ($admins as $admin) { 
                 if($admin->getNotif() == 1){
-                    $to = $admin->getEmail(); 
-                
+                    $to = $admin->getEmail();
+                    $roles = $user->getRoles();
+                    $unRole='';
+                    foreach ($roles as $role) {
+                        if ($role == 'ROLE_COIFFEURS'){$unRole='Coiffeur';}
+                        if ($role == 'ROLE_ADMINS'){$unRole='Administrateur';}
+                        if ($role == 'ROLE_SALARIES'){$unRole='Salarié';}
+                        if ($role == 'ROLE_ENTREPRISES'){$unRole='Entreprise';}
+                     }
+                    $subject= 'NEW '.$unRole;
                     $message = (new TemplatedEmail())
                     ->from('alcnm2018@gmail.com')
                     ->to($to)
-                    ->subject('Contact')
+                    ->subject($subject)
                     ->textTemplate('emailing/registerMail.txt.twig')//cibler un template twig
                     ->context([ // permet d'envoyer des information a la vue 
                         'nom' => $form->get('nom')->getData() ,
-                        'prenom'  => $form->get('prenom')->getData()
+                        'prenom'  => $form->get('prenom')->getData(),
+                        'mail'  => $form->get('email')->getData(),
+                        'role'=>$unRole
                         
                     ]);  
                     $mailer->send($message);
                 }
                 
             }             
-        
-        
-
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('homepage.index');
