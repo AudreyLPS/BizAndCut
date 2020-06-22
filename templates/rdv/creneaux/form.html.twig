@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block script %}
+	<script>
+		function myFunction(heure) {
+			creneau = heure;
+		}
+	</script>
+{% endblock %}
+
 {% block body %}
     <h1>Inscription rdv evenement</h1>
 
@@ -20,21 +28,26 @@
 							{{ form_label(form.email,"Email") }} 
 							{{ form_widget(form.email) }}
 						</div>
-						<div class="col">
-							{{ form_label(form.heureCreneau,"Selectionnes ton creneau p*****") }} 
-							{{ form_widget(form.heureCreneau) }}
-						</div>
 					</div >
 
-<p></br>Choisissez votre creneau :</p>
-<p>(9h-11h)</p>
+					{% set creneau = 0 %}
 
-<div>
-  <!--input type="radio" id="huey" name="drone" value="huey"
-         checked>
-  <label for="huey">9:00</label>
-  <button>for="huey"</button-->
-</div>
+						<div>
+							{{ form_label(form.heureCreneau,"Selectionnez votre creneau") }} 
+							
+							<p>(9h-11h)</p>
+						</div>
+
+			<div>
+
+			<button type="button" class="btn btn-success">9:00</button>
+
+			<button type="button" class="btn btn-success">9:30</button>
+
+			<button type="button" class="btn btn-secondary">10:00</button>
+
+			<button type="button" class="btn btn-success">10:30</button>
+			</div>
 
 			<p>
                 </br>
