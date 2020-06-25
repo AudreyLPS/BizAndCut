@@ -22,12 +22,14 @@ class DevisController extends AbstractController
 	/**
 	 * @Route("/devis", name="bizandcut.devis.index")
 	 */
-	public function index(DevisRepository $devisRepository):Response
+	public function index(DevisRepository $devisRepository , PropositionsRepository $propositionsRepository):Response
 	{
-        $devis= $devisRepository->findAll();
+		$devis= $devisRepository->findAll();
+		$propositions = $propositionsRepository->findAll();
         
 		return $this->render('bizandcut/devis/index.html.twig', [
 			'results' => $devis,
+			'propositions' => $propositions,
 		]); 
     } 
 

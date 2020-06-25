@@ -18,7 +18,6 @@
 			<tr>
 				<th>Evénement</th>
 				<th>Fait par</th>
-				<th>Fait le</th>
 				<th>Durée</th>
 				<th>Nb participant</th>
 				<th>Nb Inscrit</th>
@@ -27,21 +26,28 @@
 			</tr>
 			{% for proposition in results %} 
 				<tr>
-					<td class="col-md-1">{{ proposition.devis.libelle }}</td>
+					<td class="col-md-3">{{ proposition.devis.libelle }}</td>
 					<td class="col-md-2">{{ proposition.coiffeur.nom }}</td>
-					<td class="col-md-2">{{ proposition.dateProposition|date("d/m/Y") }}</td>
 					<td class="col-md-2">
 						{{ proposition.devis.heureDebut }} - {{ proposition.devis.heureFin }}
 					</td>
-					<td class="col-md-2">{{ proposition.devis.nbParticipants}}</td>
-					<td class="col-md-2">{{ proposition.devis.nbInscrit}}</td>
-					<td class="col-md-2">{{ proposition.montant }}€</td>
-					<td class="col-md-1">
-						{% if proposition.validationBC == 1  %}
-							<a href="{{ url('bizandcut.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.id }) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: green;"></div></a>
+					<td class="col-md-1">{{ proposition.devis.nbParticipants}}</td>
+					<td class="col-md-1">{{ proposition.devis.nbInscrit}}</td>
+					<td class="col-md-1">{{ proposition.montant }}€</td>
+					<td class="col-md-2">
+					{% if date() > proposition.devis.date %}
+						<a class="border border-success rounded col-md-12 text-success">Evénement passé 
+					{% else %}
+						{% if proposition.devis.devisStatut.id == 2 %}
+							<a class="border border-info rounded col-md-12 text-info">Devis validé 
 						{% else %}
-							<a href="{{ url('bizandcut.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.id }) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: red;"></div></a>
+							{% if proposition.validationBC == 1  %}
+								<a href="{{ url('bizandcut.propositions.refuse', { id:proposition.id, idDevis:proposition.devis.id }) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: green;"></div></a>
+							{% else %}
+								<a href="{{ url('bizandcut.propositions.accepte', { id:proposition.id, idDevis:proposition.devis.id }) }}"><div style="width: 40px; height: 40px; border-radius: 20px; background: red;"></div></a>
+							{% endif %}
 						{% endif %}
+					{% endif %}
 					</td>
 				</tr>
 			{% endfor %}

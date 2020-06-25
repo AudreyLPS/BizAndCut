@@ -26,20 +26,28 @@
 			</tr>
 			{% for devis in results %}
 				<tr>
-					<td class="col-md-1">{{ devis.libelle }}</td>
-					<td class="col-md-2">{{ devis.date|date("d/m/Y") }}</td>
-					<td class="col-md-2">
+					<td class="col-md-3">{{ devis.libelle }}</td>
+					<td class="col-md-1">{{ devis.date|date("d/m/Y") }}</td>
+					<td class="col-md-1">
 						{{ devis.heureDebut }} - {{ devis.heureFin }}
 					</td>
-					<td class="col-md-2">{{ devis.nbParticipants}}</td>
-					<td class="col-md-2">{{ devis.nbInscrit}}</td>
+					<td class="col-md-1">{{ devis.nbParticipants}}</td>
+					<td class="col-md-1">{{ devis.nbInscrit}}</td>
 					
-					<td class="col-md-2">{{ devis.nbInscrit}}</td>
-					<td class="col-md-1">
 						{% if devis.devisStatut.id == 2  %}
-							<a class="btn btn-dark col-md-12" href="{{ url('bizandcut.devis.proposition', { id:devis.id }) }}">Devis</div></a>
+							<td class="col-md-1">
+								{% for propo in propositions %}
+									{% if propo.devis.id == devis.id and propo.validationEntreprise == 1 %} {{ propo.montant }}€ {% endif %}
+								{% endfor %} 
+							</td>
+							<td class="col-md-3">
+								<a class="border border-success rounded col-md-12 text-success">Devis accepté par le client</a>
+							</td>
 						{% else %}
-							<a class="btn btn-dark col-md-12" href="{{ url('bizandcut.devis.proposition', { id:devis.id }) }}">Voir les proposition</div></a>
+							<td class="col-md-1">/</td>
+							<td class="col-md-3">
+								<a class="btn btn-dark col-md-12" href="{{ url('bizandcut.devis.proposition', { id:devis.id }) }}">Voir les proposition</div></a>
+							</td>
 						{% endif %}
 					</td>
 				</tr>

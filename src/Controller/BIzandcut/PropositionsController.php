@@ -45,6 +45,24 @@ class PropositionsController extends AbstractController
 			'results' => $results,
 		]);
     }
+
+        /**
+	  * @Route("/listepropositions/refuse/{id}/{idDevis}", name="bizandcut.propositions.refuse")
+    */
+	public function refuse(int $id,int $idDevis ,DevisStatutRepository $dsRepository, DevisRepository $devisRepository,PropositionsRepository $propositionsRepository):Response
+  {
+       
+     $entityManager = $this->getDoctrine()->getManager();
+        $proposition=$propositionsRepository->find($id);
+        $proposition->setValidationBC(0);
+        
+        $entityManager->flush();
+
+		    $results= $propositionsRepository->findAll();
+		return $this->render('bizandcut/propositions/index.html.twig', [
+			'results' => $results,
+		]);
+    }
 }
 
 
